@@ -4,8 +4,8 @@ const { addUserDb, checkIfUserExistsDb } = require("./repository/login.db");
 const adapter = new FileSync("db.json");
 const db = low(adapter);
 
-function addUser(username, password, email) {
-  return addUserDb(db, username, password, email);
+async function addUser(username, password, email) {
+  return await addUserDb(db, username, password, email);
 }
 
 function checkIfUserExists(username, password) {
