@@ -1,0 +1,4 @@
+npm init -y in scripts add "start": "node server.js" 
+npm i express
+npm i nodemon in scripts change "start": "nodemon server.js"
+npm i morgan for logs
