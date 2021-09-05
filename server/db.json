@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "username": "igor",
+      "password": "pass",
+      "email": "volokhov9@gmail.com"
+    },
+    {
+      "username": "igor2",
+      "password": "pass2",
+      "email": "volokhov92@gmail.com"
+    },
+    {
+      "username": "igor3",
+      "password": "pass3",
+      "email": "volokhov93@gmail.com"
+    },
+    {
+      "username": "igor4",
+      "password": "pass4",
+      "email": "volokhov94@gmail.com"
+    }
+  ],
+  "posts": []
+}
