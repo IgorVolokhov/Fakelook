@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
-const usersRoutes = require("./api/routes/users");
+const loginRoutes = require("./api/routes/login");
 
 app.use(morgan("dev"));
 
@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 
 // Routes
-app.use("/users", usersRoutes);
+app.use("/users", loginRoutes);
 
 // Error not Found
 app.use((req, res, next) => {
