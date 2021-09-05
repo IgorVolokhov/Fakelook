@@ -1,24 +1,24 @@
 {
   "users": [
     {
+      "username": "first",
+      "password": "$2b$10$wKvLlvjoADo5HF6JEoWrxeFcRTISEZZA9z5Ijb0hTKcptaxn50p3O",
+      "email": "first@gmail.com"
+    },
+    {
+      "username": "second",
+      "password": "$2b$10$buQx.vV/N1hOCA8Qoz9Q5eeZIuOTXjesSvra6J1RjbxkeuPlHAg4y",
+      "email": "second@gmail.com"
+    },
+    {
+      "username": "third",
+      "password": "$2b$10$zAbUOUEnt/oqbLhasXDqEeJd6vdw7Lk0FyJuwaLS531eecX3aYEXi",
+      "email": "third@gmail.com"
+    },
+    {
       "username": "igor",
-      "password": "pass",
-      "email": "volokhov9@gmail.com"
-    },
-    {
-      "username": "igor2",
-      "password": "pass2",
-      "email": "volokhov92@gmail.com"
-    },
-    {
-      "username": "igor3",
-      "password": "pass3",
-      "email": "volokhov93@gmail.com"
-    },
-    {
-      "username": "igor4",
-      "password": "pass4",
-      "email": "volokhov94@gmail.com"
+      "password": "$2b$10$JC.9TDvvOvWqqLilJu0fQ.D5eE92JkmykGcxGbeNNNGLnYBhPqexS",
+      "email": "password:1234@gmail.com"
     }
   ],
   "posts": []
