@@ -8,6 +8,10 @@ async function addUser(username, password, email) {
   return await addUserDb(db, username, password, email);
 }
 
+async function removeUser(email){
+  return await removeUserDB(db,email);
+}
+
 function checkIfUserExists(username, password) {
   return checkIfUserExistsDb(db, username, password);
 }
@@ -15,4 +19,5 @@ function checkIfUserExists(username, password) {
 module.exports = {
   addUser,
   checkIfUserExists,
+  removeUser,
 };

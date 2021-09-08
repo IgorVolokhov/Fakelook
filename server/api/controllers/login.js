@@ -1,4 +1,4 @@
-const { addUser, checkIfUserExists } = require("../../DAL/db");
+const { addUser, checkIfUserExists, removeUser } = require("../../DAL/dbUser");
 
 module.exports = {
   signup: async (req, res) => {
@@ -18,4 +18,9 @@ module.exports = {
       doesExist: doesExist,
     });
   },
+  remove: async (req,res) => {
+    const {email} = req.body
+    const isAdded = await removeUser(email);
+    console.log();
+  }
 };
