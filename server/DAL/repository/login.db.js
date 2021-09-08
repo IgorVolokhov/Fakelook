@@ -6,6 +6,19 @@ async function comparePasswords(password, bcryptPassword) {
   return await bcrypt.compare(password, bcryptPassword);
 }
 
+
+async function removeUserDB(db,email){
+  const users = db.get("users").value();
+  try {
+    users.fillter(x => x.email !== email)
+    db.write();
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false
+  }
+}
+
 async function addUserDb(db, username, password, email) {
   const users = db.get("users").value();
 
@@ -54,4 +67,5 @@ async function checkIfUserExistsDb(db, username, password) {
 module.exports = {
   addUserDb,
   checkIfUserExistsDb,
+  removeUserDB,
 };

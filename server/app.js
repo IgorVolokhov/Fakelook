@@ -3,6 +3,7 @@ const app = express();
 const morgan = require("morgan");
 
 const loginRoutes = require("./api/routes/login");
+const postRoutes = require("./api/routes/posts");
 
 app.use(morgan("dev"));
 
@@ -29,6 +30,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/users", loginRoutes);
+app.use("/posts",postRoutes)
 
 // Error not Found
 app.use((req, res, next) => {

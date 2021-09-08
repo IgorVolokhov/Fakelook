@@ -21,5 +21,13 @@
       "email": "password:1234@gmail.com"
     }
   ],
-  "posts": []
+  "posts": [{
+    "imageurl":"",
+    "lat": 2315,
+    "lan": 4545,
+    "tags":[],
+    "date": "10/7/2022",
+    "username":"igor"
+    
+  }]
 }
