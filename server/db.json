@@ -1,44 +1,9 @@
 {
   "users": [
     {
-      "username": "first",
-      "password": "$2b$10$wKvLlvjoADo5HF6JEoWrxeFcRTISEZZA9z5Ijb0hTKcptaxn50p3O",
-      "email": "first@gmail.com"
-    },
-    {
-      "username": "second",
-      "password": "$2b$10$buQx.vV/N1hOCA8Qoz9Q5eeZIuOTXjesSvra6J1RjbxkeuPlHAg4y",
-      "email": "second@gmail.com"
-    },
-    {
-      "username": "third",
-      "password": "$2b$10$zAbUOUEnt/oqbLhasXDqEeJd6vdw7Lk0FyJuwaLS531eecX3aYEXi",
-      "email": "third@gmail.com"
-    },
-    {
-      "username": "igor",
-      "password": "$2b$10$JC.9TDvvOvWqqLilJu0fQ.D5eE92JkmykGcxGbeNNNGLnYBhPqexS",
-      "email": "password:1234@gmail.com"
-    },
-    {
-      "username": "09/09/21-11:41",
-      "password": "$2b$10$GDzF4zf8TXrlqYtJ6zK2F.OxhNOVCotGJMX1q.Gsrr.ZeHVB7rMtm",
-      "email": "password:11:41:58@gmail.com"
-    },
-    {
-      "username": "13:07",
-      "password": "$2b$10$OGnA7m.mzJmJbA0gpr7uCu3Jt5YZJKnus8sYpxTIXOb6b0k9TP2Oy",
-      "email": "asd1308@gmail.com"
-    },
-    {
-      "username": "13:08",
-      "password": "$2b$10$wxkZk1AvE8f6RZ8wX/FodOA2L8wgZcihyF8NsjXkLztVH9u8gX31q",
-      "email": "asd1309@gmail.com"
-    },
-    {
-      "username": "13:10",
-      "password": "$2b$10$hoEAkoZSA9.Kb1ywHkWq.uqA283tdw4.EBwd0tDU.Oa2t97Cnk6be",
-      "email": "asd1310@gmail.com"
+      "username": "1234",
+      "password": "$2b$10$cNU8PUmN.HY/rp30BeDQrebXnFdLDkubnyjcOHea35pa91kxAh57S",
+      "email": "1234@gmail.com"
     }
   ],
   "posts": [

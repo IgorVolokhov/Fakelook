@@ -3,12 +3,14 @@ import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
+import CustomButton from "./components/CustomButton";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">Hello</header>
-      <SignUp />
+      <header className="header">
+        Hello THIS IS HEADER WORK ON IT LATER :P
+      </header>
       <BrowserRouter>
         <div>
           <Switch>

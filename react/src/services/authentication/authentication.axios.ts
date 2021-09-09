@@ -21,6 +21,14 @@ export const axiosSignup = async (
   return isAddedRes;
 };
 
-const axiosSignin = async (username: string) => {
-  return true;
+export const axiosSignin = async (username: string, password: string) => {
+  let isLoggedInRes: boolean = false;
+  const signinUrl = url + "login";
+  await axios
+    .post(signinUrl, { username: username, password: password })
+    .then((res) => {
+      const { message, isLoggedIn } = res.data;
+      isLoggedInRes = isLoggedIn;
+    });
+  return isLoggedInRes;
 };
