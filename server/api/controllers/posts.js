@@ -3,10 +3,10 @@ const { addPost,checkIfPostExists,removePost } = require("../../DAL/dbPosts");
 module.exports = {
     add: async (req,res) =>{
         const {imageurl,lat,lan,tags,date,username} = req.body;
+        console.log("went into addpost at add posts controllers");
         const isAdded = await addPost(imageurl,lat,lan,tags,date,username);
-        const add = await checkIfPostExists(imageurl,lat,lan,tags,date,username);
         res.status(200).json({
-            message:add ? `added successfully`: `didnt add`,
+            message:isAdded ? `added successfully`: `didnt add`,
         });
     },
     remove: async (req,res) => {

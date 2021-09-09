@@ -1,21 +1,21 @@
 const bcrypt = require("bcrypt");
 
 // TODO come back to -1
+// TODO change so you recieve already bcrypted password and work with it
 
 async function comparePasswords(password, bcryptPassword) {
   return await bcrypt.compare(password, bcryptPassword);
 }
 
-
-async function removeUserDB(db,email){
+async function removeUserDB(db, email) {
   const users = db.get("users").value();
   try {
-    users.fillter(x => x.email !== email)
+    users.fillter((x) => x.email !== email);
     db.write();
     return true;
   } catch (error) {
     console.log(error);
-    return false
+    return false;
   }
 }
 
