@@ -2,7 +2,7 @@ import { Formik, Form, useField, FieldAttributes } from "formik";
 import { TextField, Button } from "@material-ui/core";
 import schema from "../../validations/SignUp.validations";
 import { axiosSignup } from "../../services/authentication/authentication.axios";
-import CustomButton from "../../components/CustomButton";
+import CustomButton from "../../models/CustomButton";
 
 // TODO on taken info on signup do something better than alert
 

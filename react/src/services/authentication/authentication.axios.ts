@@ -15,7 +15,6 @@ export const axiosSignup = async (
     .post(signupUrl, { username: username, password: password, email: email })
     .then((res) => {
       const { message, isAdded } = res.data;
-      console.log(message);
       isAddedRes = isAdded;
     });
   return isAddedRes;
