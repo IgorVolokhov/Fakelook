@@ -3,7 +3,7 @@ import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
-import CustomButton from "./components/CustomButton";
+import Menu from "./pages/Menu/Menu";
 
 function App() {
   return (
@@ -19,6 +19,9 @@ function App() {
             </Route>
             <Route path="/signup">
               <SignUp />
+            </Route>
+            <Route path="/menu">
+              <Menu />
             </Route>
           </Switch>
         </div>

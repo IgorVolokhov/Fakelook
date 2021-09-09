@@ -1,0 +1,9 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.grid-item {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: rebeccapurple;
+}

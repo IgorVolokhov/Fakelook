@@ -1,11 +1,18 @@
-import React from 'react'
+import MyMap from "../../components/MyMap";
+import Options from "../../components/Options";
+import "./Menu.css";
 
 const Menu = () => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+  return (
+    <div className="grid-container">
+      <div className="grid-item">
+        <Options></Options>
+      </div>
+      <div className="grid-item">
+        <MyMap></MyMap>
+      </div>
+    </div>
+  );
+};
 
-export default Menu
+export default Menu;

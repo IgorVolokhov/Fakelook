@@ -1,10 +1,16 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 .App {
   text-align: center;
   border: 2px solid rgb(27, 127, 209);
   background: url(./Images/Background.png);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 580px;
+  height: 100vh;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 

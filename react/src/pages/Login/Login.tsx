@@ -2,7 +2,7 @@ import { FieldAttributes, Form, Formik, useField } from "formik";
 import schema from "../../validations/Signin.validations";
 import { Link } from "react-router-dom";
 import { axiosSignin } from "../../services/authentication/authentication.axios";
-import CustomButton from "../../components/CustomButton";
+import CustomButton from "../../models/CustomButton";
 import { TextField } from "@material-ui/core";
 const baseURL = "http://localhost:9000";
 export interface IUser {
