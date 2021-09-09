@@ -30,7 +30,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use("/users", loginRoutes);
-app.use("/posts",postRoutes)
+app.use("/posts", postRoutes);
 
 // Error not Found
 app.use((req, res, next) => {
