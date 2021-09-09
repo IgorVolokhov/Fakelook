@@ -12,11 +12,11 @@ module.exports = {
   },
   login: async (req, res) => {
     const { username, password, email } = req.body;
-    const doesExist = await checkIfUserExists(username, password);
+    const isLoggedIn = await checkIfUserExists(username, password);
 
     res.status(200).json({
-      message: doesExist ? `you can login in` : `does not try again!`,
-      doesExist: doesExist,
+      message: isLoggedIn ? `you can login in` : `does not try again!`,
+      isLoggedIn: isLoggedIn,
     });
   },
   remove: async (req, res) => {

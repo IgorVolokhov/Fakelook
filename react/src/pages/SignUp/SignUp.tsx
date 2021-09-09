@@ -1,22 +1,10 @@
-import {
-  Formik,
-  Field,
-  Form,
-  useField,
-  FieldAttributes,
-  FieldArray,
-} from "formik";
-import {
-  TextField,
-  Button,
-  Checkbox,
-  Radio,
-  FormControlLabel,
-  Select,
-  MenuItem,
-} from "@material-ui/core";
+import { Formik, Form, useField, FieldAttributes } from "formik";
+import { TextField, Button } from "@material-ui/core";
 import schema from "../../validations/SignUp.validations";
 import { axiosSignup } from "../../services/authentication/authentication.axios";
+import CustomButton from "../../components/CustomButton";
+
+// TODO on taken info on signup do something better than alert
 
 const MyTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
@@ -43,6 +31,7 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 const SignUp = () => {
   return (
     <div>
+      <h1>SIGNUP</h1>
       <Formik
         validateOnChange={true}
         initialValues={{
@@ -59,9 +48,9 @@ const SignUp = () => {
             data.email
           );
           if (isAdded) {
-            console.log("go to login page");
+            window.location.href = "/";
           } else {
-            console.log("something went wrong make fields red");
+            alert("taken info");
           }
           resetForm();
           setSubmitting(false);
@@ -77,9 +66,14 @@ const SignUp = () => {
             />
             <MyTextField placeholder="Email" name="email" />
             <div>
-              <Button disabled={isSubmitting} type="submit">
+              {/* <Button disabled={isSubmitting} type="submit">
                 submit
-              </Button>
+              </Button> */}
+              <CustomButton
+                type="submit"
+                isDisabled={isSubmitting}
+                text="Signup"
+              />
             </div>
             {/* <pre>{JSON.stringify(values, null, 2)}</pre>
             <pre>{JSON.stringify(errors, null, 2)}</pre> */}
