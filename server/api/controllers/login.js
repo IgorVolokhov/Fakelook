@@ -7,6 +7,7 @@ module.exports = {
 
     res.status(200).json({
       message: isAdded ? `added successfully` : `did not add :(`,
+      isAdded: isAdded,
     });
   },
   login: async (req, res) => {
@@ -18,9 +19,9 @@ module.exports = {
       doesExist: doesExist,
     });
   },
-  remove: async (req,res) => {
-    const {email} = req.body
+  remove: async (req, res) => {
+    const { email } = req.body;
     const isAdded = await removeUser(email);
     console.log();
-  }
+  },
 };

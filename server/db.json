@@ -19,15 +19,47 @@
       "username": "igor",
       "password": "$2b$10$JC.9TDvvOvWqqLilJu0fQ.D5eE92JkmykGcxGbeNNNGLnYBhPqexS",
       "email": "password:1234@gmail.com"
+    },
+    {
+      "username": "09/09/21-11:41",
+      "password": "$2b$10$GDzF4zf8TXrlqYtJ6zK2F.OxhNOVCotGJMX1q.Gsrr.ZeHVB7rMtm",
+      "email": "password:11:41:58@gmail.com"
+    },
+    {
+      "username": "13:07",
+      "password": "$2b$10$OGnA7m.mzJmJbA0gpr7uCu3Jt5YZJKnus8sYpxTIXOb6b0k9TP2Oy",
+      "email": "asd1308@gmail.com"
+    },
+    {
+      "username": "13:08",
+      "password": "$2b$10$wxkZk1AvE8f6RZ8wX/FodOA2L8wgZcihyF8NsjXkLztVH9u8gX31q",
+      "email": "asd1309@gmail.com"
+    },
+    {
+      "username": "13:10",
+      "password": "$2b$10$hoEAkoZSA9.Kb1ywHkWq.uqA283tdw4.EBwd0tDU.Oa2t97Cnk6be",
+      "email": "asd1310@gmail.com"
     }
   ],
-  "posts": [{
-    "imageurl":"",
-    "lat": 2315,
-    "lan": 4545,
-    "tags":[],
-    "date": "10/7/2022",
-    "username":"igor"
-    
-  }]
+  "posts": [
+    {
+      "imageurl": "",
+      "lat": 2315,
+      "lan": 4545,
+      "tags": [],
+      "date": "10/7/2022",
+      "username": "igor"
+    },
+    {
+      "imageurl": "some-url-change-to-64",
+      "lat": -31.04441,
+      "lan": -57.15661,
+      "tags": [
+        "first-tag",
+        "second-tag"
+      ],
+      "date": "2021-09-09T08:32:13.268Z",
+      "username": "igor"
+    }
+  ]
 }
