@@ -5,8 +5,8 @@ import { Location } from "./location";
 export class Post {
   private _id: string;
   private _userId: string;
-  private _imageSrc: string;
-  private _location: Location;
+  _imageSrc: string;
+  _location: Location;
   private _comments: Comment[];
   private _likes: LikeManager;
   private _description?: string = undefined;
