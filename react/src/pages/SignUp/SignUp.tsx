@@ -4,7 +4,8 @@ import schema from "../../validations/SignUp.validations";
 import { axiosSignup } from "../../services/authentication/authentication.axios";
 import CustomButton from "../../models/CustomButton";
 
-// TODO on taken info on signup do something better than alert
+// todo on taken info on signup do something better than alert
+// todo move mytextfield outside
 
 const MyTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,

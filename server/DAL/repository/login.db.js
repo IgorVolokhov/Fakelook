@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const { uniqueId } = require("../../utils/uniqueId");
 
 // TODO come back to -1
 // TODO change so you recieve already bcrypted password and work with it
@@ -22,6 +23,30 @@ async function removeUserDB(db, email) {
 async function addUserDb(db, username, password, email) {
   const users = db.get("users").value();
 
+  const isUserOpen = await checkIfUserIsOpen(users, username, password, email);
+  if (!isUserOpen) {
+    return false;
+  }
+
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(password, salt);
+    users.push({
+      id: uniqueId(),
+      username: username,
+      password: hashedPassword,
+      email: email,
+    });
+  } catch {
+    console.log("error");
+    return -1;
+  }
+  db.write();
+
+  return true;
+}
+
+async function checkIfUserIsOpen(users, username, password, email) {
   let user = "";
   let doesPasswordExist = false;
   for (let i = 0; i < users.length; i++) {
@@ -35,17 +60,6 @@ async function addUserDb(db, username, password, email) {
       return false;
     }
   }
-
-  try {
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-    users.push({ username: username, password: hashedPassword, email: email });
-  } catch {
-    console.log("error");
-    return -1;
-  }
-  db.write();
-
   return true;
 }
 

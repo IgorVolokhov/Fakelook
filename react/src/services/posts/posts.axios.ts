@@ -10,10 +10,10 @@ export const axiosGetPostsForMap = async (userId: string) => {
   const imgSrc =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sydney_Opera_House_-_Dec_2008.jpg/1024px-Sydney_Opera_House_-_Dec_2008.jpg";
   return [
-    { loc: [32.08088, 34.78057], imgSrc: imgSrc },
-    { loc: [31.66926, 34.57149], imgSrc: imgSrc },
-    { loc: [32.276683, 34.911891], imgSrc: imgSrc },
-    { loc: [32.321457, 34.853195], imgSrc: imgSrc },
+    { location: [32.08088, 34.78057], imgSrc: imgSrc },
+    { location: [31.66926, 34.57149], imgSrc: imgSrc },
+    { location: [32.276683, 34.911891], imgSrc: imgSrc },
+    { location: [32.321457, 34.853195], imgSrc: imgSrc },
   ];
   let postsForMapRes: any = null;
   const postsForMapUrl = url + "postsForMap";

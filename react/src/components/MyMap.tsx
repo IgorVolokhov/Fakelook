@@ -4,25 +4,25 @@ import { useState, useEffect } from "react";
 import { axiosGetPostsForMap } from "../services/posts/posts.axios";
 
 // lat long
-const locations1: any[] = [
-  [32.08088, 34.78057],
-  [31.66926, 34.57149],
-  [32.276683, 34.911891],
-  [32.321457, 34.853195],
-];
+// const locations1: any[] = [
+//   [32.08088, 34.78057],
+//   [31.66926, 34.57149],
+//   [32.276683, 34.911891],
+//   [32.321457, 34.853195],
+// ];
 
-const imageUrl =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sydney_Opera_House_-_Dec_2008.jpg/1024px-Sydney_Opera_House_-_Dec_2008.jpg";
+// const imageUrl =
+//   "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sydney_Opera_House_-_Dec_2008.jpg/1024px-Sydney_Opera_House_-_Dec_2008.jpg";
 
 const MyMap = () => {
-  const [locations, setLocations] = useState<any[]>([]); //{loc: number[], imgSrc: string}
+  const [posts, setPosts] = useState<any[]>([]); //{loc: number[], imgSrc: string}
 
   useEffect(() => {
     const getPostsForMap = async () => {
       const postsForMapFromServer = await axiosGetPostsForMap(
         "not implemented"
       );
-      setLocations(postsForMapFromServer);
+      setPosts(postsForMapFromServer);
     };
     getPostsForMap();
   }, []);
@@ -38,10 +38,10 @@ const MyMap = () => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {locations.map((loc) => (
-          <Marker position={loc.loc}>
+        {posts.map((post) => (
+          <Marker position={post.location}>
             <Popup autoClose={false} closeOnClick={false}>
-              <img src={loc.imgSrc} width="50em" height="50em" />
+              <img src={post.imgSrc} width="50em" height="50em" />
             </Popup>
           </Marker>
         ))}
