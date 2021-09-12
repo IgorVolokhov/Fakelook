@@ -17,7 +17,9 @@ class LoginRepository {
   async userLogin(user) {
     const data = await JSON.parse(await readFile(jsonFileName));
     const foundUser = data.find(
-      (x) => x.username === user.username && x.password === user.password
+      (x) =>
+        x.username === user.username &&
+        this.comparePasswords(user.password, x.password)
     );
     return foundUser;
   }
@@ -36,8 +38,8 @@ class LoginRepository {
 
   async addUserDb(user) {
     let data = JSON.parse(await readFile(jsonFileName));
-    for (let i = 0; i < db.length; i++) {
-      if (data[i].username === user.username || db[i].email === user.email)
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].username === user.username || data[i].email === user.email)
         return false;
     }
 

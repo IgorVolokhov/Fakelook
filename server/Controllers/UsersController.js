@@ -6,7 +6,7 @@ module.exports = {
 
     res.status(200).json({
       message: isAdded ? `added successfully` : `did not add :(`,
-      isAdded: isAdded
+      isAdded: isAdded,
     });
   },
 
@@ -15,16 +15,16 @@ module.exports = {
 
     res.status(200).json({
       message: isLoggedIn ? `you can login in` : `does not try again!`,
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
     });
   },
 
   remove: async (req, res) => {
-    const isRemoved = await removeUser(req.body);
+    const isRemoved = await removeUser(req.body.userId);
 
     res.status(200).json({
       message: isRemoved ? `User removed` : `Didn't remove`,
-      isRemoved: isRemoved
+      isRemoved: isRemoved,
     });
-  }
+  },
 };

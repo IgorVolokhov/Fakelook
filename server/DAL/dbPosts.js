@@ -4,7 +4,6 @@ const rep = require("../Repository/PostsDB");
 const adapter = new FileSync("../Data/Posts");
 
 class DBPosts {
-
   async addPost(post) {
     return await rep.addPostDB(post);
   }
