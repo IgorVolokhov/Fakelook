@@ -5,7 +5,6 @@ const db = low(adapter);
 const rep = require("../Repository/UsersDB");
 
 class DBUser {
-
   async addUser(user) {
     return await rep.addUserDb(user);
   }

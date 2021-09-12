@@ -6,7 +6,6 @@ const writeFile = util.promisify(fs.writeFile);
 const readFile = util.promisify(fs.readFile);
 
 class PostsRepository {
-
   async getPosts() {
     const data = JSON.parse(await readFile(jsonFileName));
     return data;
@@ -14,7 +13,7 @@ class PostsRepository {
 
   async editPostDB(post) {
     let data = JSON.parse(await readFile(jsonFileName));
-    data = data.filter(q => q.id !== post.postId);
+    data = data.filter((q) => q.id !== post.postId);
     data.push(post);
     await writeFile(jsonFileName, JSON.stringify(data));
   }
@@ -22,7 +21,7 @@ class PostsRepository {
   async removePostDB(postId) {
     try {
       let data = JSON.parse(await readFile(jsonFileName));
-      data.fillter((x) => x.id !== postId);
+      data = data.filter((x) => x.id !== postId);
       await writeFile(jsonFileName, JSON.stringify(data));
       return true;
     } catch (error) {
@@ -32,9 +31,9 @@ class PostsRepository {
   }
 
   async addPostDB(post) {
+    console.log({ post });
     try {
       let data = JSON.parse(await readFile(jsonFileName));
-      const salt = await bcrypt.genSalt();
       data.push({
         id: uniqueId(),
         lat: post.lat,
@@ -54,7 +53,7 @@ class PostsRepository {
 
   async getPostsByUserDB(user) {
     let data = fs.readFileSync(jsonFileName);
-    data = data.filter(x => x.username === user.username);
+    data = data.filter((x) => x.username === user.username);
     return data;
   }
 }
