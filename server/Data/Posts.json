@@ -1,0 +1,18 @@
+[
+  {
+    "imageurl": "",
+    "lat": 2315,
+    "lan": 4545,
+    "tags": [],
+    "date": "10/7/2022",
+    "username": "igor"
+  },
+  {
+    "imageurl": "some-url-change-to-64",
+    "lat": -31.04441,
+    "lan": -57.15661,
+    "tags": ["first-tag", "second-tag"],
+    "date": "2021-09-09T08:32:13.268Z",
+    "username": "igor"
+  }
+]
