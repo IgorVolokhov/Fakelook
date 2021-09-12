@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // TODO move username password email into interface
+// todo get res id (200, 404 etc) and work with that
 
 const url = "http://localhost:3001/users/";
 

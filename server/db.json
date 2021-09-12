@@ -4,6 +4,11 @@
       "username": "1234",
       "password": "$2b$10$cNU8PUmN.HY/rp30BeDQrebXnFdLDkubnyjcOHea35pa91kxAh57S",
       "email": "1234@gmail.com"
+    },
+    {
+      "username": "newusername1234",
+      "password": "$2b$10$qFLnPxLtHsm8CU9rUi7q7uoj13EoxlZUQzdWG3oQm/cTp1olIRtUG",
+      "email": "aasd@asd.com"
     }
   ],
   "posts": [
