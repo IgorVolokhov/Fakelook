@@ -36,11 +36,10 @@
     ]
   },
   "browserslist": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ]
-  ,
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@types/leaflet": "^1.7.5",
     "@types/react-router-dom": "^5.1.8"
