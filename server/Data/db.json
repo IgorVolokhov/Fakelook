@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "username": "1234",
+      "password": "$2b$10$cNU8PUmN.HY/rp30BeDQrebXnFdLDkubnyjcOHea35pa91kxAh57S",
+      "email": "1234@gmail.com"
+    },
+    {
+      "username": "newusername1234",
+      "password": "$2b$10$qFLnPxLtHsm8CU9rUi7q7uoj13EoxlZUQzdWG3oQm/cTp1olIRtUG",
+      "email": "aasd@asd.com"
+    }
+  ],
+  "posts": [
+    {
+      "imageurl": "",
+      "lat": 2315,
+      "lan": 4545,
+      "tags": [],
+      "date": "10/7/2022",
+      "username": "igor"
+    },
+    {
+      "imageurl": "some-url-change-to-64",
+      "lat": -31.04441,
+      "lan": -57.15661,
+      "tags": ["first-tag", "second-tag"],
+      "date": "2021-09-09T08:32:13.268Z",
+      "username": "igor"
+    }
+  ]
+}

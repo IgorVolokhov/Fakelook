@@ -1,22 +1,36 @@
 const low = require("lowdb");
 const FileSync = require("lowdb/adapters/FileSync");
-const { addPostDB,checkIfPostExistsDB , removePostDB } = require("./repository/posts.db");
-const adapter = new FileSync("db.json");
-const db = low(adapter);
+const rep = require("../Repository/PostsDB");
+const adapter = new FileSync("../Data/Posts");
 
-async function addPost(imageurl, lat, lan, tags, date, username) {
-  return await addPostDB(db, imageurl, lat, lan, tags, date, username);
-}
-async function checkIfPostExists(username, imageurl) {
-  return checkIfPostExistsDB(db, username, imageurl);
-}
+class DBPosts {
 
-async function removePost(imageurl){
-  return removePostDB(db,imageurl);
+  async addPost(post) {
+    return await rep.addPostDB(post);
+  }
 
+  async checkIfPostExists(username, imageurl) {
+    return await rep.checkIfPostExistsDB(username, imageurl);
+  }
+
+  async removePost(postId) {
+    return await rep.removePostDB(postId);
+  }
+
+  async getPost(userId) {
+    return await rep.getPostsDB(userId);
+  }
+
+  async editPost(post) {
+    return await rep.editPostDB(post);
+  }
+
+  async getPostsByUser(user) {
+    return await rep.getPostsByUserDB(user);
+  }
+
+  async getPosts() {
+    return await rep.getPosts();
+  }
 }
-module.exports = {
-  checkIfPostExists,
-  addPost,
-  removePost,
-};
+module.exports = new DBPosts();
