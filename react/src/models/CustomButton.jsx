@@ -1,8 +1,13 @@
 import { Button } from "@material-ui/core";
 
-const CustomButton = ({ type, text, className, isDisabled }) => {
+const CustomButton = ({ type, text, className, isDisabled, onClick }) => {
   return (
-    <Button type={type} classname={className} disabled={isDisabled}>
+    <Button
+      type={type}
+      className={className}
+      disabled={isDisabled}
+      onClick={onClick}
+    >
       {text}
     </Button>
   );
@@ -13,6 +18,9 @@ CustomButton.defaultProps = {
   text: "not implemented :)",
   type: "button",
   isDisabled: false,
+  onClick: () => {
+    console.log("not implemented");
+  },
 };
 
 export default CustomButton;

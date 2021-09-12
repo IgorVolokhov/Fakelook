@@ -11,17 +11,9 @@ export class User {
   private _age: number = -1;
   private _address: string = "";
   private _placeOfWork: string = "";
-  private _posts: Post[] = [];
+  posts: Post[] = [];
 
-  constructor(
-    email: string,
-    username: string,
-    firstname: string,
-    lastname: string,
-    age: number,
-    address: string,
-    placeOfWork: string
-  ) {
+  constructor(email: string, username: string) {
     this._id = "unique id";
     this._email = email;
     this._username = username;
@@ -49,13 +41,13 @@ export class User {
     description?: string,
     tags?: string[]
   ): void {
-    this._posts.push(new Post(this._id, location, imageSrc, description, tags));
+    this.posts.push(new Post(this._id, location, imageSrc, description, tags));
   }
 
   deletePost(postId: string): void {
-    for (let index = 0; index < this._posts.length; index++) {
-      if (this._posts[index].id === postId) {
-        this._posts.splice(index, 1);
+    for (let index = 0; index < this.posts.length; index++) {
+      if (this.posts[index].id === postId) {
+        this.posts.splice(index, 1);
         break;
       }
     }
@@ -67,9 +59,9 @@ export class User {
     description?: string,
     tags?: string[]
   ): void {
-    for (let index = 0; index < this._posts.length; index++) {
-      if (this._posts[index].id === postId) {
-        this._posts[index].editPost(location, description, tags);
+    for (let index = 0; index < this.posts.length; index++) {
+      if (this.posts[index].id === postId) {
+        this.posts[index].editPost(location, description, tags);
         break;
       }
     }
