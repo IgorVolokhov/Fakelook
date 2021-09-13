@@ -43,7 +43,18 @@ const Menu = () => {
       new Location(32.08227, 34.81065),
       "https://miro.medium.com/max/1200/1*U18aWqq2322t8Z26zZ0SIg.jpeg"
     );
+    await user_tmp.addPost(
+      new Location(32.321458, 34.853196),
+      "https://miro.medium.com/max/1200/1*U18aWqq2322t8Z26zZ0SIg.jpeg"
+    );
     await setUser(user_tmp);
+    console.log(
+      user_tmp.posts[1]._location.calculateDistanceFromHereInKm(
+        32.321458,
+        34.853196
+      )
+    );
+
     setUsersPosts(user.posts);
   };
 

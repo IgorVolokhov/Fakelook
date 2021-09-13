@@ -1,9 +1,26 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const { getPostsByUser } = require("./DAL/dbPosts");
 
 const loginRoutes = require("./Routes/LoginRoutes");
 const postRoutes = require("./Routes/PostsRoutes");
+const {
+  addComment,
+  editComment,
+  getCommentsForPost,
+} = require("./Sql/dboperations/commentOperations");
+const {
+  addPost,
+  getSmallerPostsByUser,
+  editPost,
+  getPostById,
+} = require("./Sql/dboperations/postOperations");
+const {
+  userLogin,
+  addUserDb,
+  editUser,
+} = require("./Sql/dboperations/userOperations");
 
 app.use(morgan("dev"));
 
@@ -28,6 +45,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// todo delete this afte small testing
+async function print() {
+  console.log("comments:");
+  console.log(await getCommentsForPost(1));
+  console.log("whole posts by user:");
+  console.log(await getPostsByUser(1));
+  console.log("smaller posts by user:");
+  console.log(await getSmallerPostsByUser(1));
+  console.log("post by post id:");
+  console.log(await getPostById(1));
+}
+//print();
 // Routes
 app.use("/users", loginRoutes);
 app.use("/posts", postRoutes);
