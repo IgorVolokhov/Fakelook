@@ -1,35 +1,42 @@
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-const rep = require("../Repository/PostsDB");
-const adapter = new FileSync("../Data/Posts");
+const {
+  addPost,
+  getPostsByUser,
+  getPostById,
+  editPost,
+  getSmallerPostsByUser,
+} = require("../Sql/dboperations/postOperations");
 
 class DBPosts {
-  async addPost(post) {
-    return await rep.addPostDB(post);
-  }
-
-  async checkIfPostExists(username, imageurl) {
-    return await rep.checkIfPostExistsDB(username, imageurl);
+  async addPost(userId, image_src, lat, lon, description = null, tags = null) {
+    return await addPost(
+      userId,
+      image_src,
+      lat,
+      lon,
+      (description = null),
+      (tags = null)
+    );
   }
 
   async removePost(postId) {
-    return await rep.removePostDB(postId);
+    // return await rep.removePostDB(postId);
   }
 
-  async getPost(userId) {
-    return await rep.getPostsDB(userId);
+  async getPost(postId) {
+    return await getPostById(postId);
   }
 
-  async editPost(post) {
-    return await rep.editPostDB(post);
+  async editPost(postId, description = null, tags = null) {
+    return await editPost(postId, (description = null), (tags = null));
   }
 
-  async getPostsByUser(user) {
-    return await rep.getPostsByUserDB(user);
+  async getPostsByUser(userId) {
+    return await getPostsByUser(userId);
+    // return await rep.getPostsByUserDB(user);
   }
 
-  async getPosts() {
-    return await rep.getPosts();
+  async getSmallerPostsByUser(userId) {
+    return await getSmallerPostsByUser(userId);
   }
 }
 module.exports = new DBPosts();

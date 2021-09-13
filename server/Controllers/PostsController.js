@@ -2,13 +2,13 @@ const {
   addPost,
   editPost,
   removePost,
-  getPosts,
   getPostsByUser,
 } = require("../DAL/dbPosts");
 
 module.exports = {
+  //
   get: async (req, res) => {
-    const gotPosts = await getPosts();
+    const gotPosts = await getPostsByUser(req.body.userId);
     res.status(200).json({
       message: gotPosts ? `Got books` : `Didn't get books`,
     });

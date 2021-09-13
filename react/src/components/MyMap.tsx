@@ -34,8 +34,6 @@ const MyMap = ({ postsFromFather }: Props) => {
 
   useEffect(() => {
     const getPostsForMap = async () => {
-      console.log("posts were changed in my map!");
-
       setPosts(postsFromFather);
     };
     getPostsForMap();
@@ -53,7 +51,7 @@ const MyMap = ({ postsFromFather }: Props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {posts.map((post) => (
-          <Marker position={[post._location.lat, post._location.lan]}>
+          <Marker position={[post._location.lat, post._location.lon]}>
             <Popup autoClose={false} closeOnClick={false}>
               <img src={post._imageSrc} width="50em" height="50em" />
             </Popup>

@@ -1,20 +1,24 @@
-const low = require("lowdb");
-const FileSync = require("lowdb/adapters/FileSync");
-const adapter = new FileSync("db.json");
-const db = low(adapter);
-const rep = require("../Repository/UsersDB");
+const {
+  addUserDb,
+  userLoginDb,
+  editUserDb,
+} = require("../Sql/dboperations/userOperations");
 
 class DBUser {
   async addUser(user) {
-    return await rep.addUserDb(user);
+    return await addUserDb(user);
   }
 
   async removeUser(userId) {
-    return await rep.removeUserDB(userId);
+    console.log("not implemented, is needed?");
   }
 
   async checkIfUserExists(user) {
-    return await rep.userLogin(user);
+    return await userLoginDb(user);
+  }
+
+  async editUser(user) {
+    return await editUserDb(user);
   }
 }
 
