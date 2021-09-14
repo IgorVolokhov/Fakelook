@@ -6,33 +6,25 @@ async function comparePasswords(password, bcryptPassword) {
   return await bcrypt.compare(password, bcryptPassword);
 }
 
-async function userLoginDb(user) {
+async function signinOperation(user) {
   try {
     let pool = await sql.connect(config);
+
     let userRes = await pool
       .request()
       .query(`SELECT * from Users where Username = '${user.username}'`);
     if (userRes && userRes.recordset[0]) {
-      console.log("in compare");
       let password = userRes.recordset[0].Password;
-
-      // cut long ' ' from password
-      while (password[password.length - 1] === " ") {
-        password = password.slice(0, password.length - 1);
-      }
-      console.log(`${password}hehe`);
-      console.log(user.password);
       return await comparePasswords(user.password, password);
     }
     return false;
   } catch (error) {
     console.log(error);
+    return false;
   }
 }
 
-async function addUserDb(user) {
-  console.log("user to add: ");
-  console.log(user);
+async function signupOperation(user) {
   try {
     let pool = await sql.connect(config);
 
@@ -43,11 +35,6 @@ async function addUserDb(user) {
       let password = "";
       for (let index = 0; index < passwords.recordset.length; index++) {
         password = passwords.recordset[index].Password;
-
-        // cut long ' ' from password
-        while (password[password.length - 1] === " ") {
-          password = password.slice(0, password.length - 1);
-        }
 
         if (await comparePasswords(user.password, password)) {
           return false;
@@ -73,7 +60,8 @@ async function addUserDb(user) {
   }
 }
 
-async function editUserDb(user) {
+// todo return true even if wrong id passed with user
+async function editUserOperation(user) {
   try {
     let pool = await sql.connect(config);
 
@@ -107,7 +95,7 @@ function turnUserStringSuitableForSql(user) {
 }
 
 module.exports = {
-  userLoginDb,
-  addUserDb,
-  editUserDb,
+  signinOperation,
+  signupOperation,
+  editUserOperation,
 };

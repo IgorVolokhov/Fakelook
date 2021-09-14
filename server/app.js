@@ -5,6 +5,8 @@ const { getPostsByUser } = require("./DAL/dbPosts");
 
 const loginRoutes = require("./Routes/LoginRoutes");
 const postRoutes = require("./Routes/PostsRoutes");
+const commentsRoutes = require("./Routes/CommentRoutes");
+// todo delete after testing
 const {
   addComment,
   editComment,
@@ -60,6 +62,7 @@ async function print() {
 // Routes
 app.use("/users", loginRoutes);
 app.use("/posts", postRoutes);
+app.use("/comments", commentsRoutes);
 
 // Error not Found
 app.use((req, res, next) => {
