@@ -4,7 +4,7 @@ const {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-} = require("../Sql/dboperations/postOperations");
+} = require("../Sql/dummy_dboperations/postOperations");
 
 class DBPosts {
   async getPostsByUserId(userId) {
