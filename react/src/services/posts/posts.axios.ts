@@ -1,9 +1,10 @@
 import axios from "axios";
+import { Post } from "../../classes/post";
 
 const url = "http://localhost:3001/posts";
 
 // todo make interface for posts for map and not any
-export const getPostsByUserId = async (userId: number) => {
+export const getPostsByUserId = async (userId: any) => {
   let posts;
   await axios.post(`${url}/getpostsforuser`, { userId }).then((res) => {
     posts = res.data.posts;
@@ -11,7 +12,7 @@ export const getPostsByUserId = async (userId: number) => {
   return posts;
 };
 
-export const getSmallerPostsByUser = async (userId: number) => {
+export const getSmallerPostsByUser = async (userId: any) => {
   let posts;
   await axios.post(`${url}/getsmallerpostforuser`, { userId }).then((res) => {
     posts = res.data.posts;
@@ -19,7 +20,7 @@ export const getSmallerPostsByUser = async (userId: number) => {
   return posts;
 };
 
-export const getPostById = async (postId: number) => {
+export const getPostById = async (postId: any) => {
   let post;
   await axios.post(`${url}/getpostbyid`, { postId }).then((res) => {
     post = res.data.post;
@@ -28,7 +29,7 @@ export const getPostById = async (postId: number) => {
 };
 
 export const addPost = async (
-  userId: number,
+  userId: any,
   image_src: string,
   lat: number,
   lon: number,
@@ -56,7 +57,7 @@ export const addPost = async (
 };
 
 export const editPost = async (
-  postId: number,
+  postId: any,
   lat: number,
   lon: number,
   description: string = "",

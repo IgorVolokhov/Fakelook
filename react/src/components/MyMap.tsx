@@ -34,6 +34,9 @@ const MyMap = ({ postsFromFather }: Props) => {
   useEffect(() => {
     const getPostsForMap = async () => {
       setPosts(postsFromFather);
+      console.log("posts from father:");
+
+      console.log(postsFromFather);
     };
     getPostsForMap();
   }, [postsFromFather]);

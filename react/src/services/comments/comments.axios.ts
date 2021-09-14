@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "http://localhost:3001/comments";
 
 // todo make interface for posts for map and not any
-export const getCommentsForPost = async (postId: number) => {
+export const getCommentsForPost = async (postId: any) => {
   let comments;
   await axios.post(`${url}/getcommentsforpost`, { postId }).then((res) => {
     comments = res.data.comments;
@@ -11,11 +11,7 @@ export const getCommentsForPost = async (postId: number) => {
   return comments;
 };
 
-export const addComment = async (
-  userId: number,
-  postId: number,
-  text: string
-) => {
+export const addComment = async (userId: any, postId: any, text: string) => {
   if (!isTextFilled(text)) {
     return "text is not filled properly";
   }
@@ -33,7 +29,7 @@ export const addComment = async (
   return message;
 };
 
-export const editComment = async (commentId: number, text: string) => {
+export const editComment = async (commentId: any, text: string) => {
   if (!isTextFilled(text)) {
     return "text is not filled properly";
   }
