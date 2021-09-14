@@ -33,15 +33,7 @@ module.exports = {
   },
 
   add: async (req, res) => {
-    console.log(req.body);
-    const {
-      userId,
-      image_src,
-      lat,
-      lon,
-      description = null,
-      tags = null,
-    } = req.body;
+    const { userId, image_src, lat, lon, description, tags } = req.body;
     const isAdded = await addPost(
       userId,
       image_src,
@@ -56,8 +48,7 @@ module.exports = {
   },
 
   edit: async (req, res) => {
-    console.log(req.body);
-    const { postId, lat, lon, description = null, tags = null } = req.body;
+    const { postId, lat, lon, description, tags } = req.body;
     const isEdited = await editPost(postId, lat, lon, description, tags);
     res.status(200).json({
       message: isEdited ? `Post eddited successfully` : `Edit failed`,

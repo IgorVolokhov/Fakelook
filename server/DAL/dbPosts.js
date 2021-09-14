@@ -25,8 +25,8 @@ class DBPosts {
       image_src,
       lat,
       lon,
-      (description = null),
-      (tags = null)
+      description,
+      tags
     );
   }
 
