@@ -1,14 +1,26 @@
 const {
-  addPost,
-  getPostsByUser,
-  getPostById,
-  editPost,
-  getSmallerPostsByUser,
+  getPostsByUserIdOperation,
+  getSmallerPostsByUserOperation,
+  getPostByIdOperation,
+  addPostOperation,
+  editPostOperation,
 } = require("../Sql/dboperations/postOperations");
 
 class DBPosts {
+  async getPostsByUserId(userId) {
+    return await getPostsByUserIdOperation(userId);
+  }
+
+  async getSmallerPostsByUser(userId) {
+    return await getSmallerPostsByUserOperation(userId);
+  }
+
+  async getPostById(postId) {
+    return await getPostByIdOperation(postId);
+  }
+
   async addPost(userId, image_src, lat, lon, description = null, tags = null) {
-    return await addPost(
+    return await addPostOperation(
       userId,
       image_src,
       lat,
@@ -18,25 +30,13 @@ class DBPosts {
     );
   }
 
+  async editPost(postId, lat, lon, description = null, tags = null) {
+    return await editPostOperation(postId, lat, lon, description, tags);
+  }
+
   async removePost(postId) {
-    // return await rep.removePostDB(postId);
-  }
-
-  async getPost(postId) {
-    return await getPostById(postId);
-  }
-
-  async editPost(postId, description = null, tags = null) {
-    return await editPost(postId, (description = null), (tags = null));
-  }
-
-  async getPostsByUser(userId) {
-    return await getPostsByUser(userId);
-    // return await rep.getPostsByUserDB(user);
-  }
-
-  async getSmallerPostsByUser(userId) {
-    return await getSmallerPostsByUser(userId);
+    return false;
+    //return await rep.removePostDB(postId);
   }
 }
 module.exports = new DBPosts();

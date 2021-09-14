@@ -1,32 +1,33 @@
 const config = require("../dbconfig");
 const sql = require("mssql");
 
-async function getCommentsForPost(postId) {
+async function getCommentsForPostOperation(postId) {
   try {
     let pool = await sql.connect(config);
     let comments = await pool
       .request()
       .query(`SELECT * from comments where Post_Id = ${postId}`);
-    return comments;
+    return comments.recordsets[0].length > 0 ? comments.recordsets[0] : null;
   } catch (error) {
     console.log(error);
   }
 }
 
-async function addComment(userId, postId, text) {
+async function addCommentOperation(userId, postId, text) {
   try {
     let pool = await sql.connect(config);
     await pool.request().query(
       `insert into comments (User_Id, Post_Id, Likes, Dislikes, Text) 
             values (${userId}, '${postId}', 0, 0, '${text}')`
     );
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 }
 
-// todo is there a reason to add user and post id if each comment ever has unique id?
-async function editComment(commentId, text) {
+async function editCommentOperation(commentId, text) {
   try {
     let pool = await sql.connect(config);
     await pool
@@ -34,8 +35,10 @@ async function editComment(commentId, text) {
       .query(
         `update comments set Text = '${text}' where Comment_Id = ${commentId}`
       );
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 }
 
@@ -70,7 +73,7 @@ async function dislikeComment(commentId, isDisliked) {
 }
 
 module.exports = {
-  getCommentsForPost,
-  addComment,
-  editComment,
+  getCommentsForPostOperation,
+  addCommentOperation,
+  editCommentOperation,
 };
