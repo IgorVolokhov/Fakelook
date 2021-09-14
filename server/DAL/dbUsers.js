@@ -2,7 +2,7 @@ const {
   signinOperation,
   signupOperation,
   editUserOperation,
-} = require("../Sql/dboperations/userOperations");
+} = require("../Sql/dummy_dboperations/userOperation");
 
 class DBUser {
   async addUser(user) {

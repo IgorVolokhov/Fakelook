@@ -2,7 +2,7 @@ const {
   getCommentsForPostOperation,
   addCommentOperation,
   editCommentOperation,
-} = require("../Sql/dboperations/commentOperations");
+} = require("../Sql/dummy_dboperations/commentOperations");
 
 class DBPosts {
   async getCommentsForPost(postId) {
