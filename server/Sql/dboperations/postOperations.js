@@ -50,12 +50,17 @@ async function addPostOperation(
 ) {
   try {
     let pool = await sql.connect(config);
+    console.log(description);
+    console.log(tags);
 
     description = turnStringSuitableForSql(description);
     tags = turnStringSuitableForSql(tags);
 
+    console.log(description);
+    console.log(tags);
+
     await pool.request().query(
-      `insert into Posts (User_Id, Image_Src, Lat, Lon, Likes, Dislikes, Description, Tags) 
+      `insert into Posts (User_Id, Image_Src, Lat, Lon, Likes, Dislikes, Description, Tags)
             values (${userId}, '${image_src}', ${lat}, ${lon}, 0, 0, ${description}, ${tags})`
     );
     return true;

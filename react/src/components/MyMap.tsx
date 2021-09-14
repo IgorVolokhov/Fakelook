@@ -1,7 +1,6 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useState, useEffect } from "react";
-import { axiosGetPostsForMap } from "../services/posts/posts.axios";
 import { Post } from "../classes/post";
 
 // lat long
