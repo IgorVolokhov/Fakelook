@@ -5,7 +5,7 @@ const {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-} = require("../Sql/dboperations/postOperations");
+} = require("../Sql/dummy_dboperations/postOperations");
 
 class DBPosts {
 
@@ -31,8 +31,8 @@ class DBPosts {
       image_src,
       lat,
       lon,
-      (description = null),
-      (tags = null)
+      description,
+      tags
     );
   }
 

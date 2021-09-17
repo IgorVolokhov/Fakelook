@@ -1,1 +1,34 @@
-{}
+{
+  "users": [
+    {
+      "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
+      "Username": "pass:newcollpass1",
+      "Password": "$2b$10$ObiOD8.aWG1qD/qxFF0DDu5irNrT5Ius3Pv5b5aZLO08XL4/9v13y",
+      "Email": "passnewcollpass1@gmail.com",
+      "Firstname": "some_secret2",
+      "Lastname": "special_secret2",
+      "Age": 22,
+      "Address": "Netanya2",
+      "Place_Of_Work": "none :(2"
+    }
+  ],
+  "posts": [
+    {
+      "Post_Id": "q_ktkchwu9_rqfpcvqfrrqfnyghrdrpf",
+      "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
+      "Image_Src": "https://brokenpanda.net/wp-content/uploads/1588190723_163_4K-Nature-Wallpapers-2020.jpg",
+      "Lat": 34.771959,
+      "Lon": 34.237018,
+      "Description": "'this is description from postman so cool!'",
+      "Tags": "'tags test'"
+    }
+  ],
+  "comments": [
+    {
+      "Comment_Id": "r_ktkclrii_nawq8jbwxucjjtxx02drx",
+      "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
+      "Post_Id": "q_ktkchwu9_rqfpcvqfrrqfnyghrdrpf",
+      "Text": "EDITED this comment is cool cause it is edited!!233323"
+    }
+  ]
+}

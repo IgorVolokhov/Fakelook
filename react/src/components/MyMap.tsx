@@ -1,7 +1,6 @@
 import L from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useState, useEffect } from "react";
-import { axiosGetPostsForMap } from "../services/posts/posts.axios";
 import { Post } from "../classes/post";
 import { Location } from "../classes/location";
 
@@ -39,6 +38,9 @@ const MyMap = ({ postsFromFather }: Props) => {
   useEffect(() => {
     const getPostsForMap = async () => {
       setPosts(postsFromFather);
+      console.log("posts from father:");
+
+      console.log(postsFromFather);
     };
     getPostsForMap();
     if ("geolocation" in navigator) {

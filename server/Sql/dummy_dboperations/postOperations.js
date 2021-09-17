@@ -1,52 +1,42 @@
-const config = require("../dbconfig");
-const sql = require("mssql");
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
+const adapter = new FileSync("db.json");
+const db = low(adapter);
+const { uniqueId } = require("../../utils/uniqueId");
 
-async function getAllPostsFromUserFriendsOperation(userId) {
-  //WILL IMPLEMENT POSTS BY THE USER'S FRIENDS LATER!
+async function getPostsByUserIdOperation(userId) {
   try {
-    let pool = await sql.connect(config);
-    let posts = await pool.request().query(`SELECT * from Posts`);
-    return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
+    const posts = db.get("posts").value();
+    return posts.length > 0 ? posts : null;
   } catch (error) {
     console.log(error);
     return null;
   }
 }
 
-async function getPostsByUserIdOperation(userId) {
-  try {
-    let pool = await sql.connect(config);
-    let posts = await pool
-      .request()
-      .query(`SELECT * from Posts where User_Id = ${userId}`);
-    return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
-  } catch (error) {
-    return null;
-  }
-}
-
+// in dummy_dboperations the same as above in with real sql it return much smaller data
 async function getSmallerPostsByUserOperation(userId) {
   try {
-    let pool = await sql.connect(config);
-    let posts = await pool
-      .request()
-      .query(
-        `SELECT User_Id, Image_Src, Lat, Lon from Posts where User_Id = ${userId}`
-      );
-    return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
+    const posts = db.get("posts").value();
+    return posts.length > 0 ? posts : null;
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
 
 async function getPostByIdOperation(postId) {
   try {
-    let pool = await sql.connect(config);
-    let post = await pool
-      .request()
-      .query(`SELECT * from Posts where Post_Id = ${postId}`);
-    return post.recordsets[0].length > 0 ? post.recordsets[0][0] : null;
+    const posts = db.get("posts").value();
+    let post;
+    for (let index = 0; index < posts.length; index++) {
+      if (posts[index].Post_Id === postId) {
+        post = posts[index];
+      }
+    }
+    return post;
   } catch (error) {
+    console.log(error);
     return null;
   }
 }
@@ -60,17 +50,24 @@ async function addPostOperation(
   tags = null
 ) {
   try {
-    let pool = await sql.connect(config);
+    const posts = db.get("posts").value();
 
     description = turnStringSuitableForSql(description);
     tags = turnStringSuitableForSql(tags);
 
-    await pool.request().query(
-      `insert into Posts (User_Id, Image_Src, Lat, Lon, Likes, Dislikes, Description, Tags)
-            values (${userId}, '${image_src}', ${lat}, ${lon}, 0, 0, ${description}, ${tags})`
-    );
+    posts.push({
+      Post_Id: uniqueId(),
+      User_Id: userId,
+      Image_Src: image_src,
+      Lat: lat,
+      Lon: lon,
+      Description: description,
+      Tags: tags,
+    });
+    db.write();
     return true;
   } catch (error) {
+    console.log(error);
     return false;
   }
 }
@@ -83,18 +80,24 @@ async function editPostOperation(
   tags = null
 ) {
   try {
-    let pool = await sql.connect(config);
+    const posts = db.get("posts").value();
 
     description = turnStringSuitableForSql(description);
     tags = turnStringSuitableForSql(tags);
 
-    await pool
-      .request()
-      .query(
-        `update Posts set Lat = ${lat}, Lon = ${lon}, Description = ${description}, Tags = ${tags} where Post_Id = ${postId}`
-      );
+    for (let index = 0; index < posts.length; index++) {
+      if (posts[index].Post_Id === postId) {
+        posts[index].Lat = lat;
+        posts[index].Lon = lon;
+        posts[index].Description = description;
+        posts[index].Tags = tags;
+      }
+    }
+    db.write();
+
     return true;
   } catch (error) {
+    console.log(error);
     return false;
   }
 }
@@ -138,5 +141,4 @@ module.exports = {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-  getAllPostsFromUserFriendsOperation
 };
