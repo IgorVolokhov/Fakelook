@@ -17,6 +17,7 @@ const {
   getSmallerPostsByUser,
   editPost,
   getPostById,
+  getAllPostsFromUserFriendsOperation
 } = require("./Sql/dboperations/postOperations");
 const {
   userLogin,
