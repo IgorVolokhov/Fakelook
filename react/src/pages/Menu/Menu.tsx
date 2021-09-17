@@ -6,6 +6,7 @@ import "./Menu.css";
 import { User } from "../../classes/user";
 import { Post } from "../../classes/post";
 import { Location } from "../../classes/location";
+import { getAllUserFriendsPosts } from '../../services/posts/posts.axios';
 
 const Menu = () => {
   const [user, setUser] = useState<User>();
@@ -14,6 +15,7 @@ const Menu = () => {
   // load users posts first time
   useEffect(() => {
     const setUsersFunction = async () => {
+      let userFriends = getAllUserFriendsPosts(user);
       const users = await getUsers();
       await setUser(users[0]);
       if (user) {

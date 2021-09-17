@@ -11,6 +11,11 @@ const url = "http://localhost:3001/users";
 //add Post(userId, post)
 //edit Post(post)
 
+//user will get all his friend's posts that will be shown in the map.
+export const getAllUserFriendsPosts = async (userId: any) => {
+  const send = await axios.post(`${url}/getusersfriendspost`, userId);
+};
+
 // user will see another profile could see all the posts
 export const seeAllUserProfile = async (userId: any) => {
   const send = await axios.post(`${url}/getfullprofile`, userId);

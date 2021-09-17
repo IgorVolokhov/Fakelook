@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { axiosGetPostsForMap } from "../services/posts/posts.axios";
 import { Post } from "../classes/post";
+import { Location } from "../classes/location";
 
 // lat long
 // const locations1: any[] = [
@@ -20,7 +21,10 @@ interface Props {
 }
 
 const MyMap = ({ postsFromFather }: Props) => {
+  // const FriendsPosts = getAllUserFriendsPosts(id)
+  let userLocation = new Location(32.08088, 34.78057);
   const [posts, setPosts] = useState<Post[]>([]); //{loc: number[], imgSrc: string}
+  const [location, setLocation] = useState<Location>();
 
   // useEffect(() => {
   //   const getPostsForMap = async () => {
@@ -37,12 +41,23 @@ const MyMap = ({ postsFromFather }: Props) => {
       setPosts(postsFromFather);
     };
     getPostsForMap();
+    if ("geolocation" in navigator) {
+      console.log("Available");
+      navigator.geolocation.getCurrentPosition(function(position) {
+      console.log('Latitude: ', position.coords.latitude);
+      console.log('Longitude: ', position.coords.longitude);
+      userLocation = new Location(position.coords.longitude, position.coords.latitude)
+      setLocation(userLocation);
+    })
+    } else {
+      console.log("Not Avaliable");
+    }
   }, [postsFromFather]);
 
   return (
     <div className="leaflet-container">
       <MapContainer
-        center={[32.08088, 34.78057]}
+        center={[userLocation.lat, userLocation.lon]}
         zoom={8}
         scrollWheelZoom={true}
       >

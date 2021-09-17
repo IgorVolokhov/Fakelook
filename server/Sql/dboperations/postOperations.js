@@ -1,6 +1,18 @@
 const config = require("../dbconfig");
 const sql = require("mssql");
 
+async function getAllPostsFromUserFriendsOperation(userId) {
+  //WILL IMPLEMENT POSTS BY THE USER'S FRIENDS LATER!
+  try {
+    let pool = await sql.connect(config);
+    let posts = await pool.request().query(`SELECT * from Posts`);
+    return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 async function getPostsByUserIdOperation(userId) {
   try {
     let pool = await sql.connect(config);
@@ -129,4 +141,5 @@ module.exports = {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
+  getAllPostsFromUserFriendsOperation
 };

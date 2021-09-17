@@ -1,6 +1,7 @@
 import CustomButton from "../models/CustomButton";
 import Grid from '@material-ui/core/Grid';
 import React,  {useState} from 'react';
+import AddPost from "./AddPost";
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -76,6 +77,9 @@ const Options = ({ addPost }: Props) => {
         />
         {/*manage friends and blocked users */}
         <CustomButton text="Friends" />
+      </div>
+      <div>
+        <AddPost id="userId123"/>
       </div>
     </div>
   );
