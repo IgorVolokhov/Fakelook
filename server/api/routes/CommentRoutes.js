@@ -4,7 +4,7 @@ const {
   getCommentsForPost,
   addCommentForPost,
   editCommentForPost,
-} = require("../Controllers/CommentController");
+} = require("../controllers/CommentController");
 
 router.post("/getcommentsforpost", getCommentsForPost);
 router.post("/addcommentforpost", addCommentForPost);

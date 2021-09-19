@@ -8,11 +8,11 @@ const {
   add,
   edit,
   remove,
-} = require("../Controllers/PostsController");
+} = require("../controllers/PostsController");
 
-router.post("/getusersfriendspost", getAllPostsFromUserFriends);
 router.post("/getpostsforuser", getPostForUser);
 router.post("/getsmallerpostforuser", getSmallerPostsForUser);
+router.post("/getusersfriendspost", getAllPostsFromUserFriends);
 router.post("/getpostbyid", getPostById);
 router.post("/addpost", add);
 router.patch("/editpost", edit);

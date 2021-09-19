@@ -57,7 +57,7 @@ const Login = () => {
           let isLoggedIn = await axiosSignin(data.username, data.password);
           if (isLoggedIn) {
             console.log("you are in");
-         } else {
+          } else {
             console.log("OUT!!");
           }
           resetForm();

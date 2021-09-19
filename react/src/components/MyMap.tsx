@@ -45,12 +45,15 @@ const MyMap = ({ postsFromFather }: Props) => {
     getPostsForMap();
     if ("geolocation" in navigator) {
       console.log("Available");
-      navigator.geolocation.getCurrentPosition(function(position) {
-      console.log('Latitude: ', position.coords.latitude);
-      console.log('Longitude: ', position.coords.longitude);
-      userLocation = new Location(position.coords.longitude, position.coords.latitude)
-      setLocation(userLocation);
-    })
+      navigator.geolocation.getCurrentPosition(function (position) {
+        console.log("Latitude: ", position.coords.latitude);
+        console.log("Longitude: ", position.coords.longitude);
+        userLocation = new Location(
+          position.coords.longitude,
+          position.coords.latitude
+        );
+        setLocation(userLocation);
+      });
     } else {
       console.log("Not Avaliable");
     }

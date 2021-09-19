@@ -10,6 +10,17 @@
       "Age": 22,
       "Address": "Netanya2",
       "Place_Of_Work": "none :(2"
+    },
+    {
+      "User_Id": "w_ktojfgc3_g92dojg2saku5kpf0eraq",
+      "Username": "1234",
+      "Password": "$2b$10$S/cHaAzxrujUb7Deuo7F7Ozm.CunohO76JWCWVxBJadke9B4Q.NGq",
+      "Email": "1234@gmail.com",
+      "Firstname": null,
+      "Lastname": null,
+      "Age": null,
+      "Address": null,
+      "Place_Of_Work": null
     }
   ],
   "posts": [
