@@ -33,16 +33,15 @@ async function signinOperation(user) {
 async function signupOperation(user) {
   try {
     const users = db.get("users").value();
-    console.log(users);
     let passwords = [];
     for (let index = 0; index < users.length; index++) {
-      passwords.push(users[index].password);
+      passwords.push(users[index].Password);
     }
     // check that password is not taken
     if (passwords && passwords.length > 0) {
       let password = "";
-      for (let index = 0; index < passwords.recordset.length; index++) {
-        password = passwords.recordset[index].Password;
+      for (let index = 0; index < passwords.length; index++) {
+        password = passwords[index];
 
         if (await comparePasswords(user.password, password)) {
           return false;

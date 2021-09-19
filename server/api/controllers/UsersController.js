@@ -3,7 +3,7 @@ const {
   checkIfUserExists,
   removeUser,
   editUser,
-} = require("../DAL/dbUsers");
+} = require("../../DAL/dbUsers");
 
 module.exports = {
   // works!
