@@ -5,6 +5,11 @@ const db = low(adapter);
 const bcrypt = require("bcrypt");
 const { uniqueId } = require("../../utils/uniqueId");
 
+const { OAuth2Client } = require("google-auth-library");
+const CLIENT_ID =
+  "930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com";
+const client = new OAuth2Client(CLIENT_ID);
+
 async function comparePasswords(password, bcryptPassword) {
   return await bcrypt.compare(password, bcryptPassword);
 }
@@ -98,6 +103,42 @@ async function editUserOperation(user) {
   }
 }
 
+async function googleLoginOperation(email, googleId, id_token) {
+  try {
+    const users = db.get("users").value();
+
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].Email === email) {
+        // verify(id_token)
+        //   .then(() => {
+        //     return { isSuccess: true, token: id_token };
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //     return { isSuccess: false };
+        //   });
+        users[i].id_token = id_token;
+        db.write();
+        return { isSuccess: true, token: id_token };
+      }
+    }
+
+    return { isSuccess: false };
+  } catch (error) {
+    console.log(error);
+    return { isSuccess: false };
+  }
+}
+
+async function verify(token) {
+  const ticket = await client.verifyIdToken({
+    idToken: token,
+    audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+  });
+  const payload = ticket.getPayload();
+  const userid = payload["sub"];
+}
+
 function turnUserStringSuitableForSql(user) {
   if (user.firstname !== null) {
     user.firstname = `'${user.firstname}'`;
@@ -118,4 +159,5 @@ module.exports = {
   signinOperation,
   signupOperation,
   editUserOperation,
+  googleLoginOperation,
 };

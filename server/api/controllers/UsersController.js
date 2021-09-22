@@ -3,6 +3,7 @@ const {
   checkIfUserExists,
   removeUser,
   editUser,
+  googleLoginDal,
 } = require("../../DAL/dbUsers");
 
 module.exports = {
@@ -43,6 +44,33 @@ module.exports = {
     res.status(200).json({
       message: isSuccsess ? `edited successfully` : `did not edit :(`,
       isSuccsess: isSuccsess,
+    });
+  },
+
+  // todo make it so you can sign up from google as well if first then use google info to make username and password etc
+  googleLogin: async (req, res) => {
+    const { email, googleId, id_token } = req.body;
+
+    const { isSuccess, token } = await googleLoginDal(
+      email,
+      googleId,
+      id_token
+    );
+
+    console.log("is isSuccess: ", isSuccess);
+    console.log("token: ", token);
+
+    if (!isSuccess) {
+      res.status(200).json({
+        message: "somehting went wrong",
+        isLoggedIn: isSuccess,
+      });
+      return;
+    }
+    res.cookie("session-token", token);
+    res.status(200).json({
+      message: "good good",
+      isLoggedIn: isSuccess,
     });
   },
 };
