@@ -11,6 +11,8 @@ import {
 } from "@material-ui/pickers";
 import "date-fns";
 import { TextField } from "@material-ui/core";
+import { Post } from "../classes/post";
+import { Location } from "../classes/location";
 
 interface Props {
   addPost: any;
@@ -31,6 +33,15 @@ const Options = ({ addPost }: Props) => {
     setSecondSelectedDate(date);
   };
   const [addPostModalOpen, setAddPostModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setAddPostModalOpen(false);
+    addPost(new Post("1", new Location(34.34,33.32), "some image"))
+  }
+  const openModal = () => {
+    setAddPostModalOpen(true);
+  }
+
   return (
     <div>
       Options: my friends(button) manage posts (button) filter (options to
@@ -74,14 +85,14 @@ const Options = ({ addPost }: Props) => {
           text="Add Post"
           onClick={() => {
             addPostModalOpen
-              ? setAddPostModalOpen(false)
-              : setAddPostModalOpen(true);
+              ? closeModal()
+              : openModal();
           }}
         />
         {addPostModalOpen && (
           <CustomModal
             modalOpen={addPostModalOpen}
-            handleClose={() => setAddPostModalOpen(false)}
+            handleClose={() => closeModal()}
             text={<AddPost id="1"></AddPost>}
           />
         )}
