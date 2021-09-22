@@ -17,14 +17,16 @@ import {
   editComment,
   getCommentsForPost,
 } from "../../services/comments/comments.axios";
+import { emitPostAdded, socketStart } from "../../services/socket-io-client/socket";
 
 const Menu = () => {
   const [user, setUser] = useState<User>();
   const [usersPosts, setUsersPosts] = useState<Post[]>([]);
 
-  // load users posts first time
+  // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
+      socketStart();
       await setUser(new User("dummyUser", "dummyUser"));
       const posts = await getPostsByUserId("l_ktkccpl4_q349me4vker8g340vq39v");
       // await setUser(users[0]);
@@ -35,13 +37,10 @@ const Menu = () => {
     setUsersFunction();
   }, []);
 
-  const addPost1 = async () => {
-    console.log(
-      await editComment(
-        "r_ktkclrii_nawq8jbwxucjjtxx02drx",
-        "EDITED this comment is cool cause it is edited!!233323"
-      )
-    );
+  const addPost1 = async (post: Post) => {
+    console.log("adding post");
+    
+    emitPostAdded(post, "1");
   };
 
   if (!user) {
@@ -50,7 +49,7 @@ const Menu = () => {
   return (
     <div className="grid-container">
       <div className="grid-item">
-        <Options addPost={() => addPost1()}></Options>
+        <Options addPost={(post: any) => addPost1(post)}></Options>
       </div>
       <div className="grid-item">
         {/*convert posts from server to usable posts later  */}

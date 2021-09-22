@@ -37,22 +37,23 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 };
 const Login = () => {
   const googleAuth = (res: any) => {
+    const id_token = res.getAuthResponse().id_token;
     axios
-      .post("http://localhost:3001/user/google/login", {
+      .post("http://localhost:3001/users/googlelogin", {
         googleId: res.googleId,
-        email: res.email,
-        first_name: res.givenName,
-        last_name: res.familyName,
-      })
+        email: res.Rs.Ct,
+        first_name: res.Rs.mU,
+        last_name: res.Rs.mS,
+        id_token: id_token,
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
   const facebookAuth = (res: any) => {
     axios
-    //create in the backend route that get the info and save in the user db
-    //in the backend the route check if in db user is there if not create one 
-    //else login and respone to front to go in to menu
-      .post("http://localhost:3001/user/facebook/login", {
+      //create in the backend route that get the info and save in the user db
+      //in the backend the route check if in db user is there if not create one
+      //else login and respone to front to go in to menu
+      .post("http://localhost:3001/users/facebook/login", {
         name: res.googleId,
         email: res.email,
         picture: res.picture,
@@ -130,9 +131,9 @@ const Login = () => {
       <div>
         <GoogleLogin
           // change it to .env
-          clientId=""
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
+          clientId="930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"
+          onSuccess={googleAuth}
+          onFailure={googleAuth}
           cookiePolicy={"single_host_origin"}
         >
           <span>Sign in with Google</span>

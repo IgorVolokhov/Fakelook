@@ -2,6 +2,7 @@ const {
   signinOperation,
   signupOperation,
   editUserOperation,
+  googleLoginOperation,
 } = require("../Sql/dummy_dboperations/userOperation");
 
 class DBUser {
@@ -21,6 +22,10 @@ class DBUser {
 
   async editUser(user) {
     return await editUserOperation(user);
+  }
+
+  async googleLoginDal(email, googleId, id_token) {
+    return await googleLoginOperation(email, googleId, id_token);
   }
 }
 
