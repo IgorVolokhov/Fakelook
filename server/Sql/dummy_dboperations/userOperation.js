@@ -4,7 +4,8 @@ const adapter = new FileSync("db.json");
 const db = low(adapter);
 const bcrypt = require("bcrypt");
 const { uniqueId } = require("../../utils/uniqueId");
-
+const nodemailer = require("nodemailer");
+var randomstring = require("randomstring");
 const { OAuth2Client } = require("google-auth-library");
 const CLIENT_ID =
   "930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com";
@@ -130,6 +131,60 @@ async function googleLoginOperation(email, googleId, id_token) {
   }
 }
 
+//fakelookf@gmail.com
+//Eli123456
+let transporter = nodemailer.createTransport({
+  host: "http://localhost:3001",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: "fakelookf@gmail.com", // generated ethereal user
+    pass: "Eli123456", // generated ethereal password
+  },
+  tls: {
+    rejectUnauthorized: false,
+  },
+});
+let tran = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: "fakelookf@gmail.com", // generated ethereal user
+    pass: "Eli123456", // generated ethereal password
+  }
+});
+
+async function forgotpasswordOperation(email) {
+  const users = db.get("users").value();
+  for (let index = 0; index < users.length; index++) {
+    if (users[index].Email === email) {
+      console.log("find email");
+      const key = randomstring.generate(7);
+      //key cannot be the same in db should be uniqe
+      console.log(key);
+      users[index].Password = key;
+      let mailDetails = {
+        from: 'fakelookf@gmail.com>',
+        to: email,
+        subject: 'Forgot password for FakeLook',
+        text: `key for get reset password ${key}`,
+      };
+      let isSuccess = "hello";
+      tran.sendMail(mailDetails, (err, data) => {
+        if (err) {
+          console.log("Error Occurs");
+          console.log(err);
+          isSuccess = false;
+        } else {
+          console.log("Email sent successfully");
+          db.write();
+          isSuccess = true;
+        }
+      });
+      return isSuccess;
+    }
+  }
+}
+
 async function verify(token) {
   const ticket = await client.verifyIdToken({
     idToken: token,
@@ -160,4 +215,5 @@ module.exports = {
   signupOperation,
   editUserOperation,
   googleLoginOperation,
+  forgotpasswordOperation,
 };

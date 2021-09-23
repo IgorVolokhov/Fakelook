@@ -3,6 +3,7 @@ const {
   signupOperation,
   editUserOperation,
   googleLoginOperation,
+  forgotpasswordOperation,
 } = require("../Sql/dummy_dboperations/userOperation");
 
 class DBUser {
@@ -26,6 +27,10 @@ class DBUser {
 
   async googleLoginDal(email, googleId, id_token) {
     return await googleLoginOperation(email, googleId, id_token);
+  }
+
+  async forgotPassword(email){
+    return await forgotpasswordOperation(email)
   }
 }
 

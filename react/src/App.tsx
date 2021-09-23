@@ -4,7 +4,7 @@ import "./App.css";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
-
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 function App() {
   return (
     <div className="App">
@@ -22,6 +22,9 @@ function App() {
             </Route>
             <Route path="/menu">
               <Menu />
+            </Route>
+            <Route path="/forgot">
+              <ForgotPassword/>
             </Route>
           </Switch>
         </div>
