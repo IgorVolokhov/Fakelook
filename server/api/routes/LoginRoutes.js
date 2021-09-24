@@ -7,7 +7,8 @@ const {
   remove,
   edit,
   googleLogin,
-  forgotPassowrd
+  forgotPassowrd,
+  changePassword
 } = require("../controllers/UsersController");
 
 router.post("/signup", signup);
@@ -16,5 +17,5 @@ router.delete("/remove", remove);
 router.patch("/edit", edit);
 router.post("/googlelogin", googleLogin);
 router.post("/forgot",forgotPassowrd)
-
+router.post("/change",changePassword)
 module.exports = router;

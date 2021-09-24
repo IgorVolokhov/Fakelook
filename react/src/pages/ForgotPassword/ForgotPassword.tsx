@@ -11,8 +11,9 @@ const ForgotPassword = () => {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
+  //(key, newPass, email)
   const sendNewPassword = async () => {
-      axios.post("http://localhost:3001/users/newpassowrd",{NewPass,KeyEmail})
+      axios.post("http://localhost:3001/users/change",{KeyEmail,NewPass,Email})
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   }
@@ -29,7 +30,7 @@ const ForgotPassword = () => {
         <p>Enter key you got from your email</p>
         <TextField onChange={(event)=> setKeyEmail(event.target.value)}/>
         <p>Enter key you got from your new password</p>
-        <TextField onChange={(event)=> setNewPass(event.target.value)}/>
+        <TextField type="password" onChange={(event)=> setNewPass(event.target.value)}/>
         <br></br> <br></br> <br></br>
         <Button  variant="contained" color="primary" onClick={sendNewPassword}>send new password</Button>
     </div>

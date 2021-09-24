@@ -5,6 +5,7 @@ const {
   editUser,
   googleLoginDal,
   forgotPassword,
+  changePassword,
 } = require("../../DAL/dbUsers");
 
 module.exports = {
@@ -44,6 +45,14 @@ module.exports = {
 
     res.status(200).json({
       message: isSuccsess ? `edited successfully` : `did not edit :(`,
+      isSuccsess: isSuccsess,
+    });
+  },
+  changePassword:async (req,res) => {
+    const isSuccsess = await changePassword(req.body.KeyEmail, req.body.NewPass, req.body.Email);
+    console.log("loolking for:",isSuccsess)
+    res.status(200).json({
+      message: isSuccsess ? ` change` : `didnt change  :(`,
       isSuccsess: isSuccsess,
     });
   },

@@ -8,7 +8,7 @@ const nodemailer = require("nodemailer");
 var randomstring = require("randomstring");
 const { OAuth2Client } = require("google-auth-library");
 const CLIENT_ID =
-  "930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com";
+  "930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"; // change to .env
 const client = new OAuth2Client(CLIENT_ID);
 
 async function comparePasswords(password, bcryptPassword) {
@@ -133,26 +133,35 @@ async function googleLoginOperation(email, googleId, id_token) {
 
 //fakelookf@gmail.com
 //Eli123456
-let transporter = nodemailer.createTransport({
-  host: "http://localhost:3001",
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: "fakelookf@gmail.com", // generated ethereal user
-    pass: "Eli123456", // generated ethereal password
-  },
-  tls: {
-    rejectUnauthorized: false,
-  },
-});
+
 let tran = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: "fakelookf@gmail.com", // generated ethereal user
-    pass: "Eli123456", // generated ethereal password
-  }
+    user: "fakelookf@gmail.com", // generated ethereal user //change to .env
+    pass: "Eli123456", // generated ethereal password // chamge to .env
+  },
 });
 
+async function changePasswordOperation(key, newPass, email) {
+  console.log(key, newPass, email);
+  const users = db.get("users").value();
+  console.log("go there");
+  let checkifExist = false
+   for (let i = 0; i < users.length; i++) {
+    if (
+      users[i].Email === email &&
+      users[i].Password === key || comparePasswords(key,users[i].Password).then(res => checkifExist = res) &&  users[i].Email === email
+    ) {
+      //need to check if password already crypt
+          const salt = await bcrypt.genSalt();
+          const hashedPassword = await bcrypt.hash(newPass, salt);
+        console.log(newPass)
+        console.log("find user");
+        users[i].Password = hashedPassword;
+        db.write();
+    }
+  }
+}
 async function forgotpasswordOperation(email) {
   const users = db.get("users").value();
   for (let index = 0; index < users.length; index++) {
@@ -163,9 +172,9 @@ async function forgotpasswordOperation(email) {
       console.log(key);
       users[index].Password = key;
       let mailDetails = {
-        from: 'fakelookf@gmail.com>',
+        from: "fakelookf@gmail.com>",
         to: email,
-        subject: 'Forgot password for FakeLook',
+        subject: "Forgot password for FakeLook",
         text: `key for get reset password ${key}`,
       };
       let isSuccess = "hello";
@@ -216,4 +225,5 @@ module.exports = {
   editUserOperation,
   googleLoginOperation,
   forgotpasswordOperation,
+  changePasswordOperation,
 };
