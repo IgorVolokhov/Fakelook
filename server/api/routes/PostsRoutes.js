@@ -1,4 +1,5 @@
 const express = require("express");
+const { authenticateToken } = require("../controllers/authenticatoinTokens");
 const router = express.Router();
 const {
   getPostForUser,
@@ -10,7 +11,7 @@ const {
   remove,
 } = require("../controllers/PostsController");
 
-router.post("/getpostsforuser", getPostForUser);
+router.post("/getpostsforuser", authenticateToken, getPostForUser);
 router.post("/getsmallerpostforuser", getSmallerPostsForUser);
 router.post("/getusersfriendspost", getAllPostsFromUserFriends);
 router.post("/getpostbyid", getPostById);

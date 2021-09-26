@@ -5,9 +5,9 @@ const {
   editUser,
   googleLoginDal,
 } = require("../../DAL/dbUsers");
+const { generateAccessToken } = require("./authenticatoinTokens");
 
 module.exports = {
-  // works!
   signup: async (req, res) => {
     const isAdded = await addUser(req.body);
 
@@ -17,12 +17,24 @@ module.exports = {
     });
   },
 
-  // works!
   login: async (req, res) => {
     const isLoggedIn = await checkIfUserExists(req.body);
+    const user = { User_Id: "username" };
+
+    if (isLoggedIn) {
+      const accessToken = generateAccessToken(user.User_Id);
+
+      res.status(200).json({
+        message: `you can login in`,
+        isLoggedIn: isLoggedIn,
+        accessToken: accessToken,
+      });
+
+      return;
+    }
 
     res.status(200).json({
-      message: isLoggedIn ? `you can login in` : `does not try again!`,
+      message: `sadly your out`,
       isLoggedIn: isLoggedIn,
     });
   },
