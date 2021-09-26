@@ -7,9 +7,12 @@ const {
   forgotPassword,
   changePassword,
 } = require("../../DAL/dbUsers");
+const {
+  generateAccessToken,
+  generateRefreshAccessToken,
+} = require("./authenticatoinTokens");
 
 module.exports = {
-  // works!
   signup: async (req, res) => {
     const isAdded = await addUser(req.body);
 
@@ -19,13 +22,26 @@ module.exports = {
     });
   },
 
-  // works!
   login: async (req, res) => {
-    const isLoggedIn = await checkIfUserExists(req.body);
+    const { isSignedIn, user } = await checkIfUserExists(req.body);
+
+    if (isSignedIn) {
+      const accessToken = generateAccessToken(user.User_Id);
+      const refreshToken = generateRefreshAccessToken(user.User_Id);
+
+      res.status(200).json({
+        message: `you can login in`,
+        isSignedIn: isSignedIn,
+        accessToken: accessToken,
+        refreshToken: refreshToken,
+      });
+
+      return;
+    }
 
     res.status(200).json({
-      message: isLoggedIn ? `you can login in` : `does not try again!`,
-      isLoggedIn: isLoggedIn,
+      message: `sadly your out`,
+      isSignedIn: isSignedIn,
     });
   },
 
@@ -48,9 +64,13 @@ module.exports = {
       isSuccsess: isSuccsess,
     });
   },
-  changePassword:async (req,res) => {
-    const isSuccsess = await changePassword(req.body.KeyEmail, req.body.NewPass, req.body.Email);
-    console.log("loolking for:",isSuccsess)
+  changePassword: async (req, res) => {
+    const isSuccsess = await changePassword(
+      req.body.KeyEmail,
+      req.body.NewPass,
+      req.body.Email
+    );
+    console.log("loolking for:", isSuccsess);
     res.status(200).json({
       message: isSuccsess ? ` change` : `didnt change  :(`,
       isSuccsess: isSuccsess,
@@ -58,7 +78,7 @@ module.exports = {
   },
   forgotPassowrd: async (req, res) => {
     const isSuccsess = await forgotPassword(req.body.Email);
-    console.log("loolking for:",isSuccsess)
+    console.log("loolking for:", isSuccsess);
     res.status(200).json({
       message: isSuccsess ? `send successfully` : `didnt send  :(`,
       isSuccsess: isSuccsess,

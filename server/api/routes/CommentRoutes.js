@@ -1,4 +1,7 @@
 const express = require("express");
+const {
+  authenticateTokenBody,
+} = require("../controllers/authenticatoinTokens");
 const router = express.Router();
 const {
   getCommentsForPost,
@@ -7,7 +10,7 @@ const {
 } = require("../controllers/CommentController");
 
 router.post("/getcommentsforpost", getCommentsForPost);
-router.post("/addcommentforpost", addCommentForPost);
-router.patch("/editcommentforpost", editCommentForPost);
+router.post("/addcommentforpost", authenticateTokenBody, addCommentForPost);
+router.patch("/editcommentforpost", authenticateTokenBody, editCommentForPost);
 
 module.exports = router;
