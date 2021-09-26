@@ -25,7 +25,7 @@
     {
       "User_Id": "k_ktvg02ig_9v0amjc3rbswmib8u6uh5",
       "Username": "pass:igorvol",
-      "Password": "$2b$10$2PQ6tMiUsv/4LuhHfbeE/eO04iniIULTDlrws0xZ9wRjhyQlPWIJy",
+      "Password": "51X88gx",
       "Email": "volokhov9@gmail.com",
       "Firstname": null,
       "Lastname": null,
@@ -33,6 +33,17 @@
       "Address": null,
       "Place_Of_Work": null,
       "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImMzMTA0YzY4OGMxNWU2YjhlNThlNjdhMzI4NzgwOTUyYjIxNzQwMTciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiOTMwMjUzNTg4MTE5LWRzaXIwaDhqMDZucTB0MmRjM2F2bW0waTExbjBhZHE2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiOTMwMjUzNTg4MTE5LWRzaXIwaDhqMDZucTB0MmRjM2F2bW0waTExbjBhZHE2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3MDYyODUwNDU0MjUyNDgzODIzIiwiZW1haWwiOiJ2b2xva2hvdjlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfOF9yeGpZRVdiY3llWlZaS0RoMzRRIiwibmFtZSI6Iklnb3IgVm9sb2tob3YiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFUWEFKd2xScGhmMFJtTEhPZ1dUc0tWU0pCcV92aWdfNHRQMlVyR0drRFY9czk2LWMiLCJnaXZlbl9uYW1lIjoiSWdvciIsImZhbWlseV9uYW1lIjoiVm9sb2tob3YiLCJsb2NhbGUiOiJlbi1HQiIsImlhdCI6MTYzMjMxMjExOCwiZXhwIjoxNjMyMzE1NzE4LCJqdGkiOiI3YWU5OGE4MmQxODdlMmM2NDE0MTkzMzgzN2RhZGVmMjUyYzY3N2Q0In0.gn8XsnzWSsXfZ2dPjULr0Ur_GGq1oyEZ7V6M0b8YdQm8tTnfpZQrqHopfqPjx0uPIJb4kXWkPXy4dZy635c3YQwPJNqhJ4J6y1iBjtb7fNRWtFER_7rNRECgGLjwQFQn53tHDBsMl8dAY6FIMeByVGRPSsJgw8UG8GjuuUvMDPGBlYdSQXq-BM72xa6-sN2uRYCRQ76ikeWzqFb9OhCWIsvgl7xvvsTnG5s-TGD9GiHldTAyEG1lnQYS9IGr2YhZbkTfAj9DmwFANZsq0CV1uMl7txGsUT1e9BAMxoNdna4dzeQ8FlCCDueIt56CLtGIS_QoJvEdtT4x7SRYoedpEA"
+    },
+    {
+      "User_Id": "w_ktyb344u_b971orhhl7wa6rk2g65f8",
+      "Username": "eyal",
+      "Password": "$2b$10$t02t21j7tTy6Dc5hI0JkX.N4i3iGijP1iJgCzZFzh5TnvdX.i9MJ.",
+      "Email": "eyalrainitz@gmail.com",
+      "Firstname": null,
+      "Lastname": null,
+      "Age": null,
+      "Address": null,
+      "Place_Of_Work": null
     }
   ],
   "posts": [

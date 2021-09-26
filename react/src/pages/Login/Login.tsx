@@ -45,8 +45,9 @@ const Login = () => {
         first_name: res.Rs.mU,
         last_name: res.Rs.mS,
         id_token: id_token,
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      })
+      .then((res: any) => console.log(res.data))
+      .catch((err: any) => console.log(err));
   };
   const facebookAuth = (res: any) => {
     axios
@@ -120,8 +121,14 @@ const Login = () => {
         )}
       </Formik>
       <div>
+        <Link to="/forgot">
+          <CustomButton text="forgot password ?" />
+        </Link>
+      </div>
+      
+      <div>
         <FacebookLogin
-        // change it to .env
+          // change it to .env
           appId=""
           autoLoad={true}
           fields="name,email,picture"
@@ -136,7 +143,7 @@ const Login = () => {
           onFailure={googleAuth}
           cookiePolicy={"single_host_origin"}
         >
-          <span>Sign in with Google</span>
+          <span>Login with Google</span>
         </GoogleLogin>
       </div>
 
