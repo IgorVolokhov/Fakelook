@@ -7,7 +7,10 @@ const {
   forgotPassword,
   changePassword,
 } = require("../../DAL/dbUsers");
-const { generateAccessToken } = require("./authenticatoinTokens");
+const {
+  generateAccessToken,
+  generateRefreshAccessToken,
+} = require("./authenticatoinTokens");
 
 module.exports = {
   signup: async (req, res) => {
@@ -20,16 +23,17 @@ module.exports = {
   },
 
   login: async (req, res) => {
-    const isLoggedIn = await checkIfUserExists(req.body);
-    const user = { User_Id: "username" };
+    const { isSignedIn, user } = await checkIfUserExists(req.body);
 
-    if (isLoggedIn) {
+    if (isSignedIn) {
       const accessToken = generateAccessToken(user.User_Id);
+      const refreshToken = generateRefreshAccessToken(user.User_Id);
 
       res.status(200).json({
         message: `you can login in`,
-        isLoggedIn: isLoggedIn,
+        isSignedIn: isSignedIn,
         accessToken: accessToken,
+        refreshToken: refreshToken,
       });
 
       return;
@@ -37,7 +41,7 @@ module.exports = {
 
     res.status(200).json({
       message: `sadly your out`,
-      isLoggedIn: isLoggedIn,
+      isSignedIn: isSignedIn,
     });
   },
 
@@ -60,9 +64,13 @@ module.exports = {
       isSuccsess: isSuccsess,
     });
   },
-  changePassword:async (req,res) => {
-    const isSuccsess = await changePassword(req.body.KeyEmail, req.body.NewPass, req.body.Email);
-    console.log("loolking for:",isSuccsess)
+  changePassword: async (req, res) => {
+    const isSuccsess = await changePassword(
+      req.body.KeyEmail,
+      req.body.NewPass,
+      req.body.Email
+    );
+    console.log("loolking for:", isSuccsess);
     res.status(200).json({
       message: isSuccsess ? ` change` : `didnt change  :(`,
       isSuccsess: isSuccsess,
@@ -70,7 +78,7 @@ module.exports = {
   },
   forgotPassowrd: async (req, res) => {
     const isSuccsess = await forgotPassword(req.body.Email);
-    console.log("loolking for:",isSuccsess)
+    console.log("loolking for:", isSuccsess);
     res.status(200).json({
       message: isSuccsess ? `send successfully` : `didnt send  :(`,
       isSuccsess: isSuccsess,

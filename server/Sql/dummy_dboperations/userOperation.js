@@ -27,12 +27,15 @@ async function signinOperation(user) {
     }
     if (userRes) {
       let password = userRes.Password;
-      return await comparePasswords(user.password, password);
+      return {
+        isSignedIn: await comparePasswords(user.password, password),
+        user: userRes,
+      };
     }
-    return false;
+    return { isSignedIn: false, user: null };
   } catch (error) {
     console.log(error);
-    return false;
+    return { isSignedIn: false, user: null };
   }
 }
 
@@ -146,19 +149,22 @@ async function changePasswordOperation(key, newPass, email) {
   console.log(key, newPass, email);
   const users = db.get("users").value();
   console.log("go there");
-  let checkifExist = false
-   for (let i = 0; i < users.length; i++) {
+  let checkifExist = false;
+  for (let i = 0; i < users.length; i++) {
     if (
-      users[i].Email === email &&
-      users[i].Password === key || comparePasswords(key,users[i].Password).then(res => checkifExist = res) &&  users[i].Email === email
+      (users[i].Email === email && users[i].Password === key) ||
+      (comparePasswords(key, users[i].Password).then(
+        (res) => (checkifExist = res)
+      ) &&
+        users[i].Email === email)
     ) {
       //need to check if password already crypt
-          const salt = await bcrypt.genSalt();
-          const hashedPassword = await bcrypt.hash(newPass, salt);
-        console.log(newPass)
-        console.log("find user");
-        users[i].Password = hashedPassword;
-        db.write();
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(newPass, salt);
+      console.log(newPass);
+      console.log("find user");
+      users[i].Password = hashedPassword;
+      db.write();
     }
   }
 }
