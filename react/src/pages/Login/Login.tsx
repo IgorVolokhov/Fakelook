@@ -45,7 +45,6 @@ const Login = () => {
         first_name: res.Rs.mU,
         last_name: res.Rs.mS,
         id_token: id_token,
-      })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
@@ -122,7 +121,7 @@ const Login = () => {
       </Formik>
       <div>
         <FacebookLogin
-          // change it to .env
+        // change it to .env
           appId=""
           autoLoad={true}
           fields="name,email,picture"
