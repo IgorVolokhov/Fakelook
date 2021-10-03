@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Post } from "../../classes/post";
+import { getAccessToken } from "../tokens";
 
 const url = "http://localhost:3001/posts";
 
@@ -12,27 +13,33 @@ export const getAllPosts = async () => {
 }
 
 // todo make interface for posts for map and not any
-export const getPostsByUserId = async (userId: any) => {
+export const getPostsByUserId = async () => {
   let posts;
-  await axios.post(`${url}/getpostsforuser`, { userId }).then((res) => {
-    posts = res.data.posts;
-  });
+  await axios
+    .post(`${url}/getpostsforuser`, { token: getAccessToken() })
+    .then((res) => {
+      posts = res.data.posts;
+    });
   return posts;
 };
 
-export const getSmallerPostsByUser = async (userId: any) => {
-  let posts;
-  await axios.post(`${url}/getsmallerpostforuser`, { userId }).then((res) => {
-    posts = res.data.posts;
-  });
+export const getSmallerPostsByUser = async () => {
+  let posts: any[] = [];
+  await axios
+    .post(`${url}/getsmallerpostforuser`, { token: getAccessToken() })
+    .then((res) => {
+      posts = res.data.posts;
+    });
   return posts;
 };
 
 export const getPostById = async (postId: any) => {
   let post;
-  await axios.post(`${url}/getpostbyid`, { postId }).then((res) => {
-    post = res.data.post;
-  });
+  await axios
+    .post(`${url}/getpostbyid`, { token: getAccessToken(), postId })
+    .then((res) => {
+      post = res.data.post;
+    });
   return post;
 };
 
@@ -51,7 +58,7 @@ export const addPost = async (
 
   await axios
     .post(`${url}/addpost`, {
-      userId,
+      token: getAccessToken(),
       image_src,
       lat,
       lon,
@@ -78,6 +85,7 @@ export const editPost = async (
 
   await axios
     .patch(`${url}/editpost`, {
+      token: getAccessToken(),
       postId,
       lat,
       lon,

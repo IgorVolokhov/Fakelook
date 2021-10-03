@@ -1,18 +1,17 @@
 {
   "users": [
     {
-      "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
+      "User_Id": 1,
       "Username": "pass:newcollpass1",
       "Password": "$2b$10$ObiOD8.aWG1qD/qxFF0DDu5irNrT5Ius3Pv5b5aZLO08XL4/9v13y",
       "Email": "passnewcollpass1@gmail.com",
-      "Firstname": "some_secret2",
+      "Firstname": "updated!! for react some_secret2",
       "Lastname": "special_secret2",
       "Age": 22,
-      "Address": "Netanya2",
-      "Place_Of_Work": "none :(2"
+      "Address": "Netanya2"
     },
     {
-      "User_Id": "w_ktojfgc3_g92dojg2saku5kpf0eraq",
+      "User_Id": 2,
       "Username": "1234",
       "Password": "$2b$10$S/cHaAzxrujUb7Deuo7F7Ozm.CunohO76JWCWVxBJadke9B4Q.NGq",
       "Email": "1234@gmail.com",
@@ -23,7 +22,7 @@
       "Place_Of_Work": null
     },
     {
-      "User_Id": "k_ktvg02ig_9v0amjc3rbswmib8u6uh5",
+      "User_Id": 3,
       "Username": "pass:igorvol",
       "Password": "51X88gx",
       "Email": "volokhov9@gmail.com",
@@ -31,11 +30,10 @@
       "Lastname": null,
       "Age": null,
       "Address": null,
-      "Place_Of_Work": null,
-      "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImMzMTA0YzY4OGMxNWU2YjhlNThlNjdhMzI4NzgwOTUyYjIxNzQwMTciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJhY2NvdW50cy5nb29nbGUuY29tIiwiYXpwIjoiOTMwMjUzNTg4MTE5LWRzaXIwaDhqMDZucTB0MmRjM2F2bW0waTExbjBhZHE2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwiYXVkIjoiOTMwMjUzNTg4MTE5LWRzaXIwaDhqMDZucTB0MmRjM2F2bW0waTExbjBhZHE2LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29tIiwic3ViIjoiMTA3MDYyODUwNDU0MjUyNDgzODIzIiwiZW1haWwiOiJ2b2xva2hvdjlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF0X2hhc2giOiJfOF9yeGpZRVdiY3llWlZaS0RoMzRRIiwibmFtZSI6Iklnb3IgVm9sb2tob3YiLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFUWEFKd2xScGhmMFJtTEhPZ1dUc0tWU0pCcV92aWdfNHRQMlVyR0drRFY9czk2LWMiLCJnaXZlbl9uYW1lIjoiSWdvciIsImZhbWlseV9uYW1lIjoiVm9sb2tob3YiLCJsb2NhbGUiOiJlbi1HQiIsImlhdCI6MTYzMjMxMjExOCwiZXhwIjoxNjMyMzE1NzE4LCJqdGkiOiI3YWU5OGE4MmQxODdlMmM2NDE0MTkzMzgzN2RhZGVmMjUyYzY3N2Q0In0.gn8XsnzWSsXfZ2dPjULr0Ur_GGq1oyEZ7V6M0b8YdQm8tTnfpZQrqHopfqPjx0uPIJb4kXWkPXy4dZy635c3YQwPJNqhJ4J6y1iBjtb7fNRWtFER_7rNRECgGLjwQFQn53tHDBsMl8dAY6FIMeByVGRPSsJgw8UG8GjuuUvMDPGBlYdSQXq-BM72xa6-sN2uRYCRQ76ikeWzqFb9OhCWIsvgl7xvvsTnG5s-TGD9GiHldTAyEG1lnQYS9IGr2YhZbkTfAj9DmwFANZsq0CV1uMl7txGsUT1e9BAMxoNdna4dzeQ8FlCCDueIt56CLtGIS_QoJvEdtT4x7SRYoedpEA"
+      "Place_Of_Work": null
     },
     {
-      "User_Id": "w_ktyb344u_b971orhhl7wa6rk2g65f8",
+      "User_Id": 4,
       "Username": "eyal",
       "Password": "$2b$10$t02t21j7tTy6Dc5hI0JkX.N4i3iGijP1iJgCzZFzh5TnvdX.i9MJ.",
       "Email": "eyalrainitz@gmail.com",
@@ -59,13 +57,22 @@
   ],
   "posts": [
     {
-      "Post_Id": "q_ktkchwu9_rqfpcvqfrrqfnyghrdrpf",
-      "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
+      "Post_Id": 5,
+      "User_Id": 1,
+      "Image_Src": "https://brokenpanda.net/wp-content/uploads/1588190723_163_4K-Nature-Wallpapers-2020.jpg",
+      "Lat": 33.771959,
+      "Lon": 33.237018,
+      "Description": "'this is description from postman so cool!'",
+      "Tags": "'tags test'"
+    },
+    {
+      "Post_Id": 6,
+      "User_Id": 1,
       "Image_Src": "https://brokenpanda.net/wp-content/uploads/1588190723_163_4K-Nature-Wallpapers-2020.jpg",
       "Lat": 34.771959,
       "Lon": 34.237018,
-      "Description": "'this is description from postman so cool!'",
-      "Tags": "'tags test'"
+      "Description": "'this is from postman with token cool!'",
+      "Tags": null
     }
   ],
   "comments": [

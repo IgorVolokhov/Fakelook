@@ -20,7 +20,9 @@ module.exports = {
   },
 
   getPostForUser: async (req, res) => {
-    const gotPosts = await getPostsByUserId(req.body.userId);
+    console.log("this is body");
+    console.log(req.body);
+    const gotPosts = await getPostsByUserId(req.body.User_Id);
     res.status(200).json({
       message: gotPosts ? `Got posts` : `Didn't get posts`,
       posts: gotPosts,
@@ -28,7 +30,7 @@ module.exports = {
   },
 
   getAllPostsFromUserFriends: async (req, res) => {
-    const gotPosts = await getAllPostsFromUserFriends(req.body.userId);
+    const gotPosts = await getAllPostsFromUserFriends(req.body.User_Id);
     res.status(200).json({
       message: gotPosts ? `Got Posts` : `Didn't Get Posts`,
       posts: gotPosts,
@@ -36,7 +38,7 @@ module.exports = {
   },
 
   getSmallerPostsForUser: async (req, res) => {
-    const gotPosts = await getSmallerPostsByUser(req.body.userId);
+    const gotPosts = await getSmallerPostsByUser(req.body.User_Id);
     res.status(200).json({
       message: gotPosts ? `Got Posts` : `Didn't Get Posts`,
       posts: gotPosts,
@@ -52,9 +54,9 @@ module.exports = {
   },
 
   add: async (req, res) => {
-    const { userId, image_src, lat, lon, description, tags } = req.body;
+    const { User_Id, image_src, lat, lon, description, tags } = req.body;
     const isAdded = await addPost(
-      userId,
+      User_Id,
       image_src,
       lat,
       lon,

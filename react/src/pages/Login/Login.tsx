@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { FieldAttributes, Form, Formik, useField } from "formik";
 import schema from "../../validations/Signin.validations";
 import { Link } from "react-router-dom";
@@ -7,6 +8,12 @@ import { TextField } from "@material-ui/core";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
+import {
+  getAccessToken,
+  getRefreshToken,
+  saveAccessToken,
+  saveRefreshToken,
+} from "../../services/tokens";
 
 const baseURL = "http://localhost:9000";
 export interface IUser {
@@ -35,6 +42,7 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
     </>
   );
 };
+
 const Login = () => {
   const googleAuth = (res: any) => {
     const id_token = res.getAuthResponse().id_token;
@@ -78,6 +86,11 @@ const Login = () => {
   // not yet a member? Sign up!
 
   // login with google facebook
+
+  const goToMenu = () => {
+    window.location.href = "/menu";
+  };
+
   return (
     <div>
       <h1>LOGIN</h1>
@@ -90,9 +103,17 @@ const Login = () => {
         validationSchema={schema}
         onSubmit={async (data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          let isLoggedIn = await axiosSignin(data.username, data.password);
-          if (isLoggedIn) {
-            console.log("you are in");
+          const {
+            messageRes,
+            isLoggedInRes,
+            accessTokenRes,
+            expiresInRes,
+            refreshTokenRes,
+          } = await axiosSignin(data.username, data.password);
+          if (isLoggedInRes) {
+            saveAccessToken(accessTokenRes, expiresInRes);
+            saveRefreshToken(refreshTokenRes);
+            goToMenu();
           } else {
             console.log("OUT!!");
           }
@@ -125,7 +146,7 @@ const Login = () => {
           <CustomButton text="forgot password ?" />
         </Link>
       </div>
-      
+
       <div>
         <FacebookLogin
           // change it to .env

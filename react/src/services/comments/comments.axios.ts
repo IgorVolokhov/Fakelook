@@ -1,17 +1,20 @@
 import axios from "axios";
+import { getAccessToken } from "../tokens";
 
 const url = "http://localhost:3001/comments";
 
 // todo make interface for posts for map and not any
-export const getCommentsForPost = async (postId: any) => {
+export const getCommentsForPost = async (postId: number) => {
   let comments;
-  await axios.post(`${url}/getcommentsforpost`, { postId }).then((res) => {
-    comments = res.data.comments;
-  });
+  await axios
+    .post(`${url}/getcommentsforpost`, { token: getAccessToken(), postId })
+    .then((res) => {
+      comments = res.data.comments;
+    });
   return comments;
 };
 
-export const addComment = async (userId: any, postId: any, text: string) => {
+export const addComment = async (postId: number, text: string) => {
   if (!isTextFilled(text)) {
     return "text is not filled properly";
   }
@@ -19,7 +22,7 @@ export const addComment = async (userId: any, postId: any, text: string) => {
 
   await axios
     .post(`${url}/addcommentforpost`, {
-      userId,
+      token: getAccessToken(),
       postId,
       text,
     })
@@ -37,6 +40,7 @@ export const editComment = async (commentId: any, text: string) => {
 
   await axios
     .patch(`${url}/editcommentforpost`, {
+      token: getAccessToken(),
       commentId,
       text,
     })

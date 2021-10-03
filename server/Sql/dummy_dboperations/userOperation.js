@@ -27,12 +27,15 @@ async function signinOperation(user) {
     }
     if (userRes) {
       let password = userRes.Password;
-      return await comparePasswords(user.password, password);
+      return {
+        isSignedIn: await comparePasswords(user.password, password),
+        user: userRes,
+      };
     }
-    return false;
+    return { isSignedIn: false, user: null };
   } catch (error) {
     console.log(error);
-    return false;
+    return { isSignedIn: false, user: null };
   }
 }
 
@@ -78,15 +81,10 @@ async function signupOperation(user) {
 }
 
 async function editUserOperation(user) {
-  console.log("in edit");
   try {
     const users = db.get("users").value();
-    console.log({ users });
-    console.log({ user });
     for (let index = 0; index < users.length; index++) {
-      if (users[index].User_Id === user.user_id) {
-        console.log("should edit: ");
-        console.log({ user });
+      if (users[index].User_Id === user.User_Id) {
         users[index].Firstname = user.firstname;
         users[index].Lastname = user.lastname;
         users[index].Age = user.age;
@@ -131,9 +129,6 @@ async function googleLoginOperation(email, googleId, id_token) {
   }
 }
 
-//fakelookf@gmail.com
-//Eli123456
-
 let tran = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -143,33 +138,32 @@ let tran = nodemailer.createTransport({
 });
 
 async function changePasswordOperation(key, newPass, email) {
+  console.log("change password operation userOperation line 141");
   console.log(key, newPass, email);
   const users = db.get("users").value();
-  console.log("go there");
-  let checkifExist = false
-   for (let i = 0; i < users.length; i++) {
+  let checkifExist = false;
+  for (let i = 0; i < users.length; i++) {
     if (
-      users[i].Email === email &&
-      users[i].Password === key || comparePasswords(key,users[i].Password).then(res => checkifExist = res) &&  users[i].Email === email
+      (users[i].Email === email && users[i].Password === key) ||
+      (comparePasswords(key, users[i].Password).then(
+        (res) => (checkifExist = res)
+      ) &&
+        users[i].Email === email)
     ) {
       //need to check if password already crypt
-          const salt = await bcrypt.genSalt();
-          const hashedPassword = await bcrypt.hash(newPass, salt);
-        console.log(newPass)
-        console.log("find user");
-        users[i].Password = hashedPassword;
-        db.write();
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(newPass, salt);
+      users[i].Password = hashedPassword;
+      db.write();
     }
   }
 }
+
 async function forgotpasswordOperation(email) {
   const users = db.get("users").value();
   for (let index = 0; index < users.length; index++) {
     if (users[index].Email === email) {
-      console.log("find email");
       const key = randomstring.generate(7);
-      //key cannot be the same in db should be uniqe
-      console.log(key);
       users[index].Password = key;
       let mailDetails = {
         from: "fakelookf@gmail.com>",
@@ -219,6 +213,34 @@ function turnUserStringSuitableForSql(user) {
   return user;
 }
 
+async function getPersonalInfoOperation(user_id) {
+  try {
+    const users = db.get("users").value();
+    let userRes = undefined;
+    for (let index = 0; index < users.length; index++) {
+      if (users[index].User_Id === user_id) {
+        userRes = users[index];
+        break;
+      }
+    }
+    if (userRes) {
+      const userInfo = {
+        Id: userRes.User_Id,
+        Firstname: userRes.Firstname,
+        Lastname: userRes.Lastname,
+        Age: userRes.Age,
+        Address: userRes.Address,
+        Place_Of_Work: userRes.Place_Of_Work,
+      };
+      return { userInfo: userInfo };
+    }
+    return { userInfo: null };
+  } catch (error) {
+    console.log(error);
+    return { userInfo: null };
+  }
+}
+
 module.exports = {
   signinOperation,
   signupOperation,
@@ -226,4 +248,5 @@ module.exports = {
   googleLoginOperation,
   forgotpasswordOperation,
   changePasswordOperation,
+  getPersonalInfoOperation,
 };
