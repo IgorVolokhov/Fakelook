@@ -19,5 +19,31 @@ describe("POST /users", () => {
         expect(check).toBe(true);
     });
 
-    
+    test("Check if user is editable", () => {
+        const editedUser = { username: "newUsername", password: "newPasword", email: "newemail@gmail.com" }
+        const check = operations.editUserOperation(editedUser);
+        expect(check).toBe(true);
+    });
+
+    test("Check if user can reset his forgotten password", () => {
+        const email = "lielarie123@me.com";
+        const check = operations.forgotpasswordOperation(email);
+        expect(check).toBe(true);
+    });
+
+    test("Check if user can get all personal info", () => {
+        const check = operations.getPersonalInfoOperation(1);
+        expect(check).toBe(!null);
+    });
+
+    test("Check if we can suit the string to sql", () => {
+        const newUser = new User({
+            firstname: "Liel",
+            lastname: "Arie",
+            address: "Kadima",
+            place_of_work: "Tel-Aviv"
+        })
+        const check = operations.turnUserStringSuitableForSql(newUser);
+        expect(check).toBe(!null);
+    })
 })
