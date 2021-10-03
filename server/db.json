@@ -5,11 +5,10 @@
       "Username": "pass:newcollpass1",
       "Password": "$2b$10$ObiOD8.aWG1qD/qxFF0DDu5irNrT5Ius3Pv5b5aZLO08XL4/9v13y",
       "Email": "passnewcollpass1@gmail.com",
-      "Firstname": "some_secret2",
+      "Firstname": "updated!! for react some_secret2",
       "Lastname": "special_secret2",
       "Age": 22,
-      "Address": "Netanya2",
-      "Place_Of_Work": "none :(2"
+      "Address": "Netanya2"
     },
     {
       "User_Id": 2,
