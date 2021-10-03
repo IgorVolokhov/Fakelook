@@ -3,6 +3,14 @@ import { Post } from "../../classes/post";
 
 const url = "http://localhost:3001/posts";
 
+export const getAllPosts = async () => {
+  let posts;
+  await axios.post(`${url}/getallposts`).then((res) => {
+    posts = res.data.posts;
+  });
+  return posts;
+}
+
 // todo make interface for posts for map and not any
 export const getPostsByUserId = async (userId: any) => {
   let posts;

@@ -1,4 +1,5 @@
 const {
+  getAllPostsOperation,
   getAllPostsFromUserFriendsOperation,
   getPostsByUserIdOperation,
   getSmallerPostsByUserOperation,
@@ -8,6 +9,10 @@ const {
 } = require("../Sql/dummy_dboperations/postOperations");
 
 class DBPosts {
+
+  async getAllPosts() {
+    return await getAllPostsOperation();
+  }
 
   async getAllPostsFromUserFriends(userId) {
     return await getAllPostsFromUserFriendsOperation(userId);

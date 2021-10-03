@@ -44,6 +44,17 @@
       "Age": null,
       "Address": null,
       "Place_Of_Work": null
+    },
+    {
+      "User_Id": "b_ku7gt7hj_sb3w7goh0movmtjfhg8gi",
+      "Username": "dadada",
+      "Password": "$2b$10$.0j9GjlRBOE7bRK0VuhBgewcVMPIexTGJHxRwJ8mCe5..grKyPePS",
+      "Email": "lielarie123@gmail.com",
+      "Firstname": null,
+      "Lastname": null,
+      "Age": null,
+      "Address": null,
+      "Place_Of_Work": null
     }
   ],
   "posts": [
@@ -61,8 +72,14 @@
     {
       "Comment_Id": "r_ktkclrii_nawq8jbwxucjjtxx02drx",
       "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
-      "Post_Id": "q_ktkchwu9_rqfpcvqfrrqfnyghrdrpf",
+      "Post_Id": 1,
       "Text": "EDITED this comment is cool cause it is edited!!233323"
+    },
+    {
+      "Comment_Id": "g_kub10ryt_481qmhepvwhfistbj8sxy",
+      "User_Id": 1,
+      "Post_Id": 1,
+      "Text": "Nice photo!"
     }
   ]
 }
