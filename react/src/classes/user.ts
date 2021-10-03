@@ -4,8 +4,6 @@ import { Post } from "./post";
 export class User {
   private _id: string;
   private _blockedUsers: User[] = [];
-  private _email: string;
-  private _username: string;
   private _firstname: string = "";
   private _lastname: string = "";
   private _age: number = -1;
@@ -13,10 +11,8 @@ export class User {
   private _placeOfWork: string = "";
   posts: Post[] = [];
 
-  constructor(email: string, username: string) {
-    this._id = "unique id";
-    this._email = email;
-    this._username = username;
+  constructor(id: string) {
+    this._id = id;
   }
 
   // todo add age restrictions

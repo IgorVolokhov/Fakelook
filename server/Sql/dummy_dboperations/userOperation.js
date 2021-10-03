@@ -134,9 +134,6 @@ async function googleLoginOperation(email, googleId, id_token) {
   }
 }
 
-//fakelookf@gmail.com
-//Eli123456
-
 let tran = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -168,6 +165,7 @@ async function changePasswordOperation(key, newPass, email) {
     }
   }
 }
+
 async function forgotpasswordOperation(email) {
   const users = db.get("users").value();
   for (let index = 0; index < users.length; index++) {
@@ -225,6 +223,34 @@ function turnUserStringSuitableForSql(user) {
   return user;
 }
 
+async function getPersonalInfoOperation(user_id) {
+  try {
+    const users = db.get("users").value();
+    let userRes = undefined;
+    for (let index = 0; index < users.length; index++) {
+      if (users[index].User_Id === user_id) {
+        userRes = users[index];
+        break;
+      }
+    }
+    if (userRes) {
+      const userInfo = {
+        Id: userRes.User_Id,
+        Firstname: userRes.Firstname,
+        Lastname: userRes.Lastname,
+        Age: userRes.Age,
+        Address: userRes.Address,
+        Place_Of_Work: userRes.Place_Of_Work,
+      };
+      return { userInfo: userInfo };
+    }
+    return { userInfo: null };
+  } catch (error) {
+    console.log(error);
+    return { userInfo: null };
+  }
+}
+
 module.exports = {
   signinOperation,
   signupOperation,
@@ -232,4 +258,5 @@ module.exports = {
   googleLoginOperation,
   forgotpasswordOperation,
   changePasswordOperation,
+  getPersonalInfoOperation,
 };

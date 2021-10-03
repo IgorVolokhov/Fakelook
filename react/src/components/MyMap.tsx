@@ -22,7 +22,7 @@ interface Props {
 const MyMap = ({ postsFromFather }: Props) => {
   // const FriendsPosts = getAllUserFriendsPosts(id)
   let userLocation = new Location(32.08088, 34.78057);
-  const [posts, setPosts] = useState<Post[]>([]); //{loc: number[], imgSrc: string}
+  const [posts, setPosts] = useState<any[]>([]); //{loc: number[], imgSrc: string}
   const [location, setLocation] = useState<Location>();
 
   // useEffect(() => {
@@ -71,9 +71,9 @@ const MyMap = ({ postsFromFather }: Props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {posts.map((post) => (
-          <Marker position={[post._location.lat, post._location.lon]}>
+          <Marker position={[post.Lat, post.Lon]}>
             <Popup autoClose={false} closeOnClick={false}>
-              <img src={post._imageSrc} width="50em" height="50em" />
+              <img src={post.Image_Src} width="50em" height="50em" />
             </Popup>
           </Marker>
         ))}

@@ -9,6 +9,7 @@ const {
   googleLogin,
   forgotPassowrd,
   changePassword,
+  personalInfo,
 } = require("../controllers/UsersController");
 const {
   refreshToken,
@@ -25,4 +26,5 @@ router.post("/forgot", forgotPassowrd);
 router.post("/change", changePassword);
 router.post("/refreshtoken", refreshToken);
 router.delete("/logout", logout);
+router.post("/getpersonalinfo", authenticateTokenBody, personalInfo);
 module.exports = router;

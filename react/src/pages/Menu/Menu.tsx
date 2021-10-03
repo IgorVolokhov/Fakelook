@@ -17,33 +17,45 @@ import {
   editComment,
   getCommentsForPost,
 } from "../../services/comments/comments.axios";
-import { emitPostAdded, socketStart } from "../../services/socket-io-client/socket";
+import {
+  emitPostAdded,
+  socketStart,
+} from "../../services/socket-io-client/socket";
+import { axiosGetPersonalInfo } from "../../services/authentication/authentication.axios";
 
 const Menu = () => {
-  const [user, setUser] = useState<User>();
-  const [usersPosts, setUsersPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
+  const [minimizedPosts, setMinimizedPosts] = useState<any[]>([]);
 
   // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
-      socketStart();
-      await setUser(new User("dummyUser", "dummyUser"));
-      const posts = await getPostsByUserId("l_ktkccpl4_q349me4vker8g340vq39v");
-      // await setUser(users[0]);
-      if (posts) {
-        setUsersPosts(posts);
+      const userInfoRes = await axiosGetPersonalInfo();
+      if (!userInfoRes) {
+        window.location.href = "/";
+        return;
       }
+
+      await setUserInfo(userInfoRes);
+      const posts = await getSmallerPostsByUser();
+      await setMinimizedPosts(posts);
+      console.log("mini posts: ", minimizedPosts);
+
+      setIsLoading(false);
+      socketStart();
     };
+
     setUsersFunction();
   }, []);
 
   const addPost1 = async (post: Post) => {
     console.log("adding post");
-    
+
     emitPostAdded(post, "1");
   };
 
-  if (!user) {
+  if (isLoading) {
     return <div>"loading....";</div>;
   }
   return (
@@ -53,7 +65,7 @@ const Menu = () => {
       </div>
       <div className="grid-item">
         {/*convert posts from server to usable posts later  */}
-        <MyMap postsFromFather={[]}></MyMap>
+        <MyMap postsFromFather={minimizedPosts}></MyMap>
       </div>
     </div>
   );
