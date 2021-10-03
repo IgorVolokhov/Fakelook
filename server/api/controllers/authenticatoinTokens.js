@@ -20,15 +20,20 @@ const verifyToken = async (token, req, res, next) => {
         isLoggedIn: false,
       });
     }
-    req.User_id = User_id;
+    req.body.User_Id = User_id.user_id;
+    req.body.expiresIn = User_id.exp;
     next();
   });
 };
 
 const generateToken = (user_id) => {
-  return jwt.sign({ user_id }, process.env.ACCESS_TOKEN_SECRET, {
-    expiresIn: "10m",
-  });
+  const expiresIn = process.env.EXPIRES_IN;
+  return {
+    token: jwt.sign({ user_id }, process.env.ACCESS_TOKEN_SECRET, {
+      expiresIn: `${expiresIn}s`,
+    }),
+    expiresIn: expiresIn,
+  };
 };
 
 module.exports = {

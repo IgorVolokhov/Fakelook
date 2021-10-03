@@ -6,6 +6,7 @@ const {
   googleLoginDal,
   forgotPassword,
   changePassword,
+  getPersonalInfo,
 } = require("../../DAL/dbUsers");
 const {
   generateAccessToken,
@@ -64,6 +65,7 @@ module.exports = {
       isSuccsess: isSuccsess,
     });
   },
+
   changePassword: async (req, res) => {
     const isSuccsess = await changePassword(
       req.body.KeyEmail,
@@ -76,6 +78,7 @@ module.exports = {
       isSuccsess: isSuccsess,
     });
   },
+
   forgotPassowrd: async (req, res) => {
     const isSuccsess = await forgotPassword(req.body.Email);
     console.log("loolking for:", isSuccsess);
@@ -84,6 +87,7 @@ module.exports = {
       isSuccsess: isSuccsess,
     });
   },
+
   // todo make it so you can sign up from google as well if first then use google info to make username and password etc
   googleLogin: async (req, res) => {
     const { email, googleId, id_token } = req.body;
@@ -108,6 +112,13 @@ module.exports = {
     res.status(200).json({
       message: "good good",
       isLoggedIn: isSuccess,
+    });
+  },
+
+  personalInfo: async (req, res) => {
+    const { userInfo } = await getPersonalInfo(req.body.User_Id);
+    res.status(200).json({
+      userInfo: userInfo,
     });
   },
 };

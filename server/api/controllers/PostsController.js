@@ -10,6 +10,8 @@ const {
 
 module.exports = {
   getPostForUser: async (req, res) => {
+    console.log("this is body");
+    console.log(req.body);
     const gotPosts = await getPostsByUserId(req.body.User_Id);
     res.status(200).json({
       message: gotPosts ? `Got posts` : `Didn't get posts`,
