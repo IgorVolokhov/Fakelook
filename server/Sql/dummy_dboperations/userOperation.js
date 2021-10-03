@@ -81,15 +81,10 @@ async function signupOperation(user) {
 }
 
 async function editUserOperation(user) {
-  console.log("in edit");
   try {
     const users = db.get("users").value();
-    console.log({ users });
-    console.log({ user });
     for (let index = 0; index < users.length; index++) {
-      if (users[index].User_Id === user.user_id) {
-        console.log("should edit: ");
-        console.log({ user });
+      if (users[index].User_Id === user.User_Id) {
         users[index].Firstname = user.firstname;
         users[index].Lastname = user.lastname;
         users[index].Age = user.age;
@@ -143,9 +138,9 @@ let tran = nodemailer.createTransport({
 });
 
 async function changePasswordOperation(key, newPass, email) {
+  console.log("change password operation userOperation line 141");
   console.log(key, newPass, email);
   const users = db.get("users").value();
-  console.log("go there");
   let checkifExist = false;
   for (let i = 0; i < users.length; i++) {
     if (
@@ -158,8 +153,6 @@ async function changePasswordOperation(key, newPass, email) {
       //need to check if password already crypt
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(newPass, salt);
-      console.log(newPass);
-      console.log("find user");
       users[i].Password = hashedPassword;
       db.write();
     }
@@ -170,10 +163,7 @@ async function forgotpasswordOperation(email) {
   const users = db.get("users").value();
   for (let index = 0; index < users.length; index++) {
     if (users[index].Email === email) {
-      console.log("find email");
       const key = randomstring.generate(7);
-      //key cannot be the same in db should be uniqe
-      console.log(key);
       users[index].Password = key;
       let mailDetails = {
         from: "fakelookf@gmail.com>",

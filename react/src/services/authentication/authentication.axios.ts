@@ -74,6 +74,32 @@ export const axiosGetPersonalInfo = async () => {
   return info;
 };
 
+export const axiosUpdateUser = async (
+  firstname: string,
+  lastname: string,
+  age: number,
+  address: string,
+  place_Of_Work: string
+) => {
+  let isSuccsessRes = undefined;
+  const updateUserUrl = url + "edit";
+  await axios
+    .patch(updateUserUrl, {
+      token: getAccessToken(),
+      firstname: firstname,
+      lastname: lastname,
+      age: age,
+      address: address,
+      place_Of_Work: place_Of_Work,
+    })
+    .then((res) => {
+      const { isSuccsess } = res.data;
+      isSuccsessRes = isSuccsess;
+    });
+
+  return isSuccsessRes;
+};
+
 export const logOut = async () => {
   deleteTokens();
 };

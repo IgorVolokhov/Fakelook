@@ -21,7 +21,10 @@ import {
   emitPostAdded,
   socketStart,
 } from "../../services/socket-io-client/socket";
-import { axiosGetPersonalInfo } from "../../services/authentication/authentication.axios";
+import {
+  axiosGetPersonalInfo,
+  axiosUpdateUser,
+} from "../../services/authentication/authentication.axios";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +39,9 @@ const Menu = () => {
         window.location.href = "/";
         return;
       }
+
+      console.log("user info: ");
+      console.log(userInfoRes);
 
       await setUserInfo(userInfoRes);
       const posts = await getSmallerPostsByUser();
