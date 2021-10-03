@@ -12,7 +12,7 @@ const {
 
 router.post("/getusersfriendspost", getAllPostsFromUserFriends);
 router.post("/getpostsforuser", getPostForUser);
-router.post("/getsmallerpostforuser", getSmallerPostsForUser);
+// router.post("/getsmallerpostforuser", getSmallerPostsForUser);
 router.post("/getpostbyid", getPostById);
 router.post("/addpost", add);
 router.patch("/editpost", edit);

@@ -66,11 +66,12 @@ const Login = () => {
       >
         {({ values, errors, isSubmitting }) => (
           <Form>
-            <MyTextField placeholder="Username" name="username" />
+            <MyTextField placeholder="Username" name="username" data-testid="field"/>
             <MyTextField
               placeholder="Password"
               type="password"
               name="password"
+              data-testid="field"
             />
             <div>
               <CustomButton

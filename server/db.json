@@ -27,8 +27,26 @@
     {
       "Comment_Id": "r_ktkclrii_nawq8jbwxucjjtxx02drx",
       "User_Id": "l_ktkccpl4_q349me4vker8g340vq39v",
-      "Post_Id": "q_ktkchwu9_rqfpcvqfrrqfnyghrdrpf",
+      "Post_Id": 1,
       "Text": "EDITED this comment is cool cause it is edited!!233323"
+    },
+    {
+      "Comment_Id": "m_kub7poyd_88kc0pcl6ixmgqdmggxy0",
+      "User_Id": 1,
+      "Post_Id": 1,
+      "Text": "Nice photo!"
+    },
+    {
+      "Comment_Id": "j_kub7uxse_4dd3gjcbt593m925go43o",
+      "User_Id": 1,
+      "Post_Id": 1,
+      "Text": "Nice photo!"
+    },
+    {
+      "Comment_Id": "s_kub7xezz_gn01jtdy2q49xbkucoxgs",
+      "User_Id": 1,
+      "Post_Id": 1,
+      "Text": "Nice photo!"
     }
   ]
 }
