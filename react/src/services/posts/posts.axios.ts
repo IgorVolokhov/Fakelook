@@ -36,13 +36,14 @@ export const getPostById = async (postId: any) => {
 };
 
 export const addPost = async (
-  userId: any,
-  image_src: string,
+  image_src: FormData,
   lat: number,
   lon: number,
   description: string = "",
   tags: string = ""
 ) => {
+  console.log("adding post");
+
   let message;
 
   const descriptionToInsert = makeNotInsertedFieldNull(description);
@@ -51,7 +52,7 @@ export const addPost = async (
   await axios
     .post(`${url}/addpost`, {
       token: getAccessToken(),
-      image_src,
+      image_src: image_src,
       lat,
       lon,
       description: descriptionToInsert,
