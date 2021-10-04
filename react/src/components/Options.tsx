@@ -43,11 +43,11 @@ const Options = ({ addPost }: Props) => {
 
   const closeModal = () => {
     setAddPostModalOpen(false);
-    addPost(new Post("1", new Location(34.34,33.32), "some image"))
-  }
+    addPost(new Post("1", new Location(34.34, 33.32), "some image"));
+  };
   const openModal = () => {
     setAddPostModalOpen(true);
-  }
+  };
 
   return (
     <div>
@@ -92,16 +92,14 @@ const Options = ({ addPost }: Props) => {
         <CustomButton title="addPostBtn"
           text="Add Post"
           onClick={() => {
-            addPostModalOpen
-              ? closeModal()
-              : openModal();
+            addPostModalOpen ? closeModal() : openModal();
           }}
         />
         {addPostModalOpen && (
           <CustomModal
             modalOpen={addPostModalOpen}
             handleClose={() => closeModal()}
-            text={<AddPost id="1"></AddPost>}
+            text={<AddPost closeModal={() => closeModal()}></AddPost>}
           />
         )}
         {/*manage friends and blocked users */}
