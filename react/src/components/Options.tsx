@@ -17,10 +17,11 @@ const base = "http://localhost:3000";
 
 interface Props {
   addPost: any;
+  setRadius:any
 }
 //TO DO axios
 //Add data to array to choose with push
-const Options = ({ addPost }: Props) => {
+const Options = ({ addPost,setRadius }: Props) => {
   function moveToFeed() {
     window.location.href = base + "/feed";
   }
@@ -81,7 +82,8 @@ const Options = ({ addPost }: Props) => {
           />
         </Grid>
       </MuiPickersUtilsProvider>
-      <TextField label="Radious from you" />
+      {/*add selection from meter to km */}
+      <TextField label="Radious from you" onChange={(e:any) => setRadius(e.target.value)} />
       <div>
         {/*show my posts*/}
         <CustomButton text="Feed" onClick={moveToFeed} />

@@ -1,5 +1,5 @@
 import L from "leaflet";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {Circle, MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import { useState, useEffect } from "react";
 import { Post } from "../classes/post";
 import { Location } from "../classes/location";
@@ -17,13 +17,37 @@ import { Location } from "../classes/location";
 
 interface Props {
   postsFromFather: Post[];
+  radius:any
 }
-
-const MyMap = ({ postsFromFather }: Props) => {
+const MyMap = ({ postsFromFather,radius }: Props) => {
   // const FriendsPosts = getAllUserFriendsPosts(id)
   let userLocation = new Location(32.08088, 34.78057);
   const [posts, setPosts] = useState<any[]>([]); //{loc: number[], imgSrc: string}
   const [location, setLocation] = useState<Location>();
+  const [position, setPosition] = useState(null)
+  const [centerRadius, setCenterRadius] = useState<any>()
+  const fillBlueOptions = { fillColor: 'blue' }
+  
+  function LocationMarker() {
+  const map = useMapEvents({
+    click() {
+      map.locate()
+    },
+    locationfound(e:any) {
+      console.log(e.latlng)
+      setCenterRadius(e.lating)
+      setPosition(e.latlng)
+      map.flyTo(e.latlng, map.getZoom())
+    },
+  })
+
+  return position === null ? null : (
+    <>{radius > 0 ? <Circle center={position} radius={radius}/> :""} <Marker position={position}>
+      <Popup>You are here</Popup>
+    </Marker></>
+
+  )
+}
 
   // useEffect(() => {
   //   const getPostsForMap = async () => {
@@ -70,12 +94,16 @@ const MyMap = ({ postsFromFather }: Props) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+        
         {posts.map((post) => (
           <Marker position={[post.Lat, post.Lon]}>
             <Popup autoClose={false} closeOnClick={false}>
               <img src={post.Image_Src} width="50em" height="50em" />
+           
             </Popup>
+            <LocationMarker/>
           </Marker>
+          
         ))}
       </MapContainer>
     </div>
