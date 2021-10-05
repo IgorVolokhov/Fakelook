@@ -5,6 +5,7 @@ const {
 } = require("../controllers/authenticatoinTokens");
 const router = express.Router();
 const {
+  getPosts,
   getPostForUser,
   getSmallerPostsForUser,
   getAllPostsFromUserFriends,
@@ -13,6 +14,9 @@ const {
   edit,
   remove,
 } = require("../controllers/PostsController");
+
+router.post("/getallposts", authenticateTokenBody, getPosts);
+router.delete("/removepost", remove);
 
 router.post("/getpostsforuser", authenticateTokenBody, getPostForUser);
 router.post(

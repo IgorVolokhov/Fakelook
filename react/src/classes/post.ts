@@ -9,8 +9,8 @@ export class Post {
   _location: Location;
   private _comments: Comment[];
   private _likes: LikeManager;
-  private _description?: string = undefined;
-  private _tags?: string[] = [];
+  _description?: string = undefined;
+  _tags?: string[] = [];
 
   constructor(
     userId: string,

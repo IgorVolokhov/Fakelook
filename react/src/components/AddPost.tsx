@@ -2,22 +2,29 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Location } from "../classes/location";
 import { Post } from "../classes/post";
+import { addPost } from "../services/posts/posts.axios";
+import { getAccessToken } from "../services/tokens";
 const baseURL = "http://localhost:3000";
 
-const AddPost = (id: any) => {
+const AddPost = ({ closeModal }: any) => {
   const [location, setLocation] = useState<Location>();
   let userLocation = new Location(32.08088, 34.78057);
-  const [post, setPost] = useState<Post | null>();
-  const [selectedFile, setSelectedFile] = useState();
+  const [post, setPost] = useState<any>({});
+  const [selectedFile, setSelectedFile] = useState<any>();
 
   function submit(e: any) {
     e.preventDefault();
-    console.log(post);
-    
-    // console.log(post);
-    // axios.post(`${baseURL}/Routes/PostRoutes/addpost`, post).then((res) => {
-    //   console.log(res.data);
-    // });
+
+    addPost(
+      selectedFile,
+      userLocation.lat,
+      userLocation.lon,
+      post.description,
+      post.tags
+    );
+
+    //closeModal();
+    //console.log(selectedFile);
   }
 
   function handle(e: any) {
@@ -42,18 +49,54 @@ const AddPost = (id: any) => {
     }
   }, []);
 
+  function convertToBase64(files: any) {
+    if (!files) {
+      return;
+    }
+    const file = files[0];
+    console.log(file);
+
+    var reader = new FileReader();
+    var baseString;
+    reader.onloadend = function () {
+      baseString = reader.result;
+      setSelectedFile(baseString);
+    };
+    reader.readAsDataURL(file);
+  }
+
   return (
     <div>
       <h3>
         <form>
-          Upload Image:
-          <input type="file" id="file" onChange={handle}/>
-          <br />
-          <br />
-          Description:
-          <input type="text" onChange={handle} placeholder="Enter Description:" id="description"/>
-          <br />
-          <br />
+          <div>
+            Upload Image:
+            <input
+              type="file"
+              id="file"
+              accept="image/*"
+              multiple={false}
+              onChange={(e) => convertToBase64(e.target.files)}
+            />
+          </div>
+          <div>
+            Description:
+            <input
+              type="text"
+              onChange={handle}
+              placeholder="Enter Description:"
+              id="description"
+            />{" "}
+          </div>
+          <div>
+            Tags:
+            <input
+              type="text"
+              onChange={handle}
+              placeholder="Enter Tags:"
+              id="tags"
+            />
+          </div>
           <button onClick={submit}>Upload</button>
         </form>
       </h3>

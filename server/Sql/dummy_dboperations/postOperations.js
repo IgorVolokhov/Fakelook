@@ -4,6 +4,16 @@ const adapter = new FileSync("db.json");
 const db = low(adapter);
 const { uniqueId } = require("../../utils/uniqueId");
 
+async function getAllPostsOperation() {
+  try {
+    const posts = db.get("posts").value();
+    return posts.length > 0 ? posts : null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 async function getPostsByUserIdOperation(userId) {
   try {
     const posts = db.get("posts").value();
@@ -139,6 +149,7 @@ async function dislikeComment(commentId, isDisliked) {
 }
 
 module.exports = {
+  getAllPostsOperation,
   getPostsByUserIdOperation,
   getSmallerPostsByUserOperation,
   getPostByIdOperation,

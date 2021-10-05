@@ -4,6 +4,7 @@ import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
+import Feed from "./pages/Feed/Feed";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
 import Header from "./components/Header";
@@ -29,6 +30,8 @@ function App() {
             </Route>
             <Route path="/userdetials">
               <NewUserDetails/>
+            <Route path="/feed">
+              <Feed/>
             </Route>
           </Switch>
         </div>

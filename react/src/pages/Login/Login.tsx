@@ -169,7 +169,7 @@ const Login = () => {
       </div>
 
       <Link to="/signup">
-        <CustomButton text="not a user?" />
+        <CustomButton text="not a user?"/>
       </Link>
     </div>
   );

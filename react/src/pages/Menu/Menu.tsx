@@ -25,6 +25,7 @@ import {
   axiosGetPersonalInfo,
   axiosUpdateUser,
 } from "../../services/authentication/authentication.axios";
+import { refreshAccessToken } from "../../services/tokens";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -60,6 +61,7 @@ const Menu = () => {
       console.log("mini posts: ", minimizedPosts);
 
       setIsLoading(false);
+      refreshAccessToken(600);
       socketStart();
     };
 
