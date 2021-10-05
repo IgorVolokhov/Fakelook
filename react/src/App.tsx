@@ -34,8 +34,9 @@ function App() {
               <ForgotPassword />
             </Route>
             <Route path="/userdetials">
-              <NewUserDetails />
-            </Route>
+              <NewUserDetails/>
+              </Route>
+            
             <Route path="/feed">
               <Feed />
             </Route>

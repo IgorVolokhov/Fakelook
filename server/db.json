@@ -86,6 +86,17 @@
       "Age": "23",
       "Address": "weq",
       "Place_Of_Work": "eeee"
+    },
+    {
+      "User_Id": 66756387,
+      "Username": "liel",
+      "Password": "$2b$10$MLFikWFM6btkBrmaZDj5TejR/mNhRHleLpklpunH968jW8Dj8gPqG",
+      "Email": "1234@gmail.com",
+      "Firstname": "sd",
+      "Lastname": "sds",
+      "Age": "23",
+      "Address": "",
+      "Place_Of_Work": ""
     }
   ],
   "posts": [
