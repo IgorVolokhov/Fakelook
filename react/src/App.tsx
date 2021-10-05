@@ -30,6 +30,7 @@ function App() {
             </Route>
             <Route path="/userdetials">
               <NewUserDetails/>
+              </Route>
             <Route path="/feed">
               <Feed/>
             </Route>
