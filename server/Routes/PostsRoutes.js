@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const {
+  getAllPosts,
   getPostForUser,
   getSmallerPostsForUser,
   getAllPostsFromUserFriends,
@@ -10,6 +11,7 @@ const {
   remove,
 } = require("../Controllers/PostsController");
 
+router.post("/getallposts", getAllPosts)
 router.post("/getusersfriendspost", getAllPostsFromUserFriends);
 router.post("/getpostsforuser", getPostForUser);
 // router.post("/getsmallerpostforuser", getSmallerPostsForUser);

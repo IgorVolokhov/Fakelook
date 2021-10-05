@@ -4,6 +4,7 @@ import "./App.css";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
+import Feed from "./pages/Feed/Feed";
 
 function App() {
   return (
@@ -22,6 +23,9 @@ function App() {
             </Route>
             <Route path="/menu">
               <Menu />
+            </Route>
+            <Route path="/feed">
+              <Feed />
             </Route>
           </Switch>
         </div>

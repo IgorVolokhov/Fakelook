@@ -6,8 +6,8 @@ const React = require("react");
 const userEvent = require("@testing-library/user-event");
 require("@testing-library/jest-dom/extend-expect");
 
-describe("Menu Page", () => {
-    test("", () => {
+// describe("Menu Page", () => {
+//     test("", () => {
         
-    })
-})
+//     })
+// })
