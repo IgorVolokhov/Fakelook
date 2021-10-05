@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login/Login";
@@ -7,8 +7,13 @@ import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
 import Feed from "./pages/Feed/Feed";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import { refreshAccessToken } from "./services/tokens";
 
 function App() {
+  useEffect(() => {
+    refreshAccessToken(600);
+  }, []);
+
   return (
     <div className="App">
       <header className="header">
@@ -30,7 +35,7 @@ function App() {
               <ForgotPassword />
             </Route>
             <Route path="/feed">
-              <Feed/>
+              <Feed />
             </Route>
           </Switch>
         </div>

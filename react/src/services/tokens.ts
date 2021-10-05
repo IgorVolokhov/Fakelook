@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const url = "http://localhost:3001/users/";
-let inervalId: any = null;
 
 export function saveAccessToken(accessToken: string, expiresIn: number = -1) {
   localStorage.setItem("access-token", accessToken);
@@ -15,11 +14,8 @@ export function refreshAccessToken(expiresIn: number) {
   if (refreshToken === null) {
     return;
   }
-  if (inervalId !== null) {
-    clearInterval(inervalId);
-  }
   const refreshTokenUrl = url + "refreshtoken";
-  inervalId = setInterval(() => {
+  setInterval(() => {
     axios.post(refreshTokenUrl, { token: refreshToken }).then((res) => {
       const { token } = res.data.accessToken;
       saveAccessToken(token);

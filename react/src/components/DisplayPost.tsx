@@ -1,6 +1,6 @@
 import React from "react";
 
-const DisplayPost = ({ post }: any) => {
+const DisplayPost = ({ post, comments }: any) => {
   console.log(post);
 
   return (
