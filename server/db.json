@@ -15,11 +15,11 @@
       "Username": "1234",
       "Password": "$2b$10$S/cHaAzxrujUb7Deuo7F7Ozm.CunohO76JWCWVxBJadke9B4Q.NGq",
       "Email": "1234@gmail.com",
-      "Firstname": null,
-      "Lastname": null,
-      "Age": null,
-      "Address": null,
-      "Place_Of_Work": null
+      "Firstname": "eyal",
+      "Lastname": "rainitz",
+      "Age": "420",
+      "Address": "420st",
+      "Place_Of_Work": "sela"
     },
     {
       "User_Id": 3,
@@ -53,6 +53,28 @@
       "Age": null,
       "Address": null,
       "Place_Of_Work": null
+    },
+    {
+      "User_Id": 73360523,
+      "Username": "eyal",
+      "Password": "$2b$10$wh33HQlkRwmnc0yebqpAP.F2H8K8Ra1KQVjSS2AiYVfoNfEUF/C2O",
+      "Email": "eyalrainitz@gmail.com",
+      "Firstname": null,
+      "Lastname": null,
+      "Age": null,
+      "Address": null,
+      "Place_Of_Work": null
+    },
+    {
+      "User_Id": 13619264,
+      "Username": "aa12",
+      "Password": "$2b$10$4uWN8AY.SUz2XcYAYtJxPu9FsNeVJdf5ZaiBlFC8HqYjmCDWRtLzS",
+      "Email": "eyalrainitz@gmail.com",
+      "Firstname": "eyak",
+      "Lastname": "ra",
+      "Age": "23",
+      "Address": "weq",
+      "Place_Of_Work": "eeee"
     }
   ],
   "posts": [
