@@ -1,1 +1,0 @@
-css for other reusable components or parts 

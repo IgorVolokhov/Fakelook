@@ -54,6 +54,8 @@ const AddPost = ({ closeModal }: any) => {
       return;
     }
     const file = files[0];
+    console.log(file);
+
     var reader = new FileReader();
     var baseString;
     reader.onloadend = function () {
