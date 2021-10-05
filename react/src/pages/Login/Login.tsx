@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { FieldAttributes, Form, Formik, useField } from "formik";
 import schema from "../../validations/Signin.validations";
 import { Link } from "react-router-dom";
@@ -8,14 +7,10 @@ import { TextField } from "@material-ui/core";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
-import {
-  getAccessToken,
-  getRefreshToken,
-  saveAccessToken,
-  saveRefreshToken,
-} from "../../services/tokens";
+import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
 
 const baseURL = "http://localhost:9000";
+
 export interface IUser {
   username: string;
   password: string;
@@ -77,15 +72,6 @@ const Login = () => {
   const responseFacebook = (res: any) => {
     console.log(res);
   };
-  // will have input form for login with username, password, email login (button)
-  // validations with formik
-
-  // forgot password? (ahref)
-  // with emial
-
-  // not yet a member? Sign up!
-
-  // login with google facebook
 
   const goToMenu = () => {
     window.location.href = "/menu";
@@ -111,7 +97,7 @@ const Login = () => {
             refreshTokenRes,
           } = await axiosSignin(data.username, data.password);
           if (isLoggedInRes) {
-            saveAccessToken(accessTokenRes, expiresInRes);
+            saveAccessToken(accessTokenRes);
             saveRefreshToken(refreshTokenRes);
             goToMenu();
           } else {
@@ -169,7 +155,7 @@ const Login = () => {
       </div>
 
       <Link to="/signup">
-        <CustomButton text="not a user?"/>
+        <CustomButton text="not a user?" />
       </Link>
     </div>
   );
