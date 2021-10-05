@@ -15,13 +15,7 @@ const {
   remove,
 } = require("../controllers/PostsController");
 
-router.post("/getallposts", getPosts)
-router.post("/getpostsforuser", getPostForUser);
-router.post("/getsmallerpostforuser", getSmallerPostsForUser);
-router.post("/getusersfriendspost", getAllPostsFromUserFriends);
-router.post("/getpostbyid", getPostById);
-router.post("/addpost", add);
-router.patch("/editpost", edit);
+router.post("/getallposts", authenticateTokenBody, getPosts);
 router.delete("/removepost", remove);
 
 router.post("/getpostsforuser", authenticateTokenBody, getPostForUser);

@@ -15,14 +15,12 @@ import { Post } from "../classes/post";
 import { Location } from "../classes/location";
 const base = "http://localhost:3000";
 
-
 interface Props {
   addPost: any;
 }
 //TO DO axios
 //Add data to array to choose with push
 const Options = ({ addPost }: Props) => {
-
   function moveToFeed() {
     window.location.href = base + "/feed";
   }
@@ -86,10 +84,11 @@ const Options = ({ addPost }: Props) => {
       <TextField label="Radious from you" />
       <div>
         {/*show my posts*/}
-        <CustomButton text="Feed" onClick={moveToFeed}/>
+        <CustomButton text="Feed" onClick={moveToFeed} />
         <CustomButton title="myPostsBtn" text="My Posts" />
         {/*add post */}
-        <CustomButton title="addPostBtn"
+        <CustomButton
+          title="addPostBtn"
           text="Add Post"
           onClick={() => {
             addPostModalOpen ? closeModal() : openModal();
@@ -103,7 +102,8 @@ const Options = ({ addPost }: Props) => {
           />
         )}
         {/*manage friends and blocked users */}
-        <CustomButton text="Friends" />      </div>
+        <CustomButton text="Friends" />{" "}
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const getAllPosts = async () => {
     posts = res.data.posts;
   });
   return posts;
-}
+};
 
 // todo make interface for posts for map and not any
 export const getPostsByUserId = async () => {

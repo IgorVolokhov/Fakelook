@@ -6,22 +6,19 @@ const {
   editPost,
   removePost,
   getAllPostsFromUserFriends,
-  getAllPosts
+  getAllPosts,
 } = require("../../DAL/dbPosts");
 
 module.exports = {
-
   getPosts: async (req, res) => {
     const gotPosts = await getAllPosts();
     res.status(200).json({
-      message: gotPosts ? `Got Posts` :  `Didn't get posts`,
-      posts: gotPosts
+      message: gotPosts ? `Got Posts` : `Didn't get posts`,
+      posts: gotPosts,
     });
   },
 
   getPostForUser: async (req, res) => {
-    console.log("this is body");
-    console.log(req.body);
     const gotPosts = await getPostsByUserId(req.body.User_Id);
     res.status(200).json({
       message: gotPosts ? `Got posts` : `Didn't get posts`,

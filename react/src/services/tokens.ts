@@ -4,8 +4,6 @@ const url = "http://localhost:3001/users/";
 let inervalId: any = null;
 
 export function saveAccessToken(accessToken: string, expiresIn: number = -1) {
-  console.log("saved token");
-
   localStorage.setItem("access-token", accessToken);
   if (expiresIn > 0) {
     refreshAccessToken(expiresIn);
