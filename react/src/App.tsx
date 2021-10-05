@@ -1,13 +1,14 @@
 import "./App.css";
 import { useState, useMemo, useEffect } from "react";
 import { Route, Router, Switch, BrowserRouter } from "react-router-dom";
-import "./App.css";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
 import Feed from "./pages/Feed/Feed";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import { refreshAccessToken } from "./services/tokens";
+import Header from "./components/Header";
+import NewUserDetails from "./pages/NewUser/NewUserDetails";
 
 function App() {
   useEffect(() => {
@@ -16,9 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="header">
-        Hello THIS IS HEADER WORK ON IT LATER :P
-      </header>
+      <Header />
       <BrowserRouter>
         <div>
           <Switch>
@@ -33,6 +32,9 @@ function App() {
             </Route>
             <Route path="/forgot">
               <ForgotPassword />
+            </Route>
+            <Route path="/userdetials">
+              <NewUserDetails />
             </Route>
             <Route path="/feed">
               <Feed />

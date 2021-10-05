@@ -27,8 +27,9 @@ async function signinOperation(user) {
     }
     if (userRes) {
       let password = userRes.Password;
+      const issigend = await comparePasswords(user.password, password)
       return {
-        isSignedIn: await comparePasswords(user.password, password),
+        isSignedIn: issigend,
         user: userRes,
       };
     }
@@ -89,7 +90,7 @@ async function editUserOperation(user) {
         users[index].Lastname = user.lastname;
         users[index].Age = user.age;
         users[index].Address = user.address;
-        users[index].Place_Of_Work = user.place_of_work;
+        users[index].Place_Of_Work = user.place_Of_Work;
         break;
       }
     }

@@ -40,8 +40,19 @@ const Menu = () => {
         window.location.href = "/";
         return;
       }
-
-      console.log("user info: ");
+     await setUserInfo(userInfoRes)
+     console.log("Falling in here!!!!" )
+      console.log(userInfoRes )
+      if (
+        userInfoRes.Firstname === null ||
+        userInfoRes.lastname === null ||
+        userInfoRes.Age === null ||
+        userInfoRes.Address === null ||
+        userInfoRes.Place_Of_Work === null
+      ){
+        window.location.href= "/userdetials"
+      }
+        console.log("user info: ");
       console.log(userInfoRes);
 
       await setUserInfo(userInfoRes);
