@@ -10,10 +10,11 @@ export function saveAccessToken(accessToken: string, expiresIn: number = -1) {
 }
 
 export function refreshAccessToken(expiresIn: number) {
-  // console.log("expiresIn: ", expiresIn);
-  // setInterval(() => {
-  //   refreshToken();
-  // }, (expiresIn - 5) * 1000);
+  alert("something");
+  console.log("expiresIn: ", expiresIn);
+  setInterval(() => {
+    refreshToken();
+  }, (expiresIn - 300) * 1000);
 }
 
 export function refreshToken() {

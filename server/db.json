@@ -247,6 +247,20 @@
       "Post_Id": 5,
       "Text": "sdaads",
       "createdAt": "Wed Oct 06 2021 18:13:21 GMT+0300 (Israel Daylight Time)"
+    },
+    {
+      "Comment_Id": 84811750,
+      "User_Id": 2,
+      "Post_Id": 5,
+      "Text": "new comment",
+      "createdAt": "Wed Oct 06 2021 18:35:19 GMT+0300 (Israel Daylight Time)"
+    },
+    {
+      "Comment_Id": 31626084,
+      "User_Id": 2,
+      "Post_Id": 5,
+      "Text": "does it work?",
+      "createdAt": "Wed Oct 06 2021 18:35:27 GMT+0300 (Israel Daylight Time)"
     }
   ]
 }
