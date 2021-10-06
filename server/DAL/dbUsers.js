@@ -38,7 +38,7 @@ class DBUser {
   }
 
   async getPersonalInfo(user_id) {
-    console.log(user_id);
+    console.log("personal info, user id: ", user_id);
     return await getPersonalInfoOperation(user_id);
   }
 }

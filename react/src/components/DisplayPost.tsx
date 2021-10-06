@@ -1,11 +1,14 @@
-import React from "react";
+import Comments from "./comments/Comments";
 
-const DisplayPost = ({ post, comments }: any) => {
+const DisplayPost = ({ post, userId, comments }: any) => {
+  console.log("looking for this");
+
   console.log(post);
 
   return (
-    <div>
-      <img src={post.Image_Src} />
+    <div className="scrollable">
+      <img src={post.Image_Src} style={{ height: "500px", width: "500px" }} />
+      <Comments postId={post.Post_Id} currentUserId={userId}></Comments>
     </div>
   );
 };

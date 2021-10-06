@@ -97,8 +97,8 @@ const Login = () => {
             refreshTokenRes,
           } = await axiosSignin(data.username, data.password);
           if (isLoggedInRes) {
-            saveAccessToken(accessTokenRes);
             saveRefreshToken(refreshTokenRes);
+            saveAccessToken(accessTokenRes, expiresInRes);
             goToMenu();
           } else {
             console.log("OUT!!");

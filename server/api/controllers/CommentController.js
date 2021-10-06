@@ -14,11 +14,27 @@ module.exports = {
   },
 
   addCommentForPost: async (req, res) => {
-    const { userId, postId, text } = req.body;
-    const isAdded = await addCommentForPost(userId, postId, text);
-    res.status(200).json({
-      message: isAdded ? `Added comment` : `Some error`,
-    });
+    console.log(req.body);
+    const { User_Id, postId, text, parentId } = req.body;
+    const { comment, isSuccessful } = await addCommentForPost(
+      User_Id,
+      postId,
+      text,
+      parentId
+    );
+    if (isSuccessful) {
+      res.status(200).json({
+        comment: comment,
+        isSuccessful: isSuccessful,
+      });
+    }
+    // if was not successful comment will be null which still can be sent and work with that but need to show different status, do not know them good so will leave this at that for now
+    else {
+      res.status(400).json({
+        comment: null,
+        isSuccessful: isSuccessful,
+      });
+    }
   },
 
   editCommentForPost: async (req, res) => {

@@ -60,11 +60,11 @@ export const axiosGetUser = async () => {
 
 export const axiosGetPersonalInfo = async () => {
   let isLoggedIn = false;
-  let data : any = {}
+  let data: any = {};
   const getUserUrl = url + "getpersonalinfo";
   await axios.post(getUserUrl, { token: getAccessToken() }).then((res) => {
     data = res.data.userInfo;
-    if (data.Id) {
+    if (data) {
       isLoggedIn = true;
     }
   });
@@ -74,9 +74,7 @@ export const axiosGetPersonalInfo = async () => {
   return data;
 };
 
-export const axiosUpdateUserobject = async (
- object:any
-) => {
+export const axiosUpdateUserobject = async (object: any) => {
   let isSuccsessRes = undefined;
   const updateUserUrl = url + "edit";
   await axios

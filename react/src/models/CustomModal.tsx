@@ -33,7 +33,7 @@ const CustomModal = ({ handleClose, text }: any) => {
       childern={
         <motion.div
           onClick={(e) => e.stopPropagation()}
-          className="modal modal-backgroud"
+          className="modal modal-backgroud "
           variants={newspaper}
           initial="hidden"
           animate="visible"
