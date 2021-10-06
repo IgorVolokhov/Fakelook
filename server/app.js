@@ -3,31 +3,13 @@ const app = express();
 const morgan = require("morgan");
 const { getPostsByUser } = require("./DAL/dbPosts");
 
-const loginRoutes = require("./Routes/LoginRoutes");
-const postRoutes = require("./Routes/PostsRoutes");
-const commentsRoutes = require("./Routes/CommentRoutes");
-// todo delete after testing
-const {
-  addComment,
-  editComment,
-  getCommentsForPost,
-} = require("./Sql/dboperations/commentOperations");
-const {
-  addPost,
-  getSmallerPostsByUser,
-  editPost,
-  getPostById,
-  getAllPostsFromUserFriendsOperation
-} = require("./Sql/dboperations/postOperations");
-const {
-  userLogin,
-  addUserDb,
-  editUser,
-} = require("./Sql/dboperations/userOperations");
+const loginRoutes = require("./api/routes/LoginRoutes");
+const postRoutes = require("./api/routes/PostsRoutes");
+const commentsRoutes = require("./api/routes/CommentRoutes");
 
 app.use(morgan("dev"));
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({
     extended: false,

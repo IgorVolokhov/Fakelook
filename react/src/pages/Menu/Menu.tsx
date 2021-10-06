@@ -17,44 +17,74 @@ import {
   editComment,
   getCommentsForPost,
 } from "../../services/comments/comments.axios";
+import {
+  emitPostAdded,
+  socketStart,
+} from "../../services/socket-io-client/socket";
+import {
+  axiosGetPersonalInfo,
+  axiosUpdateUser,
+} from "../../services/authentication/authentication.axios";
+import { refreshAccessToken } from "../../services/tokens";
 
 const Menu = () => {
-  const [user, setUser] = useState<User>();
-  const [usersPosts, setUsersPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState<any>();
+  const [minimizedPosts, setMinimizedPosts] = useState<any[]>([]);
 
-  // load users posts first time
+  // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
-      await setUser(new User("dummyUser", "dummyUser"));
-      const posts = await getPostsByUserId("l_ktkccpl4_q349me4vker8g340vq39v");
-      // await setUser(users[0]);
-      if (posts) {
-        setUsersPosts(posts);
+      const userInfoRes = await axiosGetPersonalInfo();
+      if (!userInfoRes) {
+        window.location.href = "/";
+        return;
       }
+     await setUserInfo(userInfoRes)
+     console.log("Falling in here!!!!" )
+      console.log(userInfoRes )
+      if (
+        userInfoRes.Firstname === null ||
+        userInfoRes.lastname === null ||
+        userInfoRes.Age === null ||
+        userInfoRes.Address === null ||
+        userInfoRes.Place_Of_Work === null
+      ){
+        window.location.href= "/userdetails"
+      }
+        console.log("user info: ");
+      console.log(userInfoRes);
+
+      await setUserInfo(userInfoRes);
+      const posts = await getSmallerPostsByUser();
+      await setMinimizedPosts(posts);
+      console.log("mini posts: ", minimizedPosts);
+
+      setIsLoading(false);
+      refreshAccessToken(600);
+      socketStart();
     };
+
     setUsersFunction();
   }, []);
 
-  const addPost1 = async () => {
-    console.log(
-      await editComment(
-        "r_ktkclrii_nawq8jbwxucjjtxx02drx",
-        "EDITED this comment is cool cause it is edited!!233323"
-      )
-    );
+  const addPost1 = async (post: Post) => {
+    console.log("adding post");
+
+    emitPostAdded(post, "1");
   };
 
-  if (!user) {
+  if (isLoading) {
     return <div>"loading....";</div>;
   }
   return (
     <div className="grid-container">
       <div className="grid-item">
-        <Options addPost={() => addPost1()}></Options>
+        <Options addPost={(post: any) => addPost1(post)}></Options>
       </div>
       <div className="grid-item">
         {/*convert posts from server to usable posts later  */}
-        <MyMap postsFromFather={[]}></MyMap>
+        <MyMap postsFromFather={minimizedPosts}></MyMap>
       </div>
     </div>
   );

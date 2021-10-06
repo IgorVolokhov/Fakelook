@@ -2,7 +2,7 @@ const {
   getCommentsForPost,
   addCommentForPost,
   editCommentForPost,
-} = require("../DAL/dbComments");
+} = require("../../DAL/dbComments");
 
 module.exports = {
   getCommentsForPost: async (req, res) => {

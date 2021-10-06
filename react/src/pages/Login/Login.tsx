@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import { axiosSignin } from "../../services/authentication/authentication.axios";
 import CustomButton from "../../models/CustomButton";
 import { TextField } from "@material-ui/core";
+import axios from "axios";
+import GoogleLogin from "react-google-login";
+import FacebookLogin from "react-facebook-login";
+import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
+
 const baseURL = "http://localhost:9000";
+
 export interface IUser {
   username: string;
   password: string;
@@ -33,15 +39,44 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 };
 
 const Login = () => {
-  // will have input form for login with username, password, email login (button)
-  // validations with formik
+  const googleAuth = (res: any) => {
+    const id_token = res.getAuthResponse().id_token;
+    axios
+      .post("http://localhost:3001/users/googlelogin", {
+        googleId: res.googleId,
+        email: res.Rs.Ct,
+        first_name: res.Rs.mU,
+        last_name: res.Rs.mS,
+        id_token: id_token,
+      })
+      .then((res: any) => console.log(res.data))
+      .catch((err: any) => console.log(err));
+  };
+  const facebookAuth = (res: any) => {
+    axios
+      //create in the backend route that get the info and save in the user db
+      //in the backend the route check if in db user is there if not create one
+      //else login and respone to front to go in to menu
+      .post("http://localhost:3001/users/facebook/login", {
+        name: res.googleId,
+        email: res.email,
+        picture: res.picture,
+        id: res.id,
+      })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
+  const responseGoogle = (response: any) => {
+    console.log(response);
+  };
+  const responseFacebook = (res: any) => {
+    console.log(res);
+  };
 
-  // forgot password? (ahref)
-  // with emial
+  const goToMenu = () => {
+    window.location.href = "/menu";
+  };
 
-  // not yet a member? Sign up!
-
-  // login with google facebook
   return (
     <div>
       <h1>LOGIN</h1>
@@ -54,10 +89,18 @@ const Login = () => {
         validationSchema={schema}
         onSubmit={async (data, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          let isLoggedIn = await axiosSignin(data.username, data.password);
-          if (isLoggedIn) {
-            console.log("you are in");
-         } else {
+          const {
+            messageRes,
+            isLoggedInRes,
+            accessTokenRes,
+            expiresInRes,
+            refreshTokenRes,
+          } = await axiosSignin(data.username, data.password);
+          if (isLoggedInRes) {
+            saveAccessToken(accessTokenRes);
+            saveRefreshToken(refreshTokenRes);
+            goToMenu();
+          } else {
             console.log("OUT!!");
           }
           resetForm();
@@ -85,6 +128,32 @@ const Login = () => {
           </Form>
         )}
       </Formik>
+      <div>
+        <Link to="/forgot">
+          <CustomButton text="forgot password ?" />
+        </Link>
+      </div>
+
+      <div>
+        <FacebookLogin
+          // change it to .env
+          appId=""
+          autoLoad={true}
+          fields="name,email,picture"
+          callback={responseFacebook}
+        ></FacebookLogin>
+      </div>
+      <div>
+        <GoogleLogin
+          // change it to .env
+          clientId="930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"
+          onSuccess={googleAuth}
+          onFailure={googleAuth}
+          cookiePolicy={"single_host_origin"}
+        >
+          <span>Login with Google</span>
+        </GoogleLogin>
+      </div>
 
       <Link to="/signup">
         <CustomButton text="not a user?" />

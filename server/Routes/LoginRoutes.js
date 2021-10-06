@@ -5,7 +5,7 @@ const {
   login,
   remove,
   edit,
-} = require("../Controllers/UsersController");
+} = require("../api/controllers/UsersController");
 
 router.post("/signup", signup);
 router.post("/login", login);

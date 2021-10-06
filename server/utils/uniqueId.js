@@ -10,7 +10,10 @@ function uniqueId() {
     idStr += Math.floor(Math.random() * 35).toString(36);
   } while (idStr.length < idStrLen);
 
-  return idStr;
+  //return idStr;
+
+  const range = 100000000;
+  return Math.floor(Math.random() * range + 1);
 }
 
 module.exports = {
