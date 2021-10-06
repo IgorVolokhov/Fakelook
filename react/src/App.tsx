@@ -10,6 +10,7 @@ import { refreshAccessToken, refreshToken } from "./services/tokens";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
 import { axiosGetPersonalInfo } from "./services/authentication/authentication.axios";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
+import MyPosts from "./pages/MyPosts/MyPosts";
 
 function App() {
   const [userInfo, setUserInfo] = useState(null);
@@ -52,6 +53,9 @@ function App() {
               </Route>
               <Route path="/feed">
                 <Feed userInfoApp={userInfo} />
+              </Route>
+              <Route path="/myposts">
+                <MyPosts />
               </Route>
             </div>
           </Switch>

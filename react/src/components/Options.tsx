@@ -27,6 +27,10 @@ const Options = ({ addPost,setRadius }: Props) => {
     window.location.href = base + "/feed";
   }
 
+  function moveToMyPosts() {
+    window.location.href = base + "/myposts";
+  }
+
   const [firstSelectedDate, setFirstSelectedDate] = useState<Date>(
     new Date(Date.now())
   );
@@ -100,7 +104,7 @@ const Options = ({ addPost,setRadius }: Props) => {
       <div>
         {/*show my posts*/}
         <CustomButton text="Feed" onClick={moveToFeed} />
-        <CustomButton title="myPostsBtn" text="My Posts" />
+        <CustomButton title="myPostsBtn" text="My Posts" onClick={moveToMyPosts}/>
         {/*add post */}
         <CustomButton
           title="addPostBtn"
