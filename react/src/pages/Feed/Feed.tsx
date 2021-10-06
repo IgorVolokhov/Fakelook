@@ -11,6 +11,7 @@ import {
   getAllPosts,
 } from "../../services/posts/posts.axios";
 
+// todo make feed only friends posts while my posts only my posts that you can edit
 const Feed = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
