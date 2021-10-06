@@ -1,4 +1,5 @@
 const {
+  getAllPosts,
   getPostsByUserId,
   getSmallerPostsByUser,
   getPostById,
@@ -6,14 +7,14 @@ const {
   editPost,
   removePost,
   getAllPostsFromUserFriends,
-  getAllPosts,
 } = require("../../DAL/dbPosts");
 
 module.exports = {
+  
   getPosts: async (req, res) => {
-    const gotPosts = await getAllPosts();
+    const getPosts = await getAllPosts();
     res.status(200).json({
-      message: gotPosts ? `Got Posts` : `Didn't get posts`,
+      message: getPosts ? `Got posts` : `Didn't get posts`,
       posts: gotPosts,
     });
   },

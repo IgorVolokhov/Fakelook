@@ -45,10 +45,5 @@ describe("POST /users", () => {
         })
         const check = operations.turnUserStringSuitableForSql(newUser);
         expect(check).toBe(!null);
-<<<<<<< HEAD
     });
 });
-=======
-    })
-})
->>>>>>> 21e9c361122cee8385ba44bc579de435c0e45523

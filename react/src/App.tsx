@@ -5,10 +5,10 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
 import Feed from "./pages/Feed/Feed";
-import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import { refreshAccessToken } from "./services/tokens";
 import Header from "./components/Header";
+import { refreshAccessToken } from "./services/tokens";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 function App() {
   useEffect(() => {
@@ -30,13 +30,14 @@ function App() {
             <Route path="/menu">
               <Menu />
             </Route>
+            <Route path="/feed">
+              <Feed />
+            </Route>
+            <Route path="/userdetails">
+              <NewUserDetails />
+            </Route>
             <Route path="/forgot">
               <ForgotPassword />
-            </Route>
-            <Route path="/userdetials">
-              <NewUserDetails/>
-              </Route>
-            
             <Route path="/feed">
               <Feed />
             </Route>

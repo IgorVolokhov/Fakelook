@@ -61,11 +61,10 @@ body {
   max-width: 1280px;
   width: calc(100% - 160px);
   position: relative;
-
 }
 
 .modal-backgroud {
-  background-color: white;
+  background-color: purple;
   height: auto;
 }
 

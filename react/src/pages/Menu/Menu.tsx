@@ -50,7 +50,7 @@ const Menu = () => {
         userInfoRes.Address === null ||
         userInfoRes.Place_Of_Work === null
       ){
-        window.location.href= "/userdetials"
+        window.location.href= "/userdetails"
       }
         console.log("user info: ");
       console.log(userInfoRes);

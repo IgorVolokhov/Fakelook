@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Post } from "../../classes/post";
 import PostCard from "../../components/PostCard";
 import CustomButton from "../../models/CustomButton";
+import { useHistory } from 'react-router-dom';
 import {
   getPostById,
   getPostsByUserId,
@@ -13,6 +14,7 @@ import {
 
 // todo make feed only friends posts while my posts only my posts that you can edit
 const Feed = () => {
+  const history = useHistory();
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -44,7 +46,7 @@ const Feed = () => {
         <CustomButton
           text="Go Back"
           onClick={() => {
-            window.location.href = "/menu";
+            history.goBack();
           }}
         ></CustomButton>
       </div>

@@ -9,6 +9,7 @@ const NewUserDetails = () => {
   const SendDataToDB = (details: any) => {
     axiosUpdateUserobject(details).then((res: any) => {
       console.log(res);
+      window.location.href = "/menu";
     });
   };
   const [details, SetDetails] = useState<any>({
@@ -32,14 +33,14 @@ const NewUserDetails = () => {
     <div>
       <form onSubmit={(e: any) => handleSubmit(e)}>
         <p>
-          First Name
+          First Name: {' '}
           <TextField
             value={details.firstname}
             onChange={(e) =>
               SetDetails({ ...details, firstname: e.target.value })
             }
           />
-          Last Name
+          Last Name: {' '}
           <TextField
             value={details.lastname}
             onChange={(e) =>
@@ -48,14 +49,14 @@ const NewUserDetails = () => {
           />
         </p>
         <p>
-          Age
+          Age: Age
           <TextField
             value={details.age}
             onChange={(e) => SetDetails({ ...details, age: e.target.value })}
           />
         </p>
         <p>
-          Address
+          Address: Address
           <TextField
             value={details.address}
             onChange={(e) =>
@@ -64,7 +65,7 @@ const NewUserDetails = () => {
           />
         </p>
         <p>
-          Place of work
+          Place of work: Place of work
           <TextField
             value={details.place_Of_Work}
             onChange={(e) =>

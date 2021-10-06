@@ -17,6 +17,16 @@ async function getAllPostsOperation() {
 async function getPostsByUserIdOperation(userId) {
   try {
     const posts = db.get("posts").value();
+    return posts.length > 0 ? posts : null;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+async function getPostsByUserIdOperation(userId) {
+  try {
+    const posts = db.get("posts").value();
     console.log("user id: ", userId);
     return posts.length > 0
       ? posts.filter((post) => post.User_Id === userId)
