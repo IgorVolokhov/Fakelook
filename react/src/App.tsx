@@ -6,7 +6,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
 import Feed from "./pages/Feed/Feed";
 import Header from "./components/Header";
-import { refreshAccessToken } from "./services/tokens";
+import { refreshAccessToken, refreshToken } from "./services/tokens";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
 import { axiosGetPersonalInfo } from "./services/authentication/authentication.axios";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
@@ -20,6 +20,9 @@ function App() {
 
       await setUserInfo(userInfoRes);
       console.log("app user info: ", userInfo);
+      if (userInfo !== null && !userInfo) {
+        refreshAccessToken(900);
+      }
     };
     console.log("something changed");
     asyncFuction();

@@ -5,8 +5,6 @@ import CustomButton from "./CustomButton";
 const newspaper = {
   hidden: {
     transform: "scale(0) rotate(720deg)",
-    height: "80%",
-    width: "80%",
     opacity: 0,
     transition: {
       delay: 0.3,

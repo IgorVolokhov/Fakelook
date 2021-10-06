@@ -26,7 +26,7 @@ const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
   const [minimizedPosts, setMinimizedPosts] = useState<any[]>([]);
-  const [radius, setRadius] = useState<number>(0)
+  const [radius, setRadius] = useState<number>(0);
   // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
@@ -44,8 +44,8 @@ const Menu = () => {
         userInfoRes.Age === null ||
         userInfoRes.Address === null ||
         userInfoRes.Place_Of_Work === null
-      ){
-        window.location.href= "/userdetails"
+      ) {
+        window.location.href = "/userdetails";
       }
       console.log("user info: ");
       console.log(userInfoRes);
@@ -74,7 +74,12 @@ const Menu = () => {
   return (
     <div className="grid-container">
       <div className="grid-item">
-        <Options addPost={(post: any) => addPost1(post)} setRadius={(radius:number)=>{setRadius(radius)}}></Options>
+        <Options
+          addPost={(post: any) => addPost1(post)}
+          setRadius={(radius: number) => {
+            setRadius(radius);
+          }}
+        ></Options>
       </div>
 
       <div className="grid-item">
