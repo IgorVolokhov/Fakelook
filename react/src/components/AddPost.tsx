@@ -14,17 +14,19 @@ const AddPost = ({ closeModal }: any) => {
 
   function submit(e: any) {
     e.preventDefault();
-
-    addPost(
-      selectedFile,
-      userLocation.lat,
-      userLocation.lon,
-      post.description,
-      post.tags
-    );
-
-    //closeModal();
-    //console.log(selectedFile);
+    if (selectedFile != null && post.description != null && post.tags != null) {
+      addPost(
+        selectedFile,
+        userLocation.lat,
+        userLocation.lon,
+        post.description,
+        post.tags
+      );
+      alert("Post added successfully");
+      closeModal();
+    } else {
+      alert("Please fill all information");
+    }
   }
 
   function handle(e: any) {
@@ -70,7 +72,8 @@ const AddPost = ({ closeModal }: any) => {
       <h3>
         <form>
           <div>
-            Upload Image:
+            <i className="far fa-images"></i>
+            {' '}Upload Image:
             <input
               type="file"
               id="file"
@@ -79,8 +82,10 @@ const AddPost = ({ closeModal }: any) => {
               onChange={(e) => convertToBase64(e.target.files)}
             />
           </div>
+          <br/>
           <div>
-            Description:
+            <i className="fas fa-align-justify"></i>
+            {' '}Description:
             <input
               type="text"
               onChange={handle}
@@ -88,8 +93,10 @@ const AddPost = ({ closeModal }: any) => {
               id="description"
             />{" "}
           </div>
+          <br/>
           <div>
-            Tags:
+          <i className="fas fa-hashtag"></i>
+            {' '}Tags:
             <input
               type="text"
               onChange={handle}
@@ -97,6 +104,7 @@ const AddPost = ({ closeModal }: any) => {
               id="tags"
             />
           </div>
+          <br/>
           <button onClick={submit}>Upload</button>
         </form>
       </h3>

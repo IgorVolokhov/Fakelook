@@ -5,11 +5,11 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/SignUp/SignUp";
 import Menu from "./pages/Menu/Menu";
 import Feed from "./pages/Feed/Feed";
-import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import { refreshAccessToken, refreshToken } from "./services/tokens";
 import Header from "./components/Header";
+import { refreshAccessToken } from "./services/tokens";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
 import { axiosGetPersonalInfo } from "./services/authentication/authentication.axios";
+import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 function App() {
   const [userInfo, setUserInfo] = useState(null);
@@ -44,7 +44,7 @@ function App() {
               <Route path="/menu">
                 <Menu />
               </Route>
-              <Route path="/userdetials">
+              <Route path="/userdetails">
                 <NewUserDetails />
               </Route>
               <Route path="/feed">

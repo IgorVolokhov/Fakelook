@@ -5,12 +5,12 @@ const User = require("../../react/src/classes/user");
 describe("POST /users", () => {
     test("Check if user can signup", () => {
         const newUser = new User({
-            username = "checkUser",
-            password = "check123",
-            email = "check123@gmail.com"
+            username: "checkUser",
+            password: "check123",
+            email: "check123@gmail.com"
         });
         const isAdded = operations.signupOperation(newUser);
-        expect(isAdded.statusCode).toBe(200);
+        expect(isAdded).toBe(true);
     })
 
     test("Check if user is able to login", () => {
@@ -45,5 +45,5 @@ describe("POST /users", () => {
         })
         const check = operations.turnUserStringSuitableForSql(newUser);
         expect(check).toBe(!null);
-    })
-})
+    });
+});
