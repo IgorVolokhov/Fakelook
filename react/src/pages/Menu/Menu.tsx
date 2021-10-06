@@ -31,7 +31,7 @@ const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState<any>();
   const [minimizedPosts, setMinimizedPosts] = useState<any[]>([]);
-
+  const [radius, setRadius] = useState<number>(0)
   // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
@@ -80,11 +80,12 @@ const Menu = () => {
   return (
     <div className="grid-container">
       <div className="grid-item">
-        <Options addPost={(post: any) => addPost1(post)}></Options>
+        <Options addPost={(post: any) => addPost1(post)} setRadius={(radius:number)=>{setRadius(radius)}}></Options>
       </div>
+
       <div className="grid-item">
         {/*convert posts from server to usable posts later  */}
-        <MyMap postsFromFather={minimizedPosts}></MyMap>
+        <MyMap radius={radius} postsFromFather={minimizedPosts}></MyMap>
       </div>
     </div>
   );

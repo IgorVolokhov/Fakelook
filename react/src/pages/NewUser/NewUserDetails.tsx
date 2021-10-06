@@ -49,14 +49,14 @@ const NewUserDetails = () => {
           />
         </p>
         <p>
-          Age: {' '}
+          Age: Age
           <TextField
             value={details.age}
             onChange={(e) => SetDetails({ ...details, age: e.target.value })}
           />
         </p>
         <p>
-          Address: {' '}
+          Address: Address
           <TextField
             value={details.address}
             onChange={(e) =>
@@ -65,7 +65,7 @@ const NewUserDetails = () => {
           />
         </p>
         <p>
-          Place of work: {' '}
+          Place of work: Place of work
           <TextField
             value={details.place_Of_Work}
             onChange={(e) =>
@@ -79,7 +79,10 @@ const NewUserDetails = () => {
             type="submit"
             variant="contained"
             color="primary"
-            onClick={() => SendDataToDB(details)}
+            onClick={() => {
+              SendDataToDB(details);
+              window.location.href="/menu"
+            }}
           >
             Submit Details
           </Button>

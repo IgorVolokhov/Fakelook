@@ -38,6 +38,8 @@ function App() {
             </Route>
             <Route path="/forgot">
               <ForgotPassword />
+            <Route path="/feed">
+              <Feed />
             </Route>
           </Switch>
         </div>
