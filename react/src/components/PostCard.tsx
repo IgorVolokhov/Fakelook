@@ -2,7 +2,7 @@ import { useState } from "react";
 import CustomModal from "../models/CustomModal";
 import DisplayPost from "./DisplayPost";
 
-const PostCard = ({ post }: any) => {
+const PostCard = ({ post, userId }: any) => {
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   if (!post) {
     return <div>Somehting went wrong</div>;
@@ -39,7 +39,7 @@ const PostCard = ({ post }: any) => {
         <CustomModal
           modalOpen={isShowModal}
           handleClose={() => setIsShowModal(false)}
-          text={<DisplayPost post={post}></DisplayPost>}
+          text={<DisplayPost post={post} userId={userId}></DisplayPost>}
         ></CustomModal>
       )}
     </>

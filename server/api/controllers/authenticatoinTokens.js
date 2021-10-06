@@ -68,7 +68,7 @@ module.exports = {
       (err, User_Id) => {
         if (err) return res.sendStatus(400);
         const accessToken = generateToken(User_Id);
-        res.json({ accessToken: accessToken });
+        res.json({ accessToken: accessToken.token });
       }
     );
   },

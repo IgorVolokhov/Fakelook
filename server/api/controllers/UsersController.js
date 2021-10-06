@@ -24,7 +24,7 @@ module.exports = {
   },
 
   login: async (req, res) => {
-    console.log(req.body)
+    console.log(req.body);
     const { isSignedIn, user } = await checkIfUserExists(req.body);
 
     if (isSignedIn) {
@@ -118,6 +118,8 @@ module.exports = {
   },
 
   personalInfo: async (req, res) => {
+    console.log("personal info body: ");
+    console.log(req.body);
     const { userInfo } = await getPersonalInfo(req.body.User_Id);
     res.status(200).json({
       userInfo: userInfo,

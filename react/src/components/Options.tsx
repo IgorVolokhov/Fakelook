@@ -13,6 +13,7 @@ import "date-fns";
 import { TextField } from "@material-ui/core";
 import { Post } from "../classes/post";
 import { Location } from "../classes/location";
+import { refreshToken } from "../services/tokens";
 const base = "http://localhost:3000";
 
 interface Props {
@@ -26,16 +27,28 @@ const Options = ({ addPost,setRadius }: Props) => {
     window.location.href = base + "/feed";
   }
 
-  const [firstSelectedDate, setFirstSelectedDate] = useState<Date | null>(
+  const [firstSelectedDate, setFirstSelectedDate] = useState<Date>(
     new Date(Date.now())
   );
-  const [secondSelectedDate, setSecondSelectedDate] = useState<Date | null>(
+  const [secondSelectedDate, setSecondSelectedDate] = useState<Date>(
     new Date(Date.now())
   );
   const firsthandleDateChange = (date: Date | null) => {
+    if (date === null) {
+      return;
+    }
+    if (date.getTime() > secondSelectedDate.getTime()) {
+      return;
+    }
     setFirstSelectedDate(date);
   };
   const secondhandleDateChange = (date: Date | null) => {
+    if (date === null) {
+      return;
+    }
+    if (date.getTime() < firstSelectedDate.getTime()) {
+      return;
+    }
     setSecondSelectedDate(date);
   };
   const [addPostModalOpen, setAddPostModalOpen] = useState(false);

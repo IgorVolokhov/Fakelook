@@ -13,6 +13,8 @@ import {
 } from "../../services/posts/posts.axios";
 
 // todo make feed only friends posts while my posts only my posts that you can edit
+
+const Feed = ({ userInfoApp }: any) => {
 const Feed = () => {
   const history = useHistory();
   const [posts, setPosts] = useState<Post[]>([]);
@@ -53,9 +55,9 @@ const Feed = () => {
       {isLoading ? (
         <h1 className="message-text">Loading...</h1>
       ) : (
-        <div className="posts-container">
+        <div className="posts-container ">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} />
+            <PostCard key={post.id} post={post} userId={userInfoApp.Id} />
           ))}
         </div>
       )}

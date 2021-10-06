@@ -9,8 +9,8 @@ class DBPosts {
     return await getCommentsForPostOperation(postId);
   }
 
-  async addCommentForPost(userId, postId, text) {
-    return await addCommentOperation(userId, postId, text);
+  async addCommentForPost(userId, postId, text, parentId) {
+    return await addCommentOperation(userId, postId, text, parentId);
   }
 
   async editCommentForPost(commentId, text) {

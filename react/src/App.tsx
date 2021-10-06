@@ -8,11 +8,21 @@ import Feed from "./pages/Feed/Feed";
 import Header from "./components/Header";
 import { refreshAccessToken } from "./services/tokens";
 import NewUserDetails from "./pages/NewUser/NewUserDetails";
+import { axiosGetPersonalInfo } from "./services/authentication/authentication.axios";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 
 function App() {
+  const [userInfo, setUserInfo] = useState(null);
+
   useEffect(() => {
-    refreshAccessToken(600);
+    const asyncFuction = async () => {
+      const userInfoRes = await axiosGetPersonalInfo();
+
+      await setUserInfo(userInfoRes);
+      console.log("app user info: ", userInfo);
+    };
+    console.log("something changed");
+    asyncFuction();
   }, []);
 
   return (
@@ -27,20 +37,20 @@ function App() {
             <Route exact path="/">
               <Login />
             </Route>
-            <Route path="/menu">
-              <Menu />
-            </Route>
-            <Route path="/feed">
-              <Feed />
-            </Route>
-            <Route path="/userdetails">
-              <NewUserDetails />
-            </Route>
             <Route path="/forgot">
               <ForgotPassword />
-            <Route path="/feed">
-              <Feed />
             </Route>
+            <div onClick={() => refreshToken()}>
+              <Route path="/menu">
+                <Menu />
+              </Route>
+              <Route path="/userdetails">
+                <NewUserDetails />
+              </Route>
+              <Route path="/feed">
+                <Feed userInfoApp={userInfo} />
+              </Route>
+            </div>
           </Switch>
         </div>
       </BrowserRouter>

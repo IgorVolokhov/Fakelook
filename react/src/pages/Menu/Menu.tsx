@@ -13,11 +13,6 @@ import {
   editPost,
 } from "../../services/posts/posts.axios";
 import {
-  addComment,
-  editComment,
-  getCommentsForPost,
-} from "../../services/comments/comments.axios";
-import {
   emitPostAdded,
   socketStart,
 } from "../../services/socket-io-client/socket";
@@ -25,7 +20,7 @@ import {
   axiosGetPersonalInfo,
   axiosUpdateUser,
 } from "../../services/authentication/authentication.axios";
-import { refreshAccessToken } from "../../services/tokens";
+import { refreshAccessToken, refreshToken } from "../../services/tokens";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -40,9 +35,9 @@ const Menu = () => {
         window.location.href = "/";
         return;
       }
-     await setUserInfo(userInfoRes)
-     console.log("Falling in here!!!!" )
-      console.log(userInfoRes )
+      await setUserInfo(userInfoRes);
+      console.log("Falling in here!!!!");
+      console.log(userInfoRes);
       if (
         userInfoRes.Firstname === null ||
         userInfoRes.lastname === null ||
@@ -52,7 +47,7 @@ const Menu = () => {
       ){
         window.location.href= "/userdetails"
       }
-        console.log("user info: ");
+      console.log("user info: ");
       console.log(userInfoRes);
 
       await setUserInfo(userInfoRes);
@@ -61,7 +56,6 @@ const Menu = () => {
       console.log("mini posts: ", minimizedPosts);
 
       setIsLoading(false);
-      refreshAccessToken(600);
       socketStart();
     };
 

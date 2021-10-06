@@ -20,20 +20,23 @@ async function getCommentsForPostOperation(postId) {
   }
 }
 
-async function addCommentOperation(userId, postId, text) {
+async function addCommentOperation(userId, postId, text, parentId) {
   try {
     const comments = db.get("comments").value();
-    comments.push({
+    const comment = {
       Comment_Id: uniqueId(),
       User_Id: userId,
       Post_Id: postId,
+      Parent_Id: parentId,
       Text: text,
-    });
+      createdAt: new Date().toString(),
+    };
+    comments.push(comment);
     db.write();
-    return true;
+    return { comment: comment, isSuccessful: true };
   } catch (error) {
     console.log(error);
-    return false;
+    return { isSuccessful: true };
   }
 }
 

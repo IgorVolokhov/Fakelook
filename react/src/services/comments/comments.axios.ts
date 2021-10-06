@@ -14,22 +14,30 @@ export const getCommentsForPost = async (postId: number) => {
   return comments;
 };
 
-export const addComment = async (postId: number, text: string) => {
+export const axiosAddComment = async (
+  postId: number,
+  text: string,
+  parentId: number
+) => {
   if (!isTextFilled(text)) {
     return "text is not filled properly";
   }
-  let message;
+  let message: any;
 
   await axios
     .post(`${url}/addcommentforpost`, {
       token: getAccessToken(),
       postId,
       text,
+      parentId,
     })
     .then((res) => {
-      message = res.data.message;
+      message = res.data;
     });
-  return message;
+  if (message && message.isSuccessful) {
+    return message.comment;
+  }
+  return null;
 };
 
 export const editComment = async (commentId: any, text: string) => {
