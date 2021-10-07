@@ -3,6 +3,22 @@ const {
   getPostById,
   addPost,
   editPost,
+<<<<<<< HEAD
+  removePost,
+  getAllPostsFromUserFriends,
+  likePost
+} = require("../../DAL/dbPosts");
+
+module.exports = {
+
+  getPosts: async (req, res) => {
+    const getPosts = await getAllPosts();
+    res.status(200).json({
+      message: getPosts ? `Got posts` : `Didn't get posts`,
+      posts: gotPosts,
+    });
+  },
+=======
 } = require("../../DAL/dbPosts");
 
 const friends = {
@@ -10,6 +26,7 @@ const friends = {
   liel: [4, 6],
   eyal: [4, 5],
 };
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 
 module.exports = {
   getAllPostsForUserByUserIdes: async (req, res) => {
@@ -80,9 +97,28 @@ module.exports = {
   },
 
   remove: async (req, res) => {
+    console.log(req.body, "POST HERE");
     const isRemoved = await removePost(req.body.postId);
     res.status(200).json({
       message: isRemoved ? `remove successfully` : `didnt remove`,
     });
   },
+<<<<<<< HEAD
+
+  // getPostForUser: async (req, res) => {
+  //   const gotPosts = await getPostsByUserId(req.body.User_Id);
+  //   res.status(200).json({
+  //     message: gotPosts ? `Got posts` : `Didn't get posts`,
+  //     posts: gotPosts,
+  //   });
+  // },
+
+  getPostsById: async (req, res) => {
+    const gotPosts = await getPostsByUserId(req.body);
+    res.status(200).json({
+      message: gotPosts ? `Got posts by user` : `Didn't get posts by user`,
+    });
+  },
+=======
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 };

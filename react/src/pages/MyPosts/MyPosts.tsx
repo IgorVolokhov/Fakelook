@@ -10,6 +10,7 @@ import {
   addPost,
   editPost,
   getAllPosts,
+  removePost  
 } from "../../services/posts/posts.axios";
 
 // todo make feed only friends posts while my posts only my posts that you can edit
@@ -83,7 +84,7 @@ const MyPosts = () => {
                   postEdit(post.id)
                 }
               />
-              <CustomButton text="Delete" />
+              <CustomButton text="Delete" onClick={() => removePost(post)}/>
               <PostCard key={post.id} post={post} />
             </div>
           ))}

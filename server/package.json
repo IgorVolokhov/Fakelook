@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "google-auth-library": "^7.9.2",
     "jest": "^27.2.4",
+    "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "morgan": "^1.10.0",
     "mssql": "^7.2.1",

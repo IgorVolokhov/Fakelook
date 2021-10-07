@@ -18,16 +18,58 @@ export const getAllPostsForUser = async () => {
   return posts;
 };
 
-export const getOnlyUserPosts = async () => {
+<<<<<<< HEAD
+export const getAllPosts = async () => {
+  let posts;
+  await axios.post(`${url}/getallposts`).then((res) => {
+    posts = res.data.posts;
+  });
+  return posts;
+};
+
+export const removePost = async (post: any) => {
+  console.log(post);
+  
+  var postId = post.Post_Id;
+  let message;    
+  await axios
+    .post(`${url}/removepost`, { token: getAccessToken(), postId: postId })
+    .then((res) => {
+      message = res.data.message;
+    });
+
+  return message;
+};
+
+// todo make interface for posts for map and not any
+export const getPostsByUserId = async () => {
   let posts;
   await axios
-    .post(`${url}/getonlyuserposts`, { token: getAccessToken() })
+    .post(`${url}/getpostsforuser`, { token: getAccessToken() })
     .then((res) => {
       posts = res.data.posts;
     });
   return posts;
 };
 
+export const getSmallerPostsByUser = async () => {
+  let posts: any[] = [];
+  await axios
+    .post(`${url}/getsmallerpostforuser`, { token: getAccessToken() })
+=======
+export const getOnlyUserPosts = async () => {
+  let posts;
+  await axios
+    .post(`${url}/getonlyuserposts`, { token: getAccessToken() })
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
+    .then((res) => {
+      posts = res.data.posts;
+    });
+  return posts;
+};
+
+<<<<<<< HEAD
+=======
 export const getOnlyFriendsPosts = async () => {
   let posts;
   await axios
@@ -38,6 +80,7 @@ export const getOnlyFriendsPosts = async () => {
   return posts;
 };
 
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 export const getPostById = async (postId: any) => {
   let post;
   await axios
