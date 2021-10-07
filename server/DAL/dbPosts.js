@@ -1,29 +1,13 @@
 const {
-  getAllPostsOperation,
-  getAllPostsFromUserFriendsOperation,
-  getPostsByUserIdOperation,
-  getSmallerPostsByUserOperation,
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-} = require("../Sql/dummy_dboperations/postOperations");
+  getPostsByUserIdesOperation,
+} = require("../Sql/dboperations/postOperations");
 
 class DBPosts {
-
-  async getAllPosts() {
-    return await getAllPostsOperation();
-  }
-
-  async getAllPostsFromUserFriends(userId) {
-    return await getAllPostsFromUserFriendsOperation(userId);
-  }
-
-  async getPostsByUserId(userId) {
-    return await getPostsByUserIdOperation(userId);
-  }
-
-  async getSmallerPostsByUser(userId) {
-    return await getSmallerPostsByUserOperation(userId);
+  async getPostsByUserIdes(userIdes) {
+    return await getPostsByUserIdesOperation(userIdes);
   }
 
   async getPostById(postId) {

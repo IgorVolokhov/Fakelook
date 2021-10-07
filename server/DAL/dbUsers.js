@@ -6,7 +6,7 @@ const {
   forgotpasswordOperation,
   changePasswordOperation,
   getPersonalInfoOperation,
-} = require("../Sql/dummy_dboperations/userOperation");
+} = require("../Sql/dboperations/userOperations");
 
 class DBUser {
   async addUser(user) {

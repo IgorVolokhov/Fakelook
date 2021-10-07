@@ -14,7 +14,7 @@ module.exports = {
   },
 
   addCommentForPost: async (req, res) => {
-    console.log(req.body);
+    console.log("this is body: ", req.body);
     const { User_Id, postId, text, parentId } = req.body;
     const { comment, isSuccessful } = await addCommentForPost(
       User_Id,
