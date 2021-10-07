@@ -1,10 +1,9 @@
 const {
-  getAllPosts,
-  getPostsByUserId,
-  getSmallerPostsByUser,
+  getPostsByUserIdes,
   getPostById,
   addPost,
   editPost,
+<<<<<<< HEAD
   removePost,
   getAllPostsFromUserFriends,
   likePost
@@ -19,28 +18,49 @@ module.exports = {
       posts: gotPosts,
     });
   },
+=======
+} = require("../../DAL/dbPosts");
 
-  getPostForUser: async (req, res) => {
-    const gotPosts = await getPostsByUserId(req.body.User_Id);
+const friends = {
+  igor: [5, 6],
+  liel: [4, 6],
+  eyal: [4, 5],
+};
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
+
+module.exports = {
+  getAllPostsForUserByUserIdes: async (req, res) => {
+    const userId = req.body.User_Id;
+    const userIdes = [userId, ...friends.igor];
+    console.log("these are the ides: ", userIdes);
+    const posts = await getPostsByUserIdes(userIdes);
+    console.log(posts);
     res.status(200).json({
-      message: gotPosts ? `Got posts` : `Didn't get posts`,
-      posts: gotPosts,
+      message: posts ? `Got posts` : `Didn't get posts`,
+      posts: posts,
     });
   },
 
-  getAllPostsFromUserFriends: async (req, res) => {
-    const gotPosts = await getAllPostsFromUserFriends(req.body.User_Id);
+  getOnlyUserPosts: async (req, res) => {
+    const userId = req.body.User_Id;
+    const userIdes = [userId];
+    console.log("these are the ides: ", userIdes);
+    const posts = await getPostsByUserIdes(userIdes);
+    console.log(posts);
     res.status(200).json({
-      message: gotPosts ? `Got Posts` : `Didn't Get Posts`,
-      posts: gotPosts,
+      message: posts ? `Got posts` : `Didn't get posts`,
+      posts: posts,
     });
   },
 
-  getSmallerPostsForUser: async (req, res) => {
-    const gotPosts = await getSmallerPostsByUser(req.body.User_Id);
+  getOnlyFriendsPosts: async (req, res) => {
+    const userIdes = [...friends.igor];
+    console.log("these are the ides: ", userIdes);
+    const posts = await getPostsByUserIdes(userIdes);
+    console.log(posts);
     res.status(200).json({
-      message: gotPosts ? `Got Posts` : `Didn't Get Posts`,
-      posts: gotPosts,
+      message: posts ? `Got posts` : `Didn't get posts`,
+      posts: posts,
     });
   },
 
@@ -53,6 +73,7 @@ module.exports = {
   },
 
   add: async (req, res) => {
+    console.log("in add post: ", req.body);
     const { User_Id, image_src, lat, lon, description, tags } = req.body;
     const isAdded = await addPost(
       User_Id,
@@ -82,6 +103,7 @@ module.exports = {
       message: isRemoved ? `remove successfully` : `didnt remove`,
     });
   },
+<<<<<<< HEAD
 
   // getPostForUser: async (req, res) => {
   //   const gotPosts = await getPostsByUserId(req.body.User_Id);
@@ -97,4 +119,6 @@ module.exports = {
       message: gotPosts ? `Got posts by user` : `Didn't get posts by user`,
     });
   },
+=======
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 };

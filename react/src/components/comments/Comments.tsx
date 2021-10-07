@@ -5,12 +5,6 @@ import {
   axiosAddComment,
   getCommentsForPost,
 } from "../../services/comments/comments.axios";
-// import {
-//   getComments as getCommentsApi,
-//   createComment as createCommentApi,
-//   updateComment as updateCommentApi,
-//   deleteComment as deleteCommentApi,
-// } from "../api";
 
 const Comments = ({ postId, currentUserId }: any) => {
   const [backendComments, setBackendComments] = useState<any>([]);

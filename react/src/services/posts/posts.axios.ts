@@ -6,14 +6,19 @@ const url = "http://localhost:3001/posts";
 
 // todo make interface for posts for map and not any
 
-export const getPosts = async () => {
-  let posts;
-  await axios.post(`${url}/getallposts`).then((res) => {
-    posts = res.data.posts;
-  });
+export const getAllPostsForUser = async () => {
+  let posts = [""];
+  await axios
+    .post(`${url}/getallpostsforuseranduserfriends`, {
+      token: getAccessToken(),
+    })
+    .then((res) => {
+      posts = res.data.posts;
+    });
   return posts;
 };
 
+<<<<<<< HEAD
 export const getAllPosts = async () => {
   let posts;
   await axios.post(`${url}/getallposts`).then((res) => {
@@ -51,12 +56,31 @@ export const getSmallerPostsByUser = async () => {
   let posts: any[] = [];
   await axios
     .post(`${url}/getsmallerpostforuser`, { token: getAccessToken() })
+=======
+export const getOnlyUserPosts = async () => {
+  let posts;
+  await axios
+    .post(`${url}/getonlyuserposts`, { token: getAccessToken() })
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
     .then((res) => {
       posts = res.data.posts;
     });
   return posts;
 };
 
+<<<<<<< HEAD
+=======
+export const getOnlyFriendsPosts = async () => {
+  let posts;
+  await axios
+    .post(`${url}/getonlyfriendsposts`, { token: getAccessToken() })
+    .then((res) => {
+      posts = res.data.posts;
+    });
+  return posts;
+};
+
+>>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 export const getPostById = async (postId: any) => {
   let post;
   await axios

@@ -59,6 +59,7 @@ module.exports = {
 
   // works!
   edit: async (req, res) => {
+    console.log("this is body");
     console.log(req.body);
     const isSuccsess = await editUser(req.body);
 
@@ -121,6 +122,7 @@ module.exports = {
     console.log("personal info body: ");
     console.log(req.body);
     const { userInfo } = await getPersonalInfo(req.body.User_Id);
+    console.log(userInfo);
     res.status(200).json({
       userInfo: userInfo,
     });
