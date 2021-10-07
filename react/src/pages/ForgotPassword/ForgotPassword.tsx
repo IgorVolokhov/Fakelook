@@ -32,7 +32,7 @@ const ForgotPassword = () => {
         <p>Enter key you got from your new password</p>
         <TextField type="password" onChange={(event)=> setNewPass(event.target.value)}/>
         <br></br> <br></br> <br></br>
-        <Button  variant="contained" color="primary" onClick={sendNewPassword}>send new password</Button>
+        <Button  variant="contained" color="primary" onClick={() => sendNewPassword}>send new password</Button>
     </div>
   );
 };

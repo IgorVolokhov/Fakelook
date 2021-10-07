@@ -63,7 +63,7 @@ const Login = () => {
         picture: res.picture,
         id: res.id,
       })
-      .then((res) => console.log(res.data))
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
   const responseGoogle = (response: any) => {
@@ -76,7 +76,6 @@ const Login = () => {
   const goToMenu = () => {
     window.location.href = "/menu";
   };
-
   return (
     <div>
       <h1>LOGIN</h1>
@@ -135,8 +134,7 @@ const Login = () => {
 
       <div>
         <FacebookLogin
-          // change it to .env
-          appId=""
+          appId="4637753582931156"
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
@@ -144,10 +142,9 @@ const Login = () => {
       </div>
       <div>
         <GoogleLogin
-          // change it to .env
           clientId="930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"
-          onSuccess={googleAuth}
-          onFailure={googleAuth}
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
         >
           <span>Login with Google</span>
