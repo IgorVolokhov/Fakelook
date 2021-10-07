@@ -4,6 +4,17 @@ const adapter = new FileSync("db.json");
 const db = low(adapter);
 const { uniqueId } = require("../../utils/uniqueId");
 
+async function likePostOperation(postId, isLiked) {
+  try {
+    const posts = db.get("posts").value();
+    let post = posts.filer((x) => x.postId === postId);
+    if (isLiked) post.likes--;
+    else post.likes++;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 async function getAllPostsOperation() {
   try {
     const posts = db.get("posts").value();
@@ -95,6 +106,23 @@ async function addPostOperation(
   }
 }
 
+async function removePostOperation(postId) {
+  try {
+    console.log("GOT TO REMOVEPO", postId);
+    posts = db.get("posts").value();
+    for (let index = 0; index < posts.length; index++) {
+      if (posts[index].Post_Id === postId) {
+        posts.splice(index, 1);
+        break;
+      }
+    }
+    db.write();
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
 async function editPostOperation(
   postId,
   lat,
@@ -165,4 +193,5 @@ module.exports = {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
+  removePostOperation,
 };

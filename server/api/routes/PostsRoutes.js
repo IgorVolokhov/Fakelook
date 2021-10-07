@@ -13,10 +13,10 @@ const {
   add,
   edit,
   remove,
+  likePost
 } = require("../controllers/PostsController");
 
 router.post("/getallposts", authenticateTokenBody, getPosts);
-router.delete("/removepost", remove);
 
 router.post("/getpostsforuser", authenticateTokenBody, getPostForUser);
 router.post(
@@ -32,6 +32,6 @@ router.post(
 router.post("/getpostbyid", authenticateTokenBody, getPostById);
 router.post("/addpost", authenticateTokenBody, add);
 router.patch("/editpost", authenticateTokenBody, edit);
-router.delete("/removepost", authenticateTokenBody, remove);
+router.post("/removepost", authenticateTokenBody, remove);
 
 module.exports = router;

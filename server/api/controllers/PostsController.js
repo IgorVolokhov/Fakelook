@@ -7,10 +7,11 @@ const {
   editPost,
   removePost,
   getAllPostsFromUserFriends,
+  likePost
 } = require("../../DAL/dbPosts");
 
 module.exports = {
-  
+
   getPosts: async (req, res) => {
     const getPosts = await getAllPosts();
     res.status(200).json({
@@ -75,11 +76,20 @@ module.exports = {
   },
 
   remove: async (req, res) => {
+    console.log(req.body, "POST HERE");
     const isRemoved = await removePost(req.body.postId);
     res.status(200).json({
       message: isRemoved ? `remove successfully` : `didnt remove`,
     });
   },
+
+  // getPostForUser: async (req, res) => {
+  //   const gotPosts = await getPostsByUserId(req.body.User_Id);
+  //   res.status(200).json({
+  //     message: gotPosts ? `Got posts` : `Didn't get posts`,
+  //     posts: gotPosts,
+  //   });
+  // },
 
   getPostsById: async (req, res) => {
     const gotPosts = await getPostsByUserId(req.body);

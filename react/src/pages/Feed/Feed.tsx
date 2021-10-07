@@ -56,7 +56,7 @@ const Feed = ({ userInfoApp }: any) => {
       ) : (
         <div className="posts-container ">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} userId={userInfoApp.Id} />
+            <PostCard key={post.id} post={post} userId={userInfoApp.Id}/>
           ))}
         </div>
       )}

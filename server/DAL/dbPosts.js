@@ -6,6 +6,8 @@ const {
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
+  removePostOperation,
+  likePostOperation
 } = require("../Sql/dummy_dboperations/postOperations");
 
 class DBPosts {
@@ -46,8 +48,7 @@ class DBPosts {
   }
 
   async removePost(postId) {
-    return false;
-    //return await rep.removePostDB(postId);
+    return await removePostOperation(postId);
   }
 }
 module.exports = new DBPosts();
