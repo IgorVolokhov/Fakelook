@@ -5,13 +5,7 @@ import "./Menu.css";
 import { User } from "../../classes/user";
 import { Post } from "../../classes/post";
 import { Location } from "../../classes/location";
-import {
-  getPostById,
-  getPostsByUserId,
-  getSmallerPostsByUser,
-  addPost,
-  editPost,
-} from "../../services/posts/posts.axios";
+import { getAllPostsForUser } from "../../services/posts/posts.axios";
 import {
   emitPostAdded,
   socketStart,
@@ -51,7 +45,7 @@ const Menu = () => {
       console.log(userInfoRes);
 
       await setUserInfo(userInfoRes);
-      const posts = await getSmallerPostsByUser();
+      const posts = await getAllPostsForUser();
       await setMinimizedPosts(posts);
       console.log("mini posts: ", minimizedPosts);
 

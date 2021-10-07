@@ -1,16 +1,6 @@
 {
   "users": [
     {
-      "User_Id": 1,
-      "Username": "pass:newcollpass1",
-      "Password": "$2b$10$ObiOD8.aWG1qD/qxFF0DDu5irNrT5Ius3Pv5b5aZLO08XL4/9v13y",
-      "Email": "passnewcollpass1@gmail.com",
-      "Firstname": "updated!! for react some_secret2",
-      "Lastname": "special_secret2",
-      "Age": 22,
-      "Address": "Netanya2"
-    },
-    {
       "User_Id": 2,
       "Username": "1234",
       "Password": "$2b$10$S/cHaAzxrujUb7Deuo7F7Ozm.CunohO76JWCWVxBJadke9B4Q.NGq",
@@ -22,17 +12,6 @@
       "Place_Of_Work": "sela"
     },
     {
-      "User_Id": 3,
-      "Username": "pass:igorvol",
-      "Password": "$2b$10$QigwTUj5nVQzeFJxkGnAHeagql2JQiu1/Fw4r1LrRKWQKzHVKZmBe",
-      "Email": "volokhov9@gmail.com",
-      "Firstname": null,
-      "Lastname": null,
-      "Age": null,
-      "Address": null,
-      "Place_Of_Work": null
-    },
-    {
       "User_Id": 4,
       "Username": "eyal",
       "Password": "$2b$10$t02t21j7tTy6Dc5hI0JkX.N4i3iGijP1iJgCzZFzh5TnvdX.i9MJ.",
@@ -42,50 +21,6 @@
       "Age": null,
       "Address": null,
       "Place_Of_Work": null
-    },
-    {
-      "User_Id": "b_ku7gt7hj_sb3w7goh0movmtjfhg8gi",
-      "Username": "dadada",
-      "Password": "$2b$10$.0j9GjlRBOE7bRK0VuhBgewcVMPIexTGJHxRwJ8mCe5..grKyPePS",
-      "Email": "lielarie123@gmail.com",
-      "Firstname": null,
-      "Lastname": null,
-      "Age": null,
-      "Address": null,
-      "Place_Of_Work": null
-    },
-    {
-      "User_Id": 51741280,
-      "Username": "username",
-      "Password": "$2b$10$H3F8DWJ.lAfKGM1QtI5WdOiKutWNJ/oGUZ.T1F5Ut6Nt3u8dG8zz.",
-      "Email": "email@gmail.com",
-      "Firstname": null,
-      "Lastname": null,
-      "Age": null,
-      "Address": null,
-      "Place_Of_Work": null
-    },
-    {
-      "User_Id": 73360523,
-      "Username": "eyal",
-      "Password": "$2b$10$wh33HQlkRwmnc0yebqpAP.F2H8K8Ra1KQVjSS2AiYVfoNfEUF/C2O",
-      "Email": "eyalrainitz@gmail.com",
-      "Firstname": null,
-      "Lastname": null,
-      "Age": null,
-      "Address": null,
-      "Place_Of_Work": null
-    },
-    {
-      "User_Id": 13619264,
-      "Username": "aa12",
-      "Password": "$2b$10$4uWN8AY.SUz2XcYAYtJxPu9FsNeVJdf5ZaiBlFC8HqYjmCDWRtLzS",
-      "Email": "eyalrainitz@gmail.com",
-      "Firstname": "eyak",
-      "Lastname": "ra",
-      "Age": "23",
-      "Address": "weq",
-      "Place_Of_Work": "eeee"
     },
     {
       "User_Id": 85367350,

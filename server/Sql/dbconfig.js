@@ -1,13 +1,13 @@
 const config = {
-  user: "LielArie",
-  password: "liel146146",
-  server: "localdb",
-  database: "FakeLookDB",
+  user: "fakelook",
+  password: "qweasdzxc123",
+  server: "localhost",
+  database: "fakelookDb",
   options: {
     trustedConnection: true,
     trustServerCertificate: true,
     enableArithAort: true,
-    instancename: "MSSQLLocalDB",
+    instancename: "MSSQLPLEASEWORK",
   },
   port: 1433,
 };
