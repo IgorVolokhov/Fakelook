@@ -30,7 +30,9 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <div onClick={() => refreshToken()}>
+        <Header />
+      </div>
       <BrowserRouter>
         <div>
           <Switch>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "../../classes/post";
 import PostCard from "../../components/PostCard";
 import CustomButton from "../../models/CustomButton";
@@ -31,6 +31,10 @@ const Feed = ({ userInfoApp }: any) => {
 
   if (!isLoading && posts.length === 0) {
     return <h1 className="message-text">No Posts Found</h1>;
+  }
+
+  if (!userInfoApp) {
+    return <div>Loading...</div>;
   }
 
   return (
