@@ -1,12 +1,11 @@
 import CustomButton from "../models/CustomButton";
 import CustomModal from "../models/CustomModal";
 import Grid from "@material-ui/core/Grid";
-import React, { useState } from "react";
+import { useState } from "react";
 import AddPost from "./AddPost";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import "date-fns";
@@ -18,11 +17,11 @@ const base = "http://localhost:3000";
 
 interface Props {
   addPost: any;
-  setRadius:any
+  setRadius: any;
 }
-//TO DO axios
+
 //Add data to array to choose with push
-const Options = ({ addPost,setRadius }: Props) => {
+const Options = ({ addPost, setRadius }: Props) => {
   function moveToFeed() {
     window.location.href = base + "/feed";
   }
@@ -100,7 +99,10 @@ const Options = ({ addPost,setRadius }: Props) => {
         </Grid>
       </MuiPickersUtilsProvider>
       {/*add selection from meter to km */}
-      <TextField label="Radious from you" onChange={(e:any) => setRadius(e.target.value)} />
+      <TextField
+        label="Radious from you"
+        onChange={(e: any) => setRadius(e.target.value)}
+      />
       <div>
         {/*show my posts*/}
         <CustomButton text="Feed" onClick={moveToFeed} />

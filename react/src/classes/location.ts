@@ -13,17 +13,6 @@ export class Location {
   }
 
   calculateDistanceFromHereInKm(lat: number, lon: number) {
-    // const dlat = lat - this.lat;
-    // const dlon = lon - this.lon;
-    // const a =
-    //   Math.sin(dlat / 2) * Math.sin(dlat / 2) +
-    //   Math.cos(this.lat) *
-    //     Math.cos(lat) *
-    //     Math.sin(dlon / 2) *
-    //     Math.sin(dlon / 2);
-    // const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    // const d = this.radius * c;
-
     const lat1 = (this.lat / 180) * Math.PI;
     const lat2 = (lat / 180) * Math.PI;
     const lon1 = (this.lon / 180) * Math.PI;

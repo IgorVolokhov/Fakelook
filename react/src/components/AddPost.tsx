@@ -1,10 +1,6 @@
-import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Location } from "../classes/location";
-import { Post } from "../classes/post";
 import { addPost } from "../services/posts/posts.axios";
-import { getAccessToken } from "../services/tokens";
-const baseURL = "http://localhost:3000";
 
 const AddPost = ({ closeModal }: any) => {
   const [location, setLocation] = useState<Location>();
@@ -30,7 +26,6 @@ const AddPost = ({ closeModal }: any) => {
   }
 
   function handle(e: any) {
-    //@ts-ignore
     setPost({ ...post, [e.target.id]: e.target.value });
   }
 
@@ -72,8 +67,7 @@ const AddPost = ({ closeModal }: any) => {
       <h3>
         <form>
           <div>
-            <i className="far fa-images"></i>
-            {' '}Upload Image:
+            <i className="far fa-images"></i> Upload Image:
             <input
               type="file"
               id="file"
@@ -82,10 +76,9 @@ const AddPost = ({ closeModal }: any) => {
               onChange={(e) => convertToBase64(e.target.files)}
             />
           </div>
-          <br/>
+          <br />
           <div>
-            <i className="fas fa-align-justify"></i>
-            {' '}Description:
+            <i className="fas fa-align-justify"></i> Description:
             <input
               type="text"
               onChange={handle}
@@ -93,10 +86,9 @@ const AddPost = ({ closeModal }: any) => {
               id="description"
             />{" "}
           </div>
-          <br/>
+          <br />
           <div>
-          <i className="fas fa-hashtag"></i>
-            {' '}Tags:
+            <i className="fas fa-hashtag"></i> Tags:
             <input
               type="text"
               onChange={handle}
@@ -104,7 +96,7 @@ const AddPost = ({ closeModal }: any) => {
               id="tags"
             />
           </div>
-          <br/>
+          <br />
           <button onClick={submit}>Upload</button>
         </form>
       </h3>
