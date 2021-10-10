@@ -1,3 +1,4 @@
+import { submitErrorOperation } from "./errorsOperation";
 const config = require("../dbconfig");
 const sql = require("mssql");
 const bcrypt = require("bcrypt");
@@ -32,7 +33,7 @@ async function signinOperation(user) {
     }
     return false;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return {
       isSignedIn: isPasswordMatching,
       user: null,
@@ -52,7 +53,7 @@ async function getUserByEmailOperation(email) {
       user: userRes.recordset[0],
     };
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return {
       isSignedIn: isPasswordMatching,
       user: null,
@@ -91,7 +92,7 @@ async function signupOperation(user) {
     );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -108,7 +109,7 @@ async function editUserOperation(user) {
     );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -144,7 +145,7 @@ async function googleLoginOperation(email, googleId, id_token) {
 
     return { isSuccess: false };
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return { isSuccess: false };
   }
 }
@@ -179,7 +180,7 @@ async function changePasswordOperation(key, newPass, email) {
 
     return { isSuccess: true };
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return { isSuccess: false };
   }
 }
@@ -221,14 +222,12 @@ async function forgotpasswordOperation(email) {
     });
     return isSuccess;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return { isSuccess: false };
   }
 }
 
 async function upadteSqlPassword(newPassword, email) {
-  console.log(newPassword);
-  console.log(email);
   try {
     let pool = await sql.connect(config);
 
@@ -239,7 +238,7 @@ async function upadteSqlPassword(newPassword, email) {
       );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -274,7 +273,7 @@ async function getPersonalInfoOperation(user_id) {
     }
     return { userInfo: null };
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return { userInfo: null };
   }
 }
@@ -305,7 +304,7 @@ async function getInfoForSearchDisplayOperations(userIdes) {
     }
     return information.recordset;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return null;
   }
 }
@@ -335,7 +334,7 @@ async function addFriendsOperation(firstUserId, secondUserId) {
       );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
