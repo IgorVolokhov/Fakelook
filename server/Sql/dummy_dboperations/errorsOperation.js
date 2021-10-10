@@ -7,7 +7,7 @@ const { uniqueId } = require("../../utils/uniqueId");
 async function getAllErrorsOperation() {
   try {
     const errors = db.get("errors").value();
-    return errors.length > 0 ? errors : null;
+    return errors;
   } catch (error) {
     console.log(error);
     return null;
@@ -20,7 +20,7 @@ async function submitErrorOperation(errorText) {
     errors.push({
       Error_Id: uniqueId(),
       Info: errorText,
-      Time: Date.now(),
+      Time: new Date().toLocaleString(),
     });
     db.write();
     return true;

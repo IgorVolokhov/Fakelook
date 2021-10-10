@@ -1,10 +1,12 @@
 import { FieldAttributes, Form, Formik, useField } from "formik";
 import schema from "../../validations/Signin.validations";
 import { Link } from "react-router-dom";
-import { axiosSignin } from "../../services/authentication/authentication.axios";
+import {
+  axiosSignin,
+  axiosSigninWithEmail,
+} from "../../services/authentication/authentication.axios";
 import CustomButton from "../../models/CustomButton";
 import { TextField } from "@material-ui/core";
-import axios from "axios";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
@@ -24,6 +26,7 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
 
+  // TODO move text field out side of here, maybe other componnets want to use it as well
   return (
     <>
       <TextField
@@ -39,17 +42,46 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 };
 
 const Login = () => {
+<<<<<<< HEAD
  
   // todo come back here and implement tokens, note if it is first time make account with that email
   const responseGoogle = (response: any) => {
+=======
+  const responseGoogle = async (response: any) => {
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
     const email = response?.profileObj?.email;
-    console.log(email);
     if (email) {
+      signinWithEmail(email);
     }
   };
+
   const responseFacebook = (res: any) => {
+<<<<<<< HEAD
     console.log(res);
     console.log(res.email);
+=======
+    const email = res.email;
+    if (email) {
+      signinWithEmail(email);
+    }
+  };
+
+  const signinWithEmail = async (email: string) => {
+    const {
+      messageRes,
+      isLoggedInRes,
+      accessTokenRes,
+      expiresInRes,
+      refreshTokenRes,
+    } = await axiosSigninWithEmail(email);
+    if (isLoggedInRes) {
+      saveRefreshToken(refreshTokenRes);
+      saveAccessToken(accessTokenRes, expiresInRes);
+      goToMenu();
+    } else {
+      console.log("OUT!!");
+    }
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
   };
 
   const goToMenu = () => {

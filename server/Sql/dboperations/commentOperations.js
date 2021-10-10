@@ -1,5 +1,4 @@
-import '../../DAL/dbErrors'
-import { submitErrorOperation } from './errorsOperation';
+const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {

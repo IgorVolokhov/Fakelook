@@ -55,6 +55,7 @@ const NewUserDetails = () => {
   };
   return (
     <div>
+<<<<<<< HEAD
       <Formik
         validateOnChange={true}
         initialValues={{
@@ -136,6 +137,65 @@ const NewUserDetails = () => {
           </Form>
         )}
       </Formik>
+=======
+      <form onSubmit={(e: any) => handleSubmit(e)}>
+        <p>
+          First Name:{" "}
+          <TextField
+            value={details.firstname}
+            onChange={(e) =>
+              SetDetails({ ...details, firstname: e.target.value })
+            }
+          />
+          Last Name:{" "}
+          <TextField
+            value={details.lastname}
+            onChange={(e) =>
+              SetDetails({ ...details, lastname: e.target.value })
+            }
+          />
+        </p>
+        <p>
+          Age:
+          <TextField
+            value={details.age}
+            onChange={(e) => SetDetails({ ...details, age: e.target.value })}
+          />
+        </p>
+        <p>
+          Address:
+          <TextField
+            value={details.address}
+            onChange={(e) =>
+              SetDetails({ ...details, address: e.target.value })
+            }
+          />
+        </p>
+        <p>
+          Place of work:
+          <TextField
+            value={details.place_Of_Work}
+            onChange={(e) =>
+              SetDetails({ ...details, place_Of_Work: e.target.value })
+            }
+          />
+        </p>
+        <p>
+          {console.log(details)}
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              SendDataToDB(details);
+              window.location.href = "/menu";
+            }}
+          >
+            Submit Details
+          </Button>
+        </p>
+      </form>
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
     </div>
   );
 };

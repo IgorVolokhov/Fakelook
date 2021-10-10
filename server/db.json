@@ -182,7 +182,11 @@
   ],
   "errors": [
     {
+<<<<<<< HEAD
       "Error_Id": 50587917,
+=======
+      "Error_Id": 83660924,
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
       "Info": {
         "code": "ELOGIN",
         "originalError": {
@@ -191,10 +195,17 @@
         },
         "name": "ConnectionError"
       },
+<<<<<<< HEAD
       "Time": 1633865200381
     },
     {
       "Error_Id": 46765757,
+=======
+      "Time": "10.10.2021, 16:54:31"
+    },
+    {
+      "Error_Id": 44887484,
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
       "Info": {
         "code": "ELOGIN",
         "originalError": {
@@ -203,7 +214,35 @@
         },
         "name": "ConnectionError"
       },
+<<<<<<< HEAD
       "Time": 1633865208185
+=======
+      "Time": "10.10.2021, 16:54:36"
+    },
+    {
+      "Error_Id": 75483136,
+      "Info": {
+        "code": "ELOGIN",
+        "originalError": {
+          "message": "Login failed for user 'fakelook'.",
+          "code": "ELOGIN"
+        },
+        "name": "ConnectionError"
+      },
+      "Time": "10.10.2021, 16:54:47"
+    },
+    {
+      "Error_Id": 70300837,
+      "Info": {
+        "code": "ELOGIN",
+        "originalError": {
+          "message": "Login failed for user 'fakelook'.",
+          "code": "ELOGIN"
+        },
+        "name": "ConnectionError"
+      },
+      "Time": "10.10.2021, 17:04:55"
+>>>>>>> 34939793510dad57c07306968395f9bfe9d9ce29
     }
   ]
 }

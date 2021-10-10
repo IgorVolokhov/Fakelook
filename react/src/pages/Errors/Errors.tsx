@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getAllErrors, removeError } from "../../services/errors/errors.axios";
+import "./Errors.css";
 
 const Errors = () => {
   const [errors, setErrors] = useState<any[]>([]);
 
-  useEffect(() => {
-    const LoadErrors = async () => {
-      const errors = await getAllErrors();
-      if (errors) {
-        setErrors(errors);
-        console.log(errors);
-      }
-      console.log(errors, "HELLO ERRORS");
-    };
+  const LoadErrors = async () => {
+    const errors = await getAllErrors();
 
+    if (errors) {
+      console.log(errors, "ALL ERRORS!");
+      setErrors(errors);
+    }
+  };
+
+  useEffect(() => {
     LoadErrors();
   }, []);
 
@@ -29,9 +30,13 @@ const Errors = () => {
         <tbody>
           {errors.map((error) => (
             <tr>
-                <td>{error.errorText}</td>
-                <td>{error.time}</td>
-                <button onClick={() => removeError(error.Error_Id)}>Delete</button>
+              <td>{error.Info.originalError.message}</td>
+              <td>{error.Time}</td>
+              <td>
+                <button onClick={() => removeError(error.Error_Id)}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
