@@ -2,7 +2,7 @@ import axios from "axios";
 import { deleteTokens, getAccessToken } from "../tokens";
 
 // TODO move username password email into interface
-// todo get res id (200, 404 etc) and work with that
+// TODO get res id (200, 404 etc) and work with that
 
 const url = "http://localhost:3001/users/";
 
@@ -64,13 +64,15 @@ export const axiosGetPersonalInfo = async () => {
   const getUserUrl = url + "getpersonalinfo";
   await axios.post(getUserUrl, { token: getAccessToken() }).then((res) => {
     data = res.data.userInfo;
-    if (data) {
+    if (data?.Id) {
       isLoggedIn = true;
     }
   });
   if (!isLoggedIn) {
     return false;
   }
+  console.log("returnnig this: ", data);
+
   return data;
 };
 
@@ -122,4 +124,13 @@ export const axiosUpdateUser = async (
 
 export const logOut = async () => {
   deleteTokens();
+};
+
+export const axiosGetInfoForSearchDisplay = async (userIdes: number[]) => {
+  let data: any = {};
+  const getUserUrl = url + "getinfoforsearchdiplay";
+  await axios.post(getUserUrl, { userIdes: userIdes }).then((res) => {
+    data = res.data.information;
+  });
+  return data;
 };

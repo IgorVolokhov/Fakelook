@@ -25,6 +25,9 @@ const Options = ({ addPost, setRadius }: Props) => {
   function moveToFeed() {
     window.location.href = base + "/feed";
   }
+  function moveToFriends() {
+    window.location.href = base + "/friends";
+  }
 
   function moveToMyPosts() {
     window.location.href = base + "/myposts";
@@ -106,7 +109,11 @@ const Options = ({ addPost, setRadius }: Props) => {
       <div>
         {/*show my posts*/}
         <CustomButton text="Feed" onClick={moveToFeed} />
-        <CustomButton title="myPostsBtn" text="My Posts" onClick={moveToMyPosts}/>
+        <CustomButton
+          title="myPostsBtn"
+          text="My Posts"
+          onClick={moveToMyPosts}
+        />
         {/*add post */}
         <CustomButton
           title="addPostBtn"
@@ -123,7 +130,7 @@ const Options = ({ addPost, setRadius }: Props) => {
           />
         )}
         {/*manage friends and blocked users */}
-        <CustomButton text="Friends" />{" "}
+        <CustomButton text="Friends" onClick={() => moveToFriends()} />{" "}
       </div>
     </div>
   );

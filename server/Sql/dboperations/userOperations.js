@@ -40,6 +40,26 @@ async function signinOperation(user) {
   }
 }
 
+async function getUserByEmailOperation(email) {
+  try {
+    let pool = await sql.connect(config);
+    let userRes = await pool
+      .request()
+      .query(`SELECT * from Users where Email = '${email}'`);
+
+    return {
+      isSignedIn: true,
+      user: userRes.recordset[0],
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      isSignedIn: isPasswordMatching,
+      user: null,
+    };
+  }
+}
+
 async function signupOperation(user) {
   try {
     let pool = await sql.connect(config);
@@ -109,7 +129,7 @@ function turnUserStringSuitableForSql(user) {
   return user;
 }
 
-// todo come back to google facebook login add tokens to them
+// TODO come back to google facebook login add tokens to them
 async function googleLoginOperation(email, googleId, id_token) {
   try {
     const users = db.get("users").value();
@@ -237,9 +257,10 @@ async function getPersonalInfoOperation(user_id) {
   try {
     let pool = await sql.connect(config);
 
-    const userRes = await pool
+    let userRes = await pool
       .request()
       .query(`SELECT * from Users where User_Id = '${user_id}'`);
+    userRes = userRes.recordset[0];
     if (userRes) {
       const userInfo = {
         Id: userRes.User_Id,
@@ -258,6 +279,67 @@ async function getPersonalInfoOperation(user_id) {
   }
 }
 
+async function getInfoForSearchDisplayOperations(userIdes) {
+  try {
+    let pool = await sql.connect(config);
+    const userIdesForSql = userIdesToSqlUserIdes(userIdes);
+    if (userIdesForSql === "") {
+      return null;
+    }
+    let information = "";
+    console.log("find this");
+    console.log(userIdes[0]);
+    console.log(userIdes.length);
+    if (userIdes?.length > 1) {
+      information = await pool
+        .request()
+        .query(
+          `SELECT Firstname, Lastname, User_Id from Users WHERE User_Id In (${userIdesForSql})`
+        );
+    } else {
+      information = await pool
+        .request()
+        .query(
+          `SELECT Firstname, Lastname, User_Id from Users WHERE User_Id = ${userIdes[0]}`
+        );
+    }
+    return information.recordset;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+function userIdesToSqlUserIdes(userIdes) {
+  let userIdesRes = "";
+  for (let index = 0; index < userIdes.length; index++) {
+    if (index < userIdes.length - 1) {
+      userIdesRes += userIdes[index] + ", ";
+    } else {
+      userIdesRes += userIdes[index];
+    }
+  }
+  return userIdesRes;
+}
+
+async function addFriendsOperation(firstUserId, secondUserId) {
+  try {
+    const firstUserIdSql = firstUserId.userId;
+    console.log("first user id: ", firstUserIdSql);
+    console.log("first user id: ", secondUserId);
+    let pool = await sql.connect(config);
+    await pool
+      .request()
+      .query(
+        `insert into UsersToFriends (User_Id, Friend_Id) values (${firstUserIdSql}, ${secondUserId})`
+      );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 module.exports = {
   signinOperation,
   signupOperation,
@@ -266,4 +348,6 @@ module.exports = {
   forgotpasswordOperation,
   changePasswordOperation,
   getPersonalInfoOperation,
+  getInfoForSearchDisplayOperations,
+  addFriendsOperation,
 };

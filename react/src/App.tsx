@@ -11,23 +11,35 @@ import NewUserDetails from "./pages/NewUser/NewUserDetails";
 import { axiosGetPersonalInfo } from "./services/authentication/authentication.axios";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import MyPosts from "./pages/MyPosts/MyPosts";
+import Friends from "./components/friends/Friends";
 
 function App() {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState<any>(null);
+  const [isLoadingUser, setIsLoadingUser] = useState(true);
 
   useEffect(() => {
-    const asyncFuction = async () => {
+    const asyncSetUser = async () => {
       const userInfoRes = await axiosGetPersonalInfo();
 
       await setUserInfo(userInfoRes);
-      console.log("app user info: ", userInfo);
-      if (userInfo !== null && !userInfo) {
-        refreshAccessToken(900);
-      }
     };
-    console.log("something changed");
-    asyncFuction();
+    asyncSetUser();
   }, []);
+
+  useEffect(() => {
+    const asyncCheckLoggedIn = async () => {
+      console.log("this is user info: ", userInfo);
+
+      if (!userInfo) {
+        setIsLoadingUser(true);
+        return;
+      }
+      refreshAccessToken(900);
+      console.log("app user info: ", userInfo);
+      await setIsLoadingUser(false);
+    };
+    asyncCheckLoggedIn();
+  }, [userInfo]);
 
   return (
     <div className="App">
@@ -47,18 +59,27 @@ function App() {
               <ForgotPassword />
             </Route>
             <div onClick={() => refreshToken()}>
-              <Route path="/menu">
-                <Menu />
-              </Route>
-              <Route path="/userdetails">
-                <NewUserDetails />
-              </Route>
-              <Route path="/feed">
-                <Feed userInfoApp={userInfo} />
-              </Route>
-              <Route path="/myposts">
-                <MyPosts />
-              </Route>
+              {userInfo !== false && isLoadingUser ? (
+                <div>Loading ... </div>
+              ) : (
+                <>
+                  <Route path="/menu">
+                    <Menu />
+                  </Route>
+                  <Route path="/userdetails">
+                    <NewUserDetails />
+                  </Route>
+                  <Route path="/feed">
+                    <Feed userInfoApp={userInfo} />
+                  </Route>
+                  <Route path="/myposts">
+                    <MyPosts />
+                  </Route>
+                  <Route exact path="/friends">
+                    <Friends userInfoApp={userInfo} />
+                  </Route>{" "}
+                </>
+              )}
             </div>
           </Switch>
         </div>

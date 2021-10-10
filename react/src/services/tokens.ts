@@ -10,16 +10,16 @@ export function saveAccessToken(accessToken: string, expiresIn: number = -1) {
 }
 
 export function refreshAccessToken(expiresIn: number) {
-  alert("something");
-  console.log("expiresIn: ", expiresIn);
+  console.log(
+    "should start refeshing tokens every 10 min nowexpiresIn: ",
+    expiresIn
+  );
   setInterval(() => {
     refreshToken();
   }, (expiresIn - 300) * 1000);
 }
 
 export function refreshToken() {
-  console.log("refreshing token!");
-
   const refreshToken = localStorage.getItem("refresh-token");
   if (refreshToken === null) {
     return;
@@ -29,10 +29,6 @@ export function refreshToken() {
   axios.post(refreshTokenUrl, { token: refreshToken }).then((res) => {
     const token = res.data.accessToken.token;
     if (token) {
-      console.log("new token: ");
-
-      console.log(token);
-
       saveAccessToken(token);
     }
   });
@@ -44,7 +40,6 @@ export function saveRefreshToken(refreshToken: string): void {
 
 export function getAccessToken(): string | null {
   const token = localStorage.getItem("access-token");
-  console.log(token);
 
   return localStorage.getItem("access-token");
 }

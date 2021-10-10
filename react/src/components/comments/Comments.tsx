@@ -9,10 +9,18 @@ import {
 const Comments = ({ postId, currentUserId }: any) => {
   const [backendComments, setBackendComments] = useState<any>([]);
   const [activeComment, setActiveComment] = useState(null);
-  const rootComments = backendComments.filter(
-    (backendComment: any) =>
-      backendComment.parentId === null || backendComment.parentId === undefined
-  );
+  const rootComments = backendComments
+    .filter(
+      (backendComment: any) =>
+        backendComment.parentId === null ||
+        backendComment.parentId === undefined
+    )
+    .sort((a: any, b: any) => {
+      console.log("a: ", a);
+      console.log("b: ", b);
+
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+    });
   const getReplies = (commentId: any) => {
     const replies = backendComments
       .filter((backendComment: any) => backendComment.parentId === commentId)
@@ -39,7 +47,7 @@ const Comments = ({ postId, currentUserId }: any) => {
       username: "Username",
       userId: apiComment.User_Id,
       parentId: null,
-      createdAt: apiComment.createdAt,
+      createdAt: apiComment.CreatedAt,
     };
   }
 
@@ -47,6 +55,7 @@ const Comments = ({ postId, currentUserId }: any) => {
     const getCommentsFromServer = async () => {
       let commentsFromServer: any = [];
       commentsFromServer = await getCommentsForPost(postId);
+
       let comments: any[] = [];
       if (commentsFromServer) {
         commentsFromServer.forEach((comment: any) => {

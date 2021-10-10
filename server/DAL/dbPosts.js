@@ -1,15 +1,11 @@
 const {
+  getPostsByUserIdesOperation,
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-<<<<<<< HEAD
   removePostOperation,
-  likePostOperation
-} = require("../Sql/dummy_dboperations/postOperations");
-=======
-  getPostsByUserIdesOperation,
+  getFriendsIdesOperation,
 } = require("../Sql/dboperations/postOperations");
->>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 
 class DBPosts {
   async getPostsByUserIdes(userIdes) {
@@ -37,6 +33,10 @@ class DBPosts {
 
   async removePost(postId) {
     return await removePostOperation(postId);
+  }
+
+  async getFriendsIdes(userId) {
+    return await getFriendsIdesOperation(userId);
   }
 }
 module.exports = new DBPosts();
