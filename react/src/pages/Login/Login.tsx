@@ -39,33 +39,7 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 };
 
 const Login = () => {
-  const googleAuth = (res: any) => {
-    const id_token = res.getAuthResponse().id_token;
-    axios
-      .post("http://localhost:3001/users/googlelogin", {
-        googleId: res.googleId,
-        email: res.Rs.Ct,
-        first_name: res.Rs.mU,
-        last_name: res.Rs.mS,
-        id_token: id_token,
-      })
-      .then((res: any) => console.log(res.data))
-      .catch((err: any) => console.log(err));
-  };
-  const facebookAuth = (res: any) => {
-    axios
-      //create in the backend route that get the info and save in the user db
-      //in the backend the route check if in db user is there if not create one
-      //else login and respone to front to go in to menu
-      .post("http://localhost:3001/users/facebook/login", {
-        name: res.googleId,
-        email: res.email,
-        picture: res.picture,
-        id: res.id,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  };
+ 
   // todo come back here and implement tokens, note if it is first time make account with that email
   const responseGoogle = (response: any) => {
     const email = response?.profileObj?.email;
@@ -75,6 +49,7 @@ const Login = () => {
   };
   const responseFacebook = (res: any) => {
     console.log(res);
+    console.log(res.email);
   };
 
   const goToMenu = () => {
@@ -145,7 +120,7 @@ const Login = () => {
       <div>
         <FacebookLogin
           // change it to .env
-          appId=""
+          appId="4637753582931156"
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}

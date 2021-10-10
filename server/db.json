@@ -181,5 +181,29 @@
     }
   ],
   "errors": [
+    {
+      "Error_Id": 50587917,
+      "Info": {
+        "code": "ELOGIN",
+        "originalError": {
+          "message": "Login failed for user 'fakelook'.",
+          "code": "ELOGIN"
+        },
+        "name": "ConnectionError"
+      },
+      "Time": 1633865200381
+    },
+    {
+      "Error_Id": 46765757,
+      "Info": {
+        "code": "ELOGIN",
+        "originalError": {
+          "message": "Login failed for user 'fakelook'.",
+          "code": "ELOGIN"
+        },
+        "name": "ConnectionError"
+      },
+      "Time": 1633865208185
+    }
   ]
 }
