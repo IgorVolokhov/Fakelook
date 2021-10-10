@@ -2,7 +2,7 @@ import axios from "axios";
 const url = "http://localhost:3001/errors";
 
 export const getAllErrors = async () => {
-  let errors = [""];
+  let errors;  
   await axios.post(`${url}/getallerrors`).then((res) => {
     errors = res.data.errors;
   });

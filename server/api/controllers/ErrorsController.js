@@ -9,6 +9,7 @@ module.exports = {
     const getErrors = await getAllErrors();
     res.status(200).json({
       message: getErrors ? `Got Errors` : `Didn't get errors`,
+      errors: getErrors
     });
   },
 

@@ -12,6 +12,7 @@ import { axiosGetPersonalInfo } from "./services/authentication/authentication.a
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import MyPosts from "./pages/MyPosts/MyPosts";
 import Friends from "./components/friends/Friends";
+import Errors from "./pages/Errors/Errors";
 
 function App() {
   const [userInfo, setUserInfo] = useState<any>(null);
@@ -78,6 +79,9 @@ function App() {
                   <Route exact path="/friends">
                     <Friends userInfoApp={userInfo} />
                   </Route>{" "}
+                  <Route path="/errors">
+                    <Errors />
+                  </Route>
                 </>
               )}
             </div>
