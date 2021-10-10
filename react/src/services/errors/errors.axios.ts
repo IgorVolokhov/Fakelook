@@ -22,7 +22,6 @@ export const addError = async (errorText: string) => {
 };
 
 export const removeError = async (errorId: any) => {
-  console.log(errorId);
   let message;
   await axios.post(`${url}/deleteerror`, { errorId }).then((res) => {
     message = res.data.message;
