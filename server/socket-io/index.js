@@ -47,8 +47,10 @@ const startSocket = async (server) => {
     });
 
     socket.on("emitFrindRequest", async ({ userId }) => {
+      console.log("in friend request");
       const users = await getUsers();
       let reciverSocketId = "";
+      // do it over friends and not users
       for (let index = 0; index < users.length; index++) {
         if (users[index].User_Id === userId) {
           reciverSocketId = users[index].Socket_Id;
@@ -66,7 +68,11 @@ const startSocket = async (server) => {
           break;
         }
       }
+      console.log("reciver: ", reciverSocketId);
+      console.log("reciver: ", userId);
+      console.log("sender: ", senderId);
       if (await isFriendPairExists(senderId, userId)) {
+        console.log("cant already arre");
         return;
       }
       io.to(reciverSocketId).emit("getFriendRequest", { userId: senderId });

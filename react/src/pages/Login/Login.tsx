@@ -1,10 +1,12 @@
 import { FieldAttributes, Form, Formik, useField } from "formik";
 import schema from "../../validations/Signin.validations";
 import { Link } from "react-router-dom";
-import { axiosSignin } from "../../services/authentication/authentication.axios";
+import {
+  axiosSignin,
+  axiosSigninWithEmail,
+} from "../../services/authentication/authentication.axios";
 import CustomButton from "../../models/CustomButton";
 import { TextField } from "@material-ui/core";
-import axios from "axios";
 import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
@@ -24,6 +26,7 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
 
+  // TODO move text field out side of here, maybe other componnets want to use it as well
   return (
     <>
       <TextField
@@ -39,42 +42,35 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
 };
 
 const Login = () => {
-  const googleAuth = (res: any) => {
-    const id_token = res.getAuthResponse().id_token;
-    axios
-      .post("http://localhost:3001/users/googlelogin", {
-        googleId: res.googleId,
-        email: res.Rs.Ct,
-        first_name: res.Rs.mU,
-        last_name: res.Rs.mS,
-        id_token: id_token,
-      })
-      .then((res: any) => console.log(res.data))
-      .catch((err: any) => console.log(err));
-  };
-  const facebookAuth = (res: any) => {
-    axios
-      //create in the backend route that get the info and save in the user db
-      //in the backend the route check if in db user is there if not create one
-      //else login and respone to front to go in to menu
-      .post("http://localhost:3001/users/facebook/login", {
-        name: res.googleId,
-        email: res.email,
-        picture: res.picture,
-        id: res.id,
-      })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  };
-  // todo come back here and implement tokens, note if it is first time make account with that email
-  const responseGoogle = (response: any) => {
+  const responseGoogle = async (response: any) => {
     const email = response?.profileObj?.email;
-    console.log(email);
     if (email) {
+      signinWithEmail(email);
     }
   };
+
   const responseFacebook = (res: any) => {
-    console.log(res);
+    const email = res.email;
+    if (email) {
+      signinWithEmail(email);
+    }
+  };
+
+  const signinWithEmail = async (email: string) => {
+    const {
+      messageRes,
+      isLoggedInRes,
+      accessTokenRes,
+      expiresInRes,
+      refreshTokenRes,
+    } = await axiosSigninWithEmail(email);
+    if (isLoggedInRes) {
+      saveRefreshToken(refreshTokenRes);
+      saveAccessToken(accessTokenRes, expiresInRes);
+      goToMenu();
+    } else {
+      console.log("OUT!!");
+    }
   };
 
   const goToMenu = () => {
@@ -145,7 +141,7 @@ const Login = () => {
       <div>
         <FacebookLogin
           // change it to .env
-          appId=""
+          appId="4637753582931156"
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}

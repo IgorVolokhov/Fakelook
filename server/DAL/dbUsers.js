@@ -2,12 +2,13 @@ const {
   signinOperation,
   signupOperation,
   editUserOperation,
-  googleLoginOperation,
+  emailLoginOperation,
   forgotpasswordOperation,
   changePasswordOperation,
   getPersonalInfoOperation,
   getInfoForSearchDisplayOperations,
   addFriendsOperation,
+  getUserByEmailOperation,
 } = require("../Sql/dboperations/userOperations");
 
 class DBUser {
@@ -30,8 +31,8 @@ class DBUser {
   async changePassword(key, newPass, email) {
     return await changePasswordOperation(key, newPass, email);
   }
-  async googleLoginDal(email, googleId, id_token) {
-    return await googleLoginOperation(email, googleId, id_token);
+  async emailLoginDal(email) {
+    return await emailLoginOperation(email);
   }
 
   async forgotPassword(email) {

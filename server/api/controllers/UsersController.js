@@ -3,7 +3,7 @@ const {
   checkIfUserExists,
   removeUser,
   editUser,
-  googleLoginDal,
+  emailLoginDal,
   forgotPassword,
   changePassword,
   getPersonalInfo,
@@ -93,21 +93,10 @@ module.exports = {
     });
   },
 
-  googleLogin: async (req, res) => {
-    console.log("got to google login");
-    const { email, googleId, id_token } = req.body;
+  emailLogin: async (req, res) => {
+    const { email } = req.body;
 
-    const { isSuccess, token } = await googleLoginDal(
-      email,
-      googleId,
-      id_token
-    );
-
-    const user = getUserByEmail(email);
-    console.log("user: ", user);
-
-    const accessToken = generateAccessToken(user.User_Id);
-    const refreshToken = generateRefreshAccessToken(user.User_Id);
+    const { isSuccess, token } = await emailLoginDal(email);
 
     if (!isSuccess) {
       res.status(200).json({
@@ -116,6 +105,14 @@ module.exports = {
       });
       return;
     }
+
+    console.log("was good ");
+    const { user, isSignedIn } = await getUserByEmail(email);
+    console.log("user: ", user);
+
+    const accessToken = await generateAccessToken(user.User_Id);
+    const refreshToken = await generateRefreshAccessToken(user.User_Id);
+
     console.log(accessToken);
     console.log(refreshToken);
     res.cookie("session-token", token);
