@@ -14,6 +14,11 @@ const Errors = () => {
     }
   };
 
+  const deleteError = async (errorId: number) => {
+    await removeError(errorId);
+    LoadErrors();
+  }
+
   useEffect(() => {
     LoadErrors();
   }, []);
@@ -33,7 +38,7 @@ const Errors = () => {
               <td>{error.Info.originalError.message}</td>
               <td>{error.Time}</td>
               <td>
-                <button onClick={() => removeError(error.Error_Id)}>
+                <button onClick={() => deleteError(error.Error_Id)}>
                   Delete
                 </button>
               </td>
