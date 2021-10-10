@@ -1,4 +1,3 @@
-const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
 const config = require("../dbconfig");
 const sql = require("mssql");
 const bcrypt = require("bcrypt");
@@ -33,27 +32,7 @@ async function signinOperation(user) {
     }
     return false;
   } catch (error) {
-    submitErrorOperation(error);
-    return {
-      isSignedIn: isPasswordMatching,
-      user: null,
-    };
-  }
-}
-
-async function getUserByEmailOperation(email) {
-  try {
-    let pool = await sql.connect(config);
-    let userRes = await pool
-      .request()
-      .query(`SELECT * from Users where Email = '${email}'`);
-
-    return {
-      isSignedIn: true,
-      user: userRes.recordset[0],
-    };
-  } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return {
       isSignedIn: isPasswordMatching,
       user: null,
@@ -92,7 +71,7 @@ async function signupOperation(user) {
     );
     return true;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return false;
   }
 }
@@ -109,7 +88,7 @@ async function editUserOperation(user) {
     );
     return true;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return false;
   }
 }
@@ -130,22 +109,41 @@ function turnUserStringSuitableForSql(user) {
   return user;
 }
 
-// TODO come back to google facebook login add tokens to them
-async function googleLoginOperation(email, googleId, id_token) {
+async function getUserByEmailOperation(email) {
   try {
-    const users = db.get("users").value();
+    let pool = await sql.connect(config);
+    let userRes = await pool
+      .request()
+      .query(`SELECT * from Users where Email = '${email}'`);
 
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].Email === email) {
-        users[i].id_token = id_token;
-        db.write();
-        return { isSuccess: true, token: id_token };
-      }
+    userRes = userRes.recordset[0];
+    return {
+      isSignedIn: true,
+      user: userRes,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      isSignedIn: isPasswordMatching,
+      user: null,
+    };
+  }
+}
+
+async function emailLoginOperation(email) {
+  try {
+    let pool = await sql.connect(config);
+    let userRes = await pool
+      .request()
+      .query(`SELECT * from Users where Email = '${email}'`);
+    userRes = userRes.recordset[0];
+    if (userRes.User_Id) {
+      return { isSuccess: true };
     }
 
     return { isSuccess: false };
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return { isSuccess: false };
   }
 }
@@ -180,7 +178,7 @@ async function changePasswordOperation(key, newPass, email) {
 
     return { isSuccess: true };
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return { isSuccess: false };
   }
 }
@@ -222,12 +220,14 @@ async function forgotpasswordOperation(email) {
     });
     return isSuccess;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return { isSuccess: false };
   }
 }
 
 async function upadteSqlPassword(newPassword, email) {
+  console.log(newPassword);
+  console.log(email);
   try {
     let pool = await sql.connect(config);
 
@@ -238,19 +238,20 @@ async function upadteSqlPassword(newPassword, email) {
       );
     return true;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return false;
   }
 }
 
-async function verify(token) {
-  const ticket = await client.verifyIdToken({
-    idToken: token,
-    audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
-  });
-  const payload = ticket.getPayload();
-  const userid = payload["sub"];
-}
+// needed for using google web token
+// async function verify(token) {
+//   const ticket = await client.verifyIdToken({
+//     idToken: token,
+//     audience: CLIENT_ID, // Specify the CLIENT_ID of the app that accesses the backend
+//   });
+//   const payload = ticket.getPayload();
+//   const userid = payload["sub"];
+// }
 
 async function getPersonalInfoOperation(user_id) {
   try {
@@ -273,7 +274,7 @@ async function getPersonalInfoOperation(user_id) {
     }
     return { userInfo: null };
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return { userInfo: null };
   }
 }
@@ -304,7 +305,7 @@ async function getInfoForSearchDisplayOperations(userIdes) {
     }
     return information.recordset;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return null;
   }
 }
@@ -334,7 +335,7 @@ async function addFriendsOperation(firstUserId, secondUserId) {
       );
     return true;
   } catch (error) {
-    submitErrorOperation(error);
+    console.log(error);
     return false;
   }
 }
@@ -343,10 +344,11 @@ module.exports = {
   signinOperation,
   signupOperation,
   editUserOperation,
-  googleLoginOperation,
+  emailLoginOperation,
   forgotpasswordOperation,
   changePasswordOperation,
   getPersonalInfoOperation,
   getInfoForSearchDisplayOperations,
   addFriendsOperation,
+  getUserByEmailOperation,
 };

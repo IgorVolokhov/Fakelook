@@ -6,7 +6,7 @@ const {
   login,
   remove,
   edit,
-  googleLogin,
+  emailLogin,
   forgotPassowrd,
   changePassword,
   personalInfo,
@@ -20,7 +20,7 @@ const {
 
 router.post("/signup", signup);
 router.post("/login", login);
-router.post("/googlelogin", googleLogin);
+router.post("/emaillogin", emailLogin);
 router.delete("/remove", remove);
 router.patch("/edit", authenticateTokenBody, edit);
 router.post("/forgot", forgotPassowrd);

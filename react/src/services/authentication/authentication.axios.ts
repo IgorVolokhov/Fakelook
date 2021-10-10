@@ -48,6 +48,34 @@ export const axiosSignin = async (username: string, password: string) => {
     refreshTokenRes,
   };
 };
+export const axiosSigninWithEmail = async (email: string) => {
+  let isLoggedInRes: boolean = false;
+  let messageRes: string = "",
+    accessTokenRes: string = "",
+    expiresInRes: number = -1,
+    refreshTokenRes: string = "";
+  const signinUrl = url + "emaillogin";
+  await axios.post(signinUrl, { email: email }).then((res) => {
+    console.log(res.data);
+
+    const { message, isLoggedIn, accessToken, refreshToken } = res.data;
+    messageRes = message;
+    isLoggedInRes = isLoggedIn;
+    accessTokenRes = accessToken.token;
+    expiresInRes = accessToken.expiresIn;
+    refreshTokenRes = refreshToken;
+  });
+
+  console.log("is logged in: ", isLoggedInRes);
+
+  return {
+    messageRes,
+    isLoggedInRes,
+    accessTokenRes,
+    expiresInRes,
+    refreshTokenRes,
+  };
+};
 
 export const axiosGetUser = async () => {
   let user = null;
