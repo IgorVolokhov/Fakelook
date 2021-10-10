@@ -7,6 +7,8 @@ const {
   forgotPassword,
   changePassword,
   getPersonalInfo,
+  getInfoForSearchDisplay,
+  getUserByEmail,
 } = require("../../DAL/dbUsers");
 const {
   generateAccessToken,
@@ -91,8 +93,8 @@ module.exports = {
     });
   },
 
-  // todo make it so you can sign up from google as well if first then use google info to make username and password etc
   googleLogin: async (req, res) => {
+    console.log("got to google login");
     const { email, googleId, id_token } = req.body;
 
     const { isSuccess, token } = await googleLoginDal(
@@ -101,8 +103,11 @@ module.exports = {
       id_token
     );
 
-    console.log("is isSuccess: ", isSuccess);
-    console.log("token: ", token);
+    const user = getUserByEmail(email);
+    console.log("user: ", user);
+
+    const accessToken = generateAccessToken(user.User_Id);
+    const refreshToken = generateRefreshAccessToken(user.User_Id);
 
     if (!isSuccess) {
       res.status(200).json({
@@ -111,20 +116,28 @@ module.exports = {
       });
       return;
     }
+    console.log(accessToken);
+    console.log(refreshToken);
     res.cookie("session-token", token);
     res.status(200).json({
       message: "good good",
       isLoggedIn: isSuccess,
+      accessToken: accessToken,
+      refreshToken: refreshToken,
     });
   },
 
   personalInfo: async (req, res) => {
-    console.log("personal info body: ");
-    console.log(req.body);
     const { userInfo } = await getPersonalInfo(req.body.User_Id);
-    console.log(userInfo);
     res.status(200).json({
       userInfo: userInfo,
+    });
+  },
+
+  infoForSearchDiplay: async (req, res) => {
+    const information = await getInfoForSearchDisplay(req.body.userIdes);
+    res.status(200).json({
+      information: information,
     });
   },
 };

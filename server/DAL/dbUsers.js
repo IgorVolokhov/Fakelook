@@ -6,6 +6,8 @@ const {
   forgotpasswordOperation,
   changePasswordOperation,
   getPersonalInfoOperation,
+  getInfoForSearchDisplayOperations,
+  addFriendsOperation,
 } = require("../Sql/dboperations/userOperations");
 
 class DBUser {
@@ -18,7 +20,6 @@ class DBUser {
     return false;
   }
 
-  // sign ins checks if user info exists in db
   async checkIfUserExists(user) {
     return await signinOperation(user);
   }
@@ -38,8 +39,19 @@ class DBUser {
   }
 
   async getPersonalInfo(user_id) {
-    console.log("personal info, user id: ", user_id);
     return await getPersonalInfoOperation(user_id);
+  }
+
+  async getInfoForSearchDisplay(userIdes) {
+    return await getInfoForSearchDisplayOperations(userIdes);
+  }
+
+  async addFriends(userId, friendId) {
+    return await addFriendsOperation(userId, friendId);
+  }
+
+  async getUserByEmail(email) {
+    return await getUserByEmailOperation(email);
   }
 }
 

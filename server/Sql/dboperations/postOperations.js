@@ -4,16 +4,23 @@ const {
   turnStringSuitableForSql,
   getToDayDate,
 } = require("../../utils/sqlFormating");
+const { getUsersToFriends } = require("../../DAL/dbSocket");
 
 async function getPostsByUserIdesOperation(userIdes) {
   try {
     let pool = await sql.connect(config);
     const userIdesForSql = userIdesToSqlUserIdes(userIdes);
-    console.log("user ides from client: ", userIdes);
-    console.log(userIdesForSql);
-    let posts = await pool
-      .request()
-      .query(`SELECT * from Posts WHERE User_Id In (${userIdesForSql})`);
+    let posts = "";
+    if (userIdes?.length > 1) {
+      posts = await pool
+        .request()
+        .query(`SELECT * from Posts WHERE User_Id In (${userIdesForSql})`);
+    } else {
+      posts = await pool
+        .request()
+        .query(`SELECT * from Posts WHERE User_Id = ${userIdes[0]}`);
+    }
+
     return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
   } catch (error) {
     console.log(error);
@@ -21,6 +28,7 @@ async function getPostsByUserIdesOperation(userIdes) {
   }
 }
 
+//TODO move to helpers
 function userIdesToSqlUserIdes(userIdes) {
   let userIdesRes = "";
   for (let index = 0; index < userIdes.length; index++) {
@@ -96,6 +104,14 @@ async function editPostOperation(
   }
 }
 
+async function removePostOperation(postId) {
+  console.log(
+    "come back to post operations .js and implement remove post, postId: ",
+    postId
+  );
+  return true;
+}
+
 // todo implement like dislike functonality
 async function likePost(commentId, isLiked) {
   try {
@@ -107,6 +123,7 @@ async function likePost(commentId, isLiked) {
         `update comments set Likes = Likes + ${addOrRemove} where Comment_Id = ${commentId}`
       );
   } catch (error) {
+    // fucntion write error to db (error), table error: { error: error:, date: date, }
     console.log(error);
   }
 }
@@ -125,9 +142,30 @@ async function dislikeComment(commentId, isDisliked) {
   }
 }
 
+async function getFriendsIdesOperation(userId) {
+  try {
+    let pool = await sql.connect(config);
+    let friendIdes = [];
+    const userWithFrinds = getUsersToFriends(userId);
+    for (let index = 0; index < userWithFrinds.length; index++) {
+      if (userWithFrinds[index].User_Id === userId) {
+        friendIdes.push(userWithFrinds[index].Friend_Id);
+      } else {
+        friendIdes.push(userWithFrinds[index].User_Id);
+      }
+    }
+    return friendIdes;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
+
 module.exports = {
+  getPostsByUserIdesOperation,
   getPostByIdOperation,
   addPostOperation,
   editPostOperation,
-  getPostsByUserIdesOperation,
+  removePostOperation,
+  getFriendsIdesOperation,
 };

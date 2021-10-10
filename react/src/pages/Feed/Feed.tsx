@@ -16,7 +16,8 @@ const Feed = ({ userInfoApp }: any) => {
     const LoadFeed = async () => {
       const posts = await getOnlyFriendsPosts();
       if (!posts) {
-        window.location.href = "/";
+        //window.location.href = "/";
+        console.log("posts: ", posts);
       }
 
       setIsLoading(false);
@@ -29,7 +30,7 @@ const Feed = ({ userInfoApp }: any) => {
     LoadFeed();
   }, []);
 
-  if (!isLoading && posts.length === 0) {
+  if (isLoading && posts.length === 0) {
     return <h1 className="message-text">No Posts Found</h1>;
   }
 
@@ -46,14 +47,14 @@ const Feed = ({ userInfoApp }: any) => {
           onClick={() => {
             history.goBack();
           }}
-        ></CustomButton>
+        />
       </div>
       {isLoading ? (
         <h1 className="message-text">Loading...</h1>
       ) : (
         <div className="posts-container ">
           {posts.map((post) => (
-            <PostCard key={post.id} post={post} userId={userInfoApp.Id}/>
+            <PostCard key={post.id} post={post} userId={userInfoApp.Id} />
           ))}
         </div>
       )}

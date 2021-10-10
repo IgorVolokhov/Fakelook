@@ -10,6 +10,7 @@ const {
   forgotPassowrd,
   changePassword,
   personalInfo,
+  infoForSearchDiplay,
 } = require("../controllers/UsersController");
 const {
   refreshToken,
@@ -19,12 +20,13 @@ const {
 
 router.post("/signup", signup);
 router.post("/login", login);
+router.post("/googlelogin", googleLogin);
 router.delete("/remove", remove);
 router.patch("/edit", authenticateTokenBody, edit);
-router.post("/googlelogin", googleLogin);
 router.post("/forgot", forgotPassowrd);
 router.post("/change", changePassword);
 router.post("/refreshtoken", refreshToken);
 router.delete("/logout", logout);
 router.post("/getpersonalinfo", authenticateTokenBody, personalInfo);
+router.post("/getinfoforsearchdiplay", infoForSearchDiplay);
 module.exports = router;

@@ -25,6 +25,8 @@ const Menu = () => {
   useEffect(() => {
     const setUsersFunction = async () => {
       const userInfoRes = await axiosGetPersonalInfo();
+      console.log("user info res in menu: ", userInfoRes);
+
       if (!userInfoRes) {
         window.location.href = "/";
         return;
@@ -46,6 +48,8 @@ const Menu = () => {
 
       await setUserInfo(userInfoRes);
       const posts = await getAllPostsForUser();
+      console.log(posts);
+
       await setMinimizedPosts(posts);
       console.log("mini posts: ", minimizedPosts);
 

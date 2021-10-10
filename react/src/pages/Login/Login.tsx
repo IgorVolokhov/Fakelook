@@ -66,8 +66,12 @@ const Login = () => {
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
   };
+  // todo come back here and implement tokens, note if it is first time make account with that email
   const responseGoogle = (response: any) => {
-    console.log(response);
+    const email = response?.profileObj?.email;
+    console.log(email);
+    if (email) {
+    }
   };
   const responseFacebook = (res: any) => {
     console.log(res);
@@ -109,7 +113,11 @@ const Login = () => {
       >
         {({ values, errors, isSubmitting }) => (
           <Form>
-            <MyTextField placeholder="Username" name="username" data-testid="field"/>
+            <MyTextField
+              placeholder="Username"
+              name="username"
+              data-testid="field"
+            />
             <MyTextField
               placeholder="Password"
               type="password"
@@ -147,8 +155,8 @@ const Login = () => {
         <GoogleLogin
           // change it to .env
           clientId="930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"
-          onSuccess={googleAuth}
-          onFailure={googleAuth}
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
         >
           <span>Login with Google</span>

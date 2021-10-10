@@ -3,36 +3,30 @@ const {
   getPostById,
   addPost,
   editPost,
-<<<<<<< HEAD
   removePost,
-  getAllPostsFromUserFriends,
-  likePost
 } = require("../../DAL/dbPosts");
+const { getUsersToFriends } = require("../../DAL/dbSocket");
 
-module.exports = {
+async function findFriendsIdes(userId) {
+  const friends = await getUsersToFriends(userId);
+  let usersFriends = [];
+  for (let index = 0; index < friends.length; index++) {
+    if (friends[index].User_Id === userId) {
+      usersFriends.push(friends[index].Friend_Id);
+    } else {
+      usersFriends.push(friends[index].User_Id);
+    }
+  }
 
-  getPosts: async (req, res) => {
-    const getPosts = await getAllPosts();
-    res.status(200).json({
-      message: getPosts ? `Got posts` : `Didn't get posts`,
-      posts: gotPosts,
-    });
-  },
-=======
-} = require("../../DAL/dbPosts");
-
-const friends = {
-  igor: [5, 6],
-  liel: [4, 6],
-  eyal: [4, 5],
-};
->>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
+  return usersFriends;
+}
 
 module.exports = {
   getAllPostsForUserByUserIdes: async (req, res) => {
     const userId = req.body.User_Id;
-    const userIdes = [userId, ...friends.igor];
-    console.log("these are the ides: ", userIdes);
+    let usersFriends = await findFriendsIdes(userId);
+
+    const userIdes = [userId, ...usersFriends];
     const posts = await getPostsByUserIdes(userIdes);
     console.log(posts);
     res.status(200).json({
@@ -44,7 +38,6 @@ module.exports = {
   getOnlyUserPosts: async (req, res) => {
     const userId = req.body.User_Id;
     const userIdes = [userId];
-    console.log("these are the ides: ", userIdes);
     const posts = await getPostsByUserIdes(userIdes);
     console.log(posts);
     res.status(200).json({
@@ -54,8 +47,10 @@ module.exports = {
   },
 
   getOnlyFriendsPosts: async (req, res) => {
-    const userIdes = [...friends.igor];
-    console.log("these are the ides: ", userIdes);
+    const userId = req.body.User_Id;
+    const usersFriends = await findFriendsIdes(userId);
+
+    const userIdes = [...usersFriends];
     const posts = await getPostsByUserIdes(userIdes);
     console.log(posts);
     res.status(200).json({
@@ -97,28 +92,9 @@ module.exports = {
   },
 
   remove: async (req, res) => {
-    console.log(req.body, "POST HERE");
     const isRemoved = await removePost(req.body.postId);
     res.status(200).json({
       message: isRemoved ? `remove successfully` : `didnt remove`,
     });
   },
-<<<<<<< HEAD
-
-  // getPostForUser: async (req, res) => {
-  //   const gotPosts = await getPostsByUserId(req.body.User_Id);
-  //   res.status(200).json({
-  //     message: gotPosts ? `Got posts` : `Didn't get posts`,
-  //     posts: gotPosts,
-  //   });
-  // },
-
-  getPostsById: async (req, res) => {
-    const gotPosts = await getPostsByUserId(req.body);
-    res.status(200).json({
-      message: gotPosts ? `Got posts by user` : `Didn't get posts by user`,
-    });
-  },
-=======
->>>>>>> 88f139f57531eee63bbf7d2b770a17cee60fcdd4
 };
