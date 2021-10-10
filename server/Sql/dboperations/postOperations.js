@@ -1,3 +1,4 @@
+const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -23,7 +24,7 @@ async function getPostsByUserIdesOperation(userIdes) {
 
     return posts.recordsets[0].length > 0 ? posts.recordsets[0] : null;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return null;
   }
 }
@@ -49,6 +50,7 @@ async function getPostByIdOperation(postId) {
       .query(`SELECT * from Posts where Post_Id = ${postId}`);
     return post.recordsets[0].length > 0 ? post.recordsets[0][0] : null;
   } catch (error) {
+    submitErrorOperation(error);
     return null;
   }
 }
@@ -75,7 +77,7 @@ async function addPostOperation(
     );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -100,6 +102,7 @@ async function editPostOperation(
       );
     return true;
   } catch (error) {
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -123,8 +126,7 @@ async function likePost(commentId, isLiked) {
         `update comments set Likes = Likes + ${addOrRemove} where Comment_Id = ${commentId}`
       );
   } catch (error) {
-    // fucntion write error to db (error), table error: { error: error:, date: date, }
-    console.log(error);
+    submitErrorOperation(error);
   }
 }
 
@@ -138,7 +140,7 @@ async function dislikeComment(commentId, isDisliked) {
         `update comments set Dislikes = Dislikes + ${addOrRemove} where Comment_Id = ${commentId}`
       );
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
   }
 }
 
@@ -156,7 +158,7 @@ async function getFriendsIdesOperation(userId) {
     }
     return friendIdes;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return [];
   }
 }

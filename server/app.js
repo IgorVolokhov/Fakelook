@@ -6,6 +6,7 @@ const { getPostsByUser } = require("./DAL/dbPosts");
 const loginRoutes = require("./api/routes/LoginRoutes");
 const postRoutes = require("./api/routes/PostsRoutes");
 const commentsRoutes = require("./api/routes/CommentRoutes");
+const errorRoutes = require("./api/routes/ErrorsRoutes");
 
 app.use(morgan("dev"));
 
@@ -46,6 +47,7 @@ async function print() {
 app.use("/users", loginRoutes);
 app.use("/posts", postRoutes);
 app.use("/comments", commentsRoutes);
+app.use("/errors", errorRoutes);
 
 // Error not Found
 app.use((req, res, next) => {
