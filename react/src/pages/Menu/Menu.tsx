@@ -15,6 +15,7 @@ import {
   axiosUpdateUser,
 } from "../../services/authentication/authentication.axios";
 import { refreshAccessToken, refreshToken } from "../../services/tokens";
+import { isNumber } from "util";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,6 +26,10 @@ const Menu = () => {
     []
   );
   const [radius, setRadius] = useState<number>(0);
+  const [dates, setDates] = useState<{ minDate: Date; maxDate: Date }>({
+    minDate: new Date(),
+    maxDate: new Date(),
+  });
   // on first join, load stuff (later describe)
   useEffect(() => {
     const setUsersFunction = async () => {
@@ -36,8 +41,6 @@ const Menu = () => {
         return;
       }
       await setUserInfo(userInfoRes);
-      console.log("Falling in here!!!!");
-      console.log(userInfoRes);
       if (
         userInfoRes.Firstname === null ||
         userInfoRes.lastname === null ||
@@ -47,12 +50,9 @@ const Menu = () => {
       ) {
         window.location.href = "/userdetails";
       }
-      console.log("user info: ");
-      console.log(userInfoRes);
 
       await setUserInfo(userInfoRes);
       const posts = await getAllPostsForUser();
-      console.log(posts);
 
       await setMinimizedPosts(posts);
       //TODO make the logic for 100+
@@ -66,45 +66,52 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    const setPostsToMatchRadius = async () => {
-      if (radius === 0) {
-        setSelectedMinimizedPosts(minimizedPosts);
-        return;
-      }
+    const setPostsToMatchFilters = async () => {
       if (!userLocation) {
         return;
       }
-      let inRadiusPosts = [];
+      let inFilteredPosts = [];
       let currentDistance = 0;
-      for (let index = 0; index < minimizedPosts.length; index++) {
-        currentDistance = await distanceKM(
+      let currentDate;
+
+      inFilteredPosts = minimizedPosts.filter((post) => {
+        let isInRadiusRange = false;
+        let isInDateRange = false;
+        currentDate = new Date(post.CreatedAt);
+        currentDistance = distanceKM(
           userLocation.lat,
-          minimizedPosts[index].Lat,
+          post.Lat,
           userLocation.lon,
-          minimizedPosts[index].Lon
+          post.Lon
         );
-        console.log("crnt dis: ", currentDistance);
-
-        if (currentDistance <= radius) {
-          inRadiusPosts.push(minimizedPosts[index]);
+        if (Number(radius) && radius > 0) {
+          if (currentDistance <= radius) {
+            console.log("current dis: ", currentDistance);
+            isInRadiusRange = true;
+          }
         }
-      }
-      await setSelectedMinimizedPosts([...inRadiusPosts]);
-      console.log("selected minimised posts: ", selectedMinimizedPosts);
-      console.log("minimised posts: ", minimizedPosts);
+        if (!isInRadiusRange) {
+          return false;
+        }
+
+        // getting incorect dates so for now all match dates
+        isInDateRange =
+          dates.minDate.getTime() <= currentDate.getTime() &&
+          dates.maxDate.getTime() >= currentDate.getTime();
+        isInDateRange = true;
+
+        return isInDateRange;
+      });
+
+      console.log("after filter: ", inFilteredPosts);
+
+      await setSelectedMinimizedPosts([...inFilteredPosts]);
     };
-    setPostsToMatchRadius();
-  }, [radius]);
 
-  const addPost1 = async (post: Post) => {
-    console.log("adding post");
-
-    emitPostAdded(post, "1");
-  };
+    setPostsToMatchFilters();
+  }, [radius, dates.minDate, dates.maxDate]);
 
   function distanceKM(lat1: number, lat2: number, lon1: number, lon2: number) {
-    console.log(`lat1: ${lat1},lat2: ${lat2},lon1: ${lon1},lon2: ${lon2},`);
-
     lon1 = (lon1 * Math.PI) / 180;
     lon2 = (lon2 * Math.PI) / 180;
     lat1 = (lat1 * Math.PI) / 180;
@@ -124,7 +131,7 @@ const Menu = () => {
     let r = 3956;
 
     // calculate the result
-    return c * r;
+    return Math.floor(c * r);
   }
 
   if (isLoading) {
@@ -134,10 +141,10 @@ const Menu = () => {
     <div className="grid-container">
       <div className="grid-item">
         <Options
-          addPost={(post: any) => addPost1(post)}
           setRadius={(radius: number) => {
             setRadius(radius);
           }}
+          setDates={setDates}
         ></Options>
       </div>
 

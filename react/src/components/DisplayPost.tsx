@@ -2,7 +2,6 @@ import Comments from "./comments/Comments";
 
 const DisplayPost = ({ post, userId, comments }: any) => {
   console.log("looking for this");
-
   console.log(post);
 
   return (

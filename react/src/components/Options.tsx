@@ -16,12 +16,12 @@ import { refreshToken } from "../services/tokens";
 const base = "http://localhost:3000";
 
 interface Props {
-  addPost: any;
   setRadius: any;
+  setDates: any;
 }
 
 //Add data to array to choose with push
-const Options = ({ addPost, setRadius }: Props) => {
+const Options = ({ setRadius, setDates }: Props) => {
   function moveToFeed() {
     window.location.href = base + "/feed";
   }
@@ -39,29 +39,31 @@ const Options = ({ addPost, setRadius }: Props) => {
   const [secondSelectedDate, setSecondSelectedDate] = useState<Date>(
     new Date(Date.now())
   );
-  const firsthandleDateChange = (date: Date | null) => {
+
+  const firsthandleDateChange = async (date: Date | null) => {
     if (date === null) {
       return;
     }
     if (date.getTime() > secondSelectedDate.getTime()) {
       return;
     }
-    setFirstSelectedDate(date);
+    await setFirstSelectedDate(date);
+    setDates({ minDate: firstSelectedDate, maxDate: secondSelectedDate });
   };
-  const secondhandleDateChange = (date: Date | null) => {
+  const secondhandleDateChange = async (date: Date | null) => {
     if (date === null) {
       return;
     }
     if (date.getTime() < firstSelectedDate.getTime()) {
       return;
     }
-    setSecondSelectedDate(date);
+    await setSecondSelectedDate(date);
+    setDates({ minDate: firstSelectedDate, maxDate: secondSelectedDate });
   };
   const [addPostModalOpen, setAddPostModalOpen] = useState(false);
 
   const closeModal = () => {
     setAddPostModalOpen(false);
-    addPost(new Post("1", new Location(34.34, 33.32), "some image"));
   };
   const openModal = () => {
     setAddPostModalOpen(true);

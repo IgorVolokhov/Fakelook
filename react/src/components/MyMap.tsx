@@ -9,6 +9,8 @@ import {
 import { useState, useEffect } from "react";
 import { Post } from "../classes/post";
 import { Location } from "../classes/location";
+import CustomModal from "../models/CustomModal";
+import DisplayPost from "./DisplayPost";
 
 interface Props {
   postsFromFather: Post[];
@@ -22,6 +24,9 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
   const [location, setLocation] = useState<Location>();
   const [position, setPosition] = useState(null);
   const [centerRadius, setCenterRadius] = useState<any>();
+
+  const [isPostModalOpen, setIsPostModalOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState<any>(null);
   const fillBlueOptions = { fillColor: "blue" };
 
   function LocationMarker() {
@@ -73,6 +78,16 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
     }
   }, [postsFromFather]);
 
+  const openModal = async (post: any) => {
+    await setSelectedPost(post);
+    await setIsPostModalOpen(true);
+  };
+
+  const closeModal = async () => {
+    await setIsPostModalOpen(false);
+    await setSelectedPost(null);
+  };
+
   return (
     <div className="leaflet-container">
       <MapContainer
@@ -88,12 +103,26 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
         {posts.map((post) => (
           <Marker position={[post.Lat, post.Lon]}>
             <Popup autoClose={false} closeOnClick={false}>
-              <img src={post.Image_Src} width="50em" height="50em" />
+              <img
+                src={post.Image_Src}
+                width="50em"
+                height="50em"
+                onClick={() => openModal(post)}
+              />
             </Popup>
             <LocationMarker />
           </Marker>
         ))}
       </MapContainer>
+      {isPostModalOpen && (
+        <CustomModal
+          modalOpen={isPostModalOpen}
+          handleClose={() => closeModal()}
+          text={
+            <DisplayPost post={selectedPost} userId={selectedPost.User_Id} />
+          }
+        />
+      )}
     </div>
   );
 };

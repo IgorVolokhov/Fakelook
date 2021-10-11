@@ -141,7 +141,7 @@ const Login = () => {
       <div>
         <FacebookLogin
           // change it to .env
-          appId="4637753582931156"
+          appId={process.env.REACT_APP_FACEBOOK_APP_ID || ""}
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
@@ -150,7 +150,7 @@ const Login = () => {
       <div>
         <GoogleLogin
           // change it to .env
-          clientId="930253588119-dsir0h8j06nq0t2dc3avmm0i11n0adq6.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_CLIENT_ID || ""}
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}
