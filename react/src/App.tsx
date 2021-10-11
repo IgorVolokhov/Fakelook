@@ -33,11 +33,40 @@ function App() {
         setIsLoadingUser(true);
         return;
       }
-      refreshAccessToken(900);
       await setIsLoadingUser(false);
+      refreshAccessToken(900);
     };
     asyncCheckLoggedIn();
   }, [userInfo]);
+
+  const ProtectedRoutes = () => {
+    if (userInfo === false && !isLoadingUser) {
+      window.location.href = "/";
+    }
+
+    return (
+      <Switch>
+        <Route path="/menu">
+          <Menu />
+        </Route>
+        <Route path="/userdetails">
+          <NewUserDetails />
+        </Route>
+        <Route path="/feed">
+          <Feed userInfoApp={userInfo} />
+        </Route>
+        <Route path="/myposts">
+          <MyPosts />
+        </Route>
+        <Route exact path="/friends">
+          <Friends userInfoApp={userInfo} />
+        </Route>{" "}
+        <Route path="/errors">
+          <Errors />
+        </Route>
+      </Switch>
+    );
+  };
 
   return (
     <div className="App">
@@ -60,26 +89,7 @@ function App() {
               {userInfo !== false && isLoadingUser ? (
                 <div>Loading ... </div>
               ) : (
-                <>
-                  <Route path="/menu">
-                    <Menu />
-                  </Route>
-                  <Route path="/userdetails">
-                    <NewUserDetails />
-                  </Route>
-                  <Route path="/feed">
-                    <Feed userInfoApp={userInfo} />
-                  </Route>
-                  <Route path="/myposts">
-                    <MyPosts />
-                  </Route>
-                  <Route exact path="/friends">
-                    <Friends userInfoApp={userInfo} />
-                  </Route>{" "}
-                  <Route path="/errors">
-                    <Errors />
-                  </Route>
-                </>
+                <ProtectedRoutes />
               )}
             </div>
           </Switch>
