@@ -1,3 +1,4 @@
+const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -15,7 +16,7 @@ async function getCommentsForPostOperation(postId) {
       .query(`SELECT * from Comments where Post_Id = ${postId}`);
     return comments.recordsets[0].length > 0 ? comments.recordsets[0] : null;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return null;
   }
 }
@@ -55,7 +56,7 @@ async function addCommentOperation(userId, postId, text, parentId) {
 
     return { comment: comment, isSuccessful: true };
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return { isSuccessful: true };
   }
 }
@@ -70,7 +71,7 @@ async function editCommentOperation(commentId, text) {
       );
     return true;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -87,7 +88,7 @@ async function likeComment(commentId, isLiked) {
         `update comments set Likes = Likes + ${addOrRemove} where Comment_Id = ${commentId}`
       );
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
   }
 }
 
@@ -101,7 +102,7 @@ async function dislikeComment(commentId, isDisliked) {
         `update comments set Dislikes = Dislikes + ${addOrRemove} where Comment_Id = ${commentId}`
       );
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
   }
 }
 

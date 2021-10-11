@@ -1,3 +1,4 @@
+const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -29,7 +30,7 @@ async function addOnlineUserOperation(userId, socketId) {
       return true;
     }
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return false;
   }
 }
@@ -56,7 +57,7 @@ async function getOnlineUsersOperation() {
     console.log("this is user res: ", usersRes);
     return users;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return null;
   }
 }
@@ -72,7 +73,7 @@ async function getUsersToFriendsOperation(userId) {
     const users = usersRes.recordset;
     return users;
   } catch (error) {
-    console.log(error);
+    submitErrorOperation(error);
     return null;
   }
 }
