@@ -13,7 +13,7 @@ import { TextField } from "@material-ui/core";
 import { Post } from "../classes/post";
 import { Location } from "../classes/location";
 import { refreshToken } from "../services/tokens";
-const base = "http://localhost:3000";
+const base = "https://localhost:3000";
 
 interface Props {
   setRadius: any;

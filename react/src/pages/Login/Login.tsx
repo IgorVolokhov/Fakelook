@@ -145,13 +145,12 @@ const Login = () => {
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
-          scope="public_profile"
+          scope="public_profile, email"
         ></FacebookLogin>
       </div>
       <div>
         <GoogleLogin
-          // change it to .env
-          clientId={process.env.REACT_APP_CLIENT_ID || ""}
+          clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID || ""}
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
           cookiePolicy={"single_host_origin"}

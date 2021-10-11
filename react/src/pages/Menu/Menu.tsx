@@ -15,7 +15,6 @@ import {
   axiosUpdateUser,
 } from "../../services/authentication/authentication.axios";
 import { refreshAccessToken, refreshToken } from "../../services/tokens";
-import { isNumber } from "util";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
