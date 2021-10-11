@@ -9,86 +9,92 @@ import {
   removePost,
 } from "../../services/posts/posts.axios";
 
-// todo make feed only friends posts while my posts only my posts that you can edit
+// TODO make feed only friends posts while my posts only my posts that you can edit
 const MyPosts = () => {
-  return <div>MY POSTS</div>;
-  // const history = useHistory();
-  // const [backendPosts, setBackendPosts] = useState<any>([]);
-  // const [posts, setPosts] = useState<Post[]>([]);
-  // const [isLoading, setIsLoading] = useState<boolean>(true);
-  // const [post, setPost] = useState<Post>();
+  const history = useHistory();
+  const [backendPosts, setBackendPosts] = useState<any>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [post, setPost] = useState<Post>();
 
-  // const postEdit = async (postId: any) => {
-  //   const postFromServer = await getOnlyUserPosts(postId);
-  //   const post = apiPost(postFromServer);
+  const postEdit = async (postId: any) => {
+    // const postFromServer = await getOnlyUserPosts();
+    // const post = apiPost(postFromServer);
+    // setBackendPosts([post, ...backendPosts]);
+  };
 
-  //   setBackendPosts([post, ...backendPosts]);
-  // };
+  function apiPost(apiPost: any) {
+    return {
+      //lat: number, lon: number, description?: string, tags?: string
+      id: apiPost._id,
+      lat: apiPost._location.lat,
+      lon: apiPost._location.lon,
+      description: apiPost.description,
+      tags: apiPost._tags,
+    };
+  }
 
-  // function apiPost(apiPost: any) {
-  //   return {
-  //     //lat: number, lon: number, description?: string, tags?: string
-  //     id: apiPost._id,
-  //     lat: apiPost._location.lat,
-  //     lon: apiPost._location.lon,
-  //     description: apiPost.description,
-  //     tags: apiPost._tags
-  //   };
-  // }
+  useEffect(() => {
+    const LoadFeed = async () => {
+      const posts = await getOnlyUserPosts();
+      if (!posts) {
+        window.location.href = "/menu";
+      }
 
-  // useEffect(() => {
-  //   const LoadFeed = async () => {
-  //     const posts = await getOnlyUserPosts();
-  //     if (!posts) {
-  //       window.location.href = "/";
-  //     }
+      setIsLoading(false);
+      if (posts) {
+        await setPosts(posts);
+      }
+    };
 
-  //     setIsLoading(false);
-  //     if (posts) {
-  //       setPosts(posts);
-  //       console.log(posts);
-  //     }
-  //     console.log(posts, "HELLO POSTS");
-  //   };
+    LoadFeed();
+  }, []);
 
-  //   LoadFeed();
-  // }, []);
+  if (!isLoading && posts.length === 0) {
+    return <h1 className="message-text">No Posts Found</h1>;
+  }
 
-  // if (!isLoading && posts.length === 0) {
-  //   return <h1 className="message-text">No Posts Found</h1>;
-  // }
+  const removePostFunction = async (post: any) => {
+    const isConfirmed = window.confirm("Are you sure you want to delete?");
+    if (isConfirmed) {
+      await removePost(post);
+    }
+    const postsFromServer = await getOnlyUserPosts();
+    if (postsFromServer) {
+      await setPosts(postsFromServer);
+    }
+    setIsLoading(false);
+  };
 
-  // return (
-  //   <div className="posts-container scrollable">
-  //     <div>
-  //       <span>Posts:</span>
-  //       <CustomButton
-  //         text="Go Back"
-  //         onClick={() => {
-  //           history.goBack();
-  //         }}
-  //       ></CustomButton>
-  //     </div>
-  //     {isLoading ? (
-  //       <h1 className="message-text">Loading...</h1>
-  //     ) : (
-  //       <div className="posts-container">
-  //         {posts.map((post) => (
-  //           <div>
-  //             <CustomButton
-  //               text="Edit"
-  //               onClick={() =>
-  //                 postEdit(post.id)
-  //               }
-  //             />
-  //             <CustomButton text="Delete" onClick={() => removePost(post)}/>
-  //             <PostCard key={post.id} post={post} />
-  //           </div>
-  //         ))}
-  //       </div>
-  //     )}
-  //   </div>
-  // );
+  return (
+    <div className="posts-container scrollable">
+      <div>
+        <span>Posts:</span>
+        <CustomButton
+          text="Go Back"
+          onClick={() => {
+            history.goBack();
+          }}
+        ></CustomButton>
+      </div>
+      {isLoading ? (
+        <h1 className="message-text">Loading...</h1>
+      ) : (
+        <div className="posts-container">
+          {posts.map((post) => (
+            <div>
+              <CustomButton text="Edit" onClick={() => postEdit(post.id)} />
+              <CustomButton
+                text="Delete"
+                onClick={() => removePostFunction(post)}
+              />
+              <PostCard key={post.id} post={post} />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default MyPosts;

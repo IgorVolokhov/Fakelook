@@ -1,4 +1,6 @@
-const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
+const {
+  submitErrorOperation,
+} = require("../dummy_dboperations/errorsOperation");
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -63,7 +65,6 @@ async function addPostOperation(
   description = null,
   tags = null
 ) {
-  console.log("in add post operation");
   try {
     let pool = await sql.connect(config);
 
@@ -108,11 +109,14 @@ async function editPostOperation(
 }
 
 async function removePostOperation(postId) {
-  console.log(
-    "come back to post operations .js and implement remove post, postId: ",
-    postId
-  );
-  return true;
+  try {
+    let pool = await sql.connect(config);
+    await pool.request().query(`delete Posts where Post_Id = ${postId}`);
+    return true;
+  } catch (error) {
+    submitErrorOperation(error);
+    return false;
+  }
 }
 
 // todo implement like dislike functonality

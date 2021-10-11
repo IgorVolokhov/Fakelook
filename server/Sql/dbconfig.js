@@ -1,6 +1,8 @@
+require("dotenv").config();
+
 const config = {
-  user: "fakelook",
-  password: "qweasdzxc123",
+  user: process.env.DB_CONFIG_USER,
+  password: process.env.DB_CONFIG_PASSWORD,
   server: "localhost",
   database: "fakelookDb",
   options: {

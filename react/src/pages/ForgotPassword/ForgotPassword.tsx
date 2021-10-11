@@ -16,7 +16,6 @@ const ForgotPassword = () => {
     axios
       .post("http://localhost:3001/users/change", { KeyEmail, NewPass, Email })
       .then((res) => {
-        console.log(res);
         window.location.href = "/";
       })
       .catch((err) => console.log(err));

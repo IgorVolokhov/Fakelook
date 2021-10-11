@@ -15,18 +15,17 @@ export const getAllPostsForUser = async () => {
     })
     .then((res) => {
       posts = res.data.posts;
-      console.log(res.data);
     });
   return posts;
 };
 
 export const removePost = async (post: any) => {
-  console.log(post);
-
-  var postId = post.Post_Id;
+  const postId = post.Post_Id;
   let message;
   await axios
-    .post(`${url}/removepost`, { token: getAccessToken(), postId: postId })
+    .delete(`${url}/removepost`, {
+      data: { token: getAccessToken(), postId: postId },
+    })
     .then((res) => {
       message = res.data.message;
     });
@@ -71,8 +70,6 @@ export const addPost = async (
   description: string = "",
   tags: string = ""
 ) => {
-  console.log("adding post");
-
   let message;
 
   const descriptionToInsert = makeNotInsertedFieldNull(description);

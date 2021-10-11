@@ -28,7 +28,6 @@ module.exports = {
 
     const userIdes = [userId, ...usersFriends];
     const posts = await getPostsByUserIdes(userIdes);
-    console.log(posts);
     res.status(200).json({
       message: posts ? `Got posts` : `Didn't get posts`,
       posts: posts,
@@ -39,7 +38,6 @@ module.exports = {
     const userId = req.body.User_Id;
     const userIdes = [userId];
     const posts = await getPostsByUserIdes(userIdes);
-    console.log(posts);
     res.status(200).json({
       message: posts ? `Got posts` : `Didn't get posts`,
       posts: posts,
@@ -52,7 +50,6 @@ module.exports = {
 
     const userIdes = [...usersFriends];
     const posts = await getPostsByUserIdes(userIdes);
-    console.log(posts);
     res.status(200).json({
       message: posts ? `Got posts` : `Didn't get posts`,
       posts: posts,
@@ -68,7 +65,6 @@ module.exports = {
   },
 
   add: async (req, res) => {
-    console.log("in add post: ", req.body);
     const { User_Id, image_src, lat, lon, description, tags } = req.body;
     const isAdded = await addPost(
       User_Id,

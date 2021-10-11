@@ -29,14 +29,11 @@ function App() {
 
   useEffect(() => {
     const asyncCheckLoggedIn = async () => {
-      console.log("this is user info: ", userInfo);
-
       if (!userInfo) {
         setIsLoadingUser(true);
         return;
       }
       refreshAccessToken(900);
-      console.log("app user info: ", userInfo);
       await setIsLoadingUser(false);
     };
     asyncCheckLoggedIn();

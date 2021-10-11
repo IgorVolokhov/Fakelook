@@ -287,9 +287,6 @@ async function getInfoForSearchDisplayOperations(userIdes) {
       return null;
     }
     let information = "";
-    console.log("find this");
-    console.log(userIdes[0]);
-    console.log(userIdes.length);
     if (userIdes?.length > 1) {
       information = await pool
         .request()
@@ -325,8 +322,6 @@ function userIdesToSqlUserIdes(userIdes) {
 async function addFriendsOperation(firstUserId, secondUserId) {
   try {
     const firstUserIdSql = firstUserId.userId;
-    console.log("first user id: ", firstUserIdSql);
-    console.log("first user id: ", secondUserId);
     let pool = await sql.connect(config);
     await pool
       .request()

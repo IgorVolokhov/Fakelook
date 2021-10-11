@@ -11,13 +11,18 @@ const AddPost = ({ closeModal }: any) => {
   function submit(e: any) {
     e.preventDefault();
     if (selectedFile != null && post.description != null && post.tags != null) {
-      addPost(
-        selectedFile,
-        userLocation.lat,
-        userLocation.lon,
-        post.description,
-        post.tags
-      );
+      if (location) {
+        addPost(
+          selectedFile,
+          location.lat,
+          location.lon,
+          post.description,
+          post.tags
+        );
+      } else {
+        alert("In order to post, please allow location");
+        return;
+      }
       alert("Post added successfully");
       closeModal();
     } else {
@@ -31,14 +36,12 @@ const AddPost = ({ closeModal }: any) => {
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      console.log("Available");
       navigator.geolocation.getCurrentPosition(function (position) {
-        console.log("Latitude: ", position.coords.latitude);
-        console.log("Longitude: ", position.coords.longitude);
         userLocation = new Location(
           position.coords.latitude,
           position.coords.longitude
         );
+
         setLocation(userLocation);
       });
     } else {
@@ -51,7 +54,6 @@ const AddPost = ({ closeModal }: any) => {
       return;
     }
     const file = files[0];
-    console.log(file);
 
     var reader = new FileReader();
     var baseString;

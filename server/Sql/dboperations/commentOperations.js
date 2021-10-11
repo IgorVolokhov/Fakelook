@@ -1,4 +1,6 @@
-const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
+const {
+  submitErrorOperation,
+} = require("../dummy_dboperations/errorsOperation");
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -9,7 +11,6 @@ const {
 
 async function getCommentsForPostOperation(postId) {
   try {
-    console.log("i am in get comments by id: ", postId);
     let pool = await sql.connect(config);
     let comments = await pool
       .request()

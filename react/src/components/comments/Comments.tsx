@@ -16,9 +16,6 @@ const Comments = ({ postId, currentUserId }: any) => {
         backendComment.parentId === undefined
     )
     .sort((a: any, b: any) => {
-      console.log("a: ", a);
-      console.log("b: ", b);
-
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
     });
   const getReplies = (commentId: any) => {

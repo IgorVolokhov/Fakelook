@@ -145,6 +145,7 @@ const Login = () => {
           autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
+          scope="public_profile"
         ></FacebookLogin>
       </div>
       <div>

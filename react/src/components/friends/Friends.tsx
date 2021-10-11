@@ -33,11 +33,8 @@ const Friends = ({ userInfoApp }: any) => {
 
   useEffect(() => {
     const setUsersFunction = async () => {
-      console.log("from father: ", userInfoApp);
-
       await setUserInfo(userInfoApp);
       if (userInfo === false) {
-        console.log("from friends, this is user info: ", userInfo);
         window.location.href = "/";
       }
 
@@ -112,7 +109,6 @@ const Friends = ({ userInfoApp }: any) => {
       // const res = await axios post message, then add res.data into set messages and not message
       message.Id = uniqueId();
       message.createdAt = "0:06";
-      console.log(message);
 
       setMessages([...messages, message]);
       setNewMessage("");

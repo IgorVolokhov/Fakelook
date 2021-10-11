@@ -27,8 +27,6 @@ export class Location {
       sin(lat1) * sin(lat2) + cos(lat1) + cos(lat2) * cos(lon2 - lon1)
     );
 
-    console.log("the distance is:", a);
-
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const d = this.radius * c;
 

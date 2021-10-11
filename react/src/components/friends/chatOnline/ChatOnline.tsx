@@ -25,14 +25,7 @@ const ChatOnline = ({ onlineUsersFather, currentId, setCurrentChat }: any) => {
   }, [friends, onlineUsersFather]);
 
   const handleClick = async (user: any) => {
-    // try {
-    //   const res = await axios.get(
-    //     `/conversations/find/${currentId}/${user._id}`
-    //   );
-    //   setCurrentChat(res.data);
-    // } catch (err) {
-    //   console.log(err);
-    // }
+    console.log("not implemented");
   };
 
   return (

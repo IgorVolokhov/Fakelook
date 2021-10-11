@@ -1,4 +1,6 @@
-const { submitErrorOperation } = require ('../dummy_dboperations/errorsOperation');
+const {
+  submitErrorOperation,
+} = require("../dummy_dboperations/errorsOperation");
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
@@ -54,7 +56,6 @@ async function getOnlineUsersOperation() {
     let pool = await sql.connect(config);
     let usersRes = await pool.request().query(`select * from OnlineUsers`);
     const users = usersRes.recordset;
-    console.log("this is user res: ", usersRes);
     return users;
   } catch (error) {
     submitErrorOperation(error);

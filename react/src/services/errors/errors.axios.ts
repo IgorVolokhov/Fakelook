@@ -2,7 +2,7 @@ import axios from "axios";
 const url = "http://localhost:3001/errors";
 
 export const getAllErrors = async () => {
-  let errors;  
+  let errors;
   await axios.post(`${url}/getallerrors`).then((res) => {
     errors = res.data.errors;
   });
@@ -22,7 +22,6 @@ export const addError = async (errorText: string) => {
 };
 
 export const removeError = async (errorId: any) => {
-  console.log(errorId);
   let message;
   await axios.post(`${url}/deleteerror`, { errorId }).then((res) => {
     message = res.data.message;

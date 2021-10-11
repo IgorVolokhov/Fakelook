@@ -10,10 +10,6 @@ export function saveAccessToken(accessToken: string, expiresIn: number = -1) {
 }
 
 export function refreshAccessToken(expiresIn: number) {
-  console.log(
-    "should start refeshing tokens every 10 min nowexpiresIn: ",
-    expiresIn
-  );
   setInterval(() => {
     refreshToken();
   }, (expiresIn - 300) * 1000);

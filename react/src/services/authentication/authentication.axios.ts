@@ -56,8 +56,6 @@ export const axiosSigninWithEmail = async (email: string) => {
     refreshTokenRes: string = "";
   const signinUrl = url + "emaillogin";
   await axios.post(signinUrl, { email: email }).then((res) => {
-    console.log(res.data);
-
     const { message, isLoggedIn, accessToken, refreshToken } = res.data;
     messageRes = message;
     isLoggedInRes = isLoggedIn;
@@ -65,8 +63,6 @@ export const axiosSigninWithEmail = async (email: string) => {
     expiresInRes = accessToken.expiresIn;
     refreshTokenRes = refreshToken;
   });
-
-  console.log("is logged in: ", isLoggedInRes);
 
   return {
     messageRes,
@@ -99,7 +95,6 @@ export const axiosGetPersonalInfo = async () => {
   if (!isLoggedIn) {
     return false;
   }
-  console.log("returnnig this: ", data);
 
   return data;
 };

@@ -17,14 +17,12 @@ const Feed = ({ userInfoApp }: any) => {
       const posts = await getOnlyFriendsPosts();
       if (!posts) {
         //window.location.href = "/";
-        console.log("posts: ", posts);
+      }
+      if (posts) {
+        await setPosts(posts);
       }
 
       setIsLoading(false);
-      if (posts) {
-        setPosts(posts);
-      }
-      console.log(posts, "HELLO POSTS");
     };
 
     LoadFeed();
@@ -35,7 +33,7 @@ const Feed = ({ userInfoApp }: any) => {
   }
 
   if (!userInfoApp) {
-    return <div>Loading...</div>;
+    return <div>Something went wrong</div>;
   }
 
   return (

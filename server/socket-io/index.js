@@ -25,8 +25,6 @@ const startSocket = async (server) => {
   });
   io.on("connection", (socket) => {
     // when user connects
-    console.log("i have some connection, socket id: ");
-    console.log(socket.id);
     io.emit("message", formatMessage(botName, "Welcome to socket!!"));
 
     // on adding user, someone connected
@@ -41,13 +39,11 @@ const startSocket = async (server) => {
     // TODO check if works
     socket.on("emitSendMessage", ({ senderId, reciverId, text }) => {
       //const user = getUser(reciverId);
-      console.log("sending message to: ", user);
 
       io.to(user?.socketId).emit("getMessage", { senderId, text });
     });
 
     socket.on("emitFrindRequest", async ({ userId }) => {
-      console.log("in friend request");
       const users = await getUsers();
       let reciverSocketId = "";
       // do it over friends and not users
@@ -68,11 +64,8 @@ const startSocket = async (server) => {
           break;
         }
       }
-      console.log("reciver: ", reciverSocketId);
-      console.log("reciver: ", userId);
-      console.log("sender: ", senderId);
       if (await isFriendPairExists(senderId, userId)) {
-        console.log("cant already arre");
+        console.log("cant already are");
         return;
       }
       io.to(reciverSocketId).emit("getFriendRequest", { userId: senderId });
@@ -102,9 +95,7 @@ const startSocket = async (server) => {
 };
 
 async function isFriendPairExists(firstUserId, secondUserId) {
-  console.log(firstUserId, secondUserId);
   const users = await getUsersToFriends(firstUserId);
-  console.log(users);
   for (let index = 0; index < users.length; index++) {
     if (
       users[index].User_Id === secondUserId ||

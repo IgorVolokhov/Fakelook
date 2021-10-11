@@ -4,13 +4,7 @@ import { axiosGetInfoForSearchDisplay } from "../authentication/authentication.a
 
 const socket = io("http://localhost:3001");
 
-export const socketStart = () => {
-  // socket.emit("message", {message: "this is hello from react!!"})
-  // socket.on("message", (message) => {
-  //     console.log("i have some message");
-  //     console.log(message);
-  // })
-};
+export const socketStart = () => {};
 
 export const socketStartFriends = async (
   userId: number,
@@ -20,18 +14,14 @@ export const socketStartFriends = async (
 
   // set online users
   socket.on("getUsers", async (users) => {
-    console.log("new users: ", users);
     await setOnlineUsers(users);
   });
 
   // get message send it to reciver and add to list
-  socket.on("getMessage", (data) => {
-    console.log("new message: ", data);
-  });
+  socket.on("getMessage", (data) => {});
 
   socket.on("getFriendRequest", async (userId) => {
     const senderInfo = await axiosGetInfoForSearchDisplay([userId.userId]);
-    console.log("sender info: ", senderInfo);
 
     const fullName = `${senderInfo[0].Firstname}, ${senderInfo[0].Lastname}`;
     let isAccepted = window.confirm(`${fullName} wants to be your friend!`);

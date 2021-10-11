@@ -34,7 +34,6 @@ const Menu = () => {
   useEffect(() => {
     const setUsersFunction = async () => {
       const userInfoRes = await axiosGetPersonalInfo();
-      console.log("user info res in menu: ", userInfoRes);
 
       if (!userInfoRes) {
         window.location.href = "/";
@@ -86,7 +85,6 @@ const Menu = () => {
         );
         if (Number(radius) && radius > 0) {
           if (currentDistance <= radius) {
-            console.log("current dis: ", currentDistance);
             isInRadiusRange = true;
           }
         }
@@ -102,8 +100,6 @@ const Menu = () => {
 
         return isInDateRange;
       });
-
-      console.log("after filter: ", inFilteredPosts);
 
       await setSelectedMinimizedPosts([...inFilteredPosts]);
     };

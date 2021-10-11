@@ -26,14 +26,9 @@ const ChatMenu = ({ onlineUsers, setCurrentChat }: any) => {
     for (let index = 0; index < onlineUsers.length; index++) {
       userIdes.push(onlineUsers[index].User_Id);
     }
-    console.log("online users: ", onlineUsers);
 
     const usersInformationForConversationsDisplay =
       await axiosGetInfoForSearchDisplay(userIdes);
-    console.log(
-      "info for conv display: ",
-      usersInformationForConversationsDisplay
-    );
 
     await setConversations(usersInformationForConversationsDisplay);
     await setSearchText("Search for friends");

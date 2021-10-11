@@ -3,7 +3,6 @@ import icon from "../../../Images/user-icon.jpg";
 
 const Conversation = ({ conversation }: any) => {
   // conversation { members: [id, id ...], id: conversation_Id}
-  console.log("this is in conversation :", conversation);
 
   return (
     <>

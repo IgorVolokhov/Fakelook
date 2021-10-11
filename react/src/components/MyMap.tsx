@@ -35,8 +35,6 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
         map.locate();
       },
       locationfound(e: any) {
-        console.log(e);
-
         setCenterRadius(e.lating);
         setPosition(e.latlng);
         setUserLocation({ lat: e.latitude, lon: e.longitude });
@@ -57,16 +55,10 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
   useEffect(() => {
     const getPostsForMap = async () => {
       setPosts(postsFromFather);
-      console.log("posts from father:");
-
-      console.log(postsFromFather);
     };
     getPostsForMap();
     if ("geolocation" in navigator) {
-      console.log("Available");
       navigator.geolocation.getCurrentPosition(function (position) {
-        console.log("Latitude: ", position.coords.latitude);
-        console.log("Longitude: ", position.coords.longitude);
         userLocation = new Location(
           position.coords.longitude,
           position.coords.latitude
@@ -90,30 +82,34 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
 
   return (
     <div className="leaflet-container">
-      <MapContainer
-        center={[userLocation.lat, userLocation.lon]}
-        zoom={8}
-        scrollWheelZoom={true}
-      >
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+      {location ? (
+        <MapContainer
+          center={[userLocation.lat, userLocation.lon]}
+          zoom={8}
+          scrollWheelZoom={true}
+        >
+          <TileLayer
+            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
 
-        {posts.map((post) => (
-          <Marker position={[post.Lat, post.Lon]}>
-            <Popup autoClose={false} closeOnClick={false}>
-              <img
-                src={post.Image_Src}
-                width="50em"
-                height="50em"
-                onClick={() => openModal(post)}
-              />
-            </Popup>
-            <LocationMarker />
-          </Marker>
-        ))}
-      </MapContainer>
+          {posts?.map((post) => (
+            <Marker position={[post.Lat, post.Lon]}>
+              <Popup autoClose={false} closeOnClick={false}>
+                <img
+                  src={post.Image_Src}
+                  width="50em"
+                  height="50em"
+                  onClick={() => openModal(post)}
+                />
+              </Popup>
+              <LocationMarker />
+            </Marker>
+          ))}
+        </MapContainer>
+      ) : (
+        <div>Please allow location</div>
+      )}
       {isPostModalOpen && (
         <CustomModal
           modalOpen={isPostModalOpen}
