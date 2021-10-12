@@ -6,6 +6,7 @@ const {
 
 module.exports = {
   getErrors: async (req, res) => {
+    console.log("HOT HERE");
     const getErrors = await getAllErrors();
     res.status(200).json({
       message: getErrors ? `Got Errors` : `Didn't get errors`,
@@ -23,7 +24,7 @@ module.exports = {
   deleteError: async (req, res) => {
     const deleteError = await removeError(req.body.errorId);
     res.status(200).json({
-      message: addError ? `Deleted error` : `Didn't delete error`,
+      message: deleteError ? `Deleted error` : `Didn't delete error`,
     });
   },
 };
