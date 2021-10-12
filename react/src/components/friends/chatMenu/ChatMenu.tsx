@@ -13,12 +13,14 @@ const ChatMenu = ({ onlineUsers, setCurrentChat }: any) => {
   const setConversationsForUsers = async () => {
     // get conversations
     await fetchUsersForSearch();
+    setIsSearchingUsers(true);
   };
 
   const setConversationsForGroups = async () => {
     // TODO get from api all group conversations for this user and set them
     await setConversations([]);
     await setSearchText("Search for groups");
+    setIsSearchingUsers(false);
   };
 
   const fetchUsersForSearch = async () => {

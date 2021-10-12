@@ -40,7 +40,7 @@ function App() {
   }, [userInfo]);
 
   const ProtectedRoutes = () => {
-    if (userInfo === false && !isLoadingUser) {
+    if (userInfo === false) {
       window.location.href = "/";
     }
 

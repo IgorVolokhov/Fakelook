@@ -92,6 +92,7 @@ const Menu = () => {
         }
 
         // getting incorect dates so for now all match dates
+
         isInDateRange =
           dates.minDate.getTime() <= currentDate.getTime() &&
           dates.maxDate.getTime() >= currentDate.getTime();
@@ -121,9 +122,8 @@ const Menu = () => {
 
     let c = 2 * Math.asin(Math.sqrt(a));
 
-    // Radius of earth in kilometers. Use 3956
-    // for miles
-    let r = 3956;
+    // Radius of earth in kilometers: 6378, in miles: 3956
+    let r = 6378;
 
     // calculate the result
     return Math.floor(c * r);

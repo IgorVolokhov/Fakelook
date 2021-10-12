@@ -284,6 +284,678 @@
         "precedingErrors": []
       },
       "Time": "11/10/2021, 9:24:43"
+    },
+    {
+      "Error_Id": 45170807,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 515,
+            "state": 2,
+            "class": 16,
+            "message": "Cannot insert the value NULL into column 'User_Id', table 'fakelookDb.dbo.OnlineUsers'; column does not allow nulls. INSERT fails.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 515,
+        "lineNumber": 1,
+        "state": 2,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "11/10/2021, 14:37:06"
+    },
+    {
+      "Error_Id": 41081930,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 515,
+            "state": 2,
+            "class": 16,
+            "message": "Cannot insert the value NULL into column 'User_Id', table 'fakelookDb.dbo.OnlineUsers'; column does not allow nulls. INSERT fails.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 515,
+        "lineNumber": 1,
+        "state": 2,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "11/10/2021, 15:06:53"
+    },
+    {
+      "Error_Id": 35043277,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:19:01"
+    },
+    {
+      "Error_Id": 89366639,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:19:08"
+    },
+    {
+      "Error_Id": 16461060,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:23:08"
+    },
+    {
+      "Error_Id": 84384347,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:23:47"
+    },
+    {
+      "Error_Id": 12255956,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:23:48"
+    },
+    {
+      "Error_Id": 68103708,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:23:55"
+    },
+    {
+      "Error_Id": 31113473,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:24:33"
+    },
+    {
+      "Error_Id": 94154563,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:24:34"
+    },
+    {
+      "Error_Id": 46144153,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:25:52"
+    },
+    {
+      "Error_Id": 46745961,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:25:53"
+    },
+    {
+      "Error_Id": 84033758,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:25:55"
+    },
+    {
+      "Error_Id": 77084735,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:25:56"
+    },
+    {
+      "Error_Id": 75525198,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:26:15"
+    },
+    {
+      "Error_Id": 67016145,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:26:15"
+    },
+    {
+      "Error_Id": 63983793,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:27:16"
+    },
+    {
+      "Error_Id": 64353568,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:27:16"
+    },
+    {
+      "Error_Id": 12911010,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:28:49"
+    },
+    {
+      "Error_Id": 33568103,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:28:49"
+    },
+    {
+      "Error_Id": 28960320,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:29:14"
+    },
+    {
+      "Error_Id": 29731369,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:29:51"
+    },
+    {
+      "Error_Id": 39392775,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:30:34"
+    },
+    {
+      "Error_Id": 35492145,
+      "Info": {
+        "code": "EREQUEST",
+        "originalError": {
+          "info": {
+            "name": "ERROR",
+            "event": "errorMessage",
+            "number": 207,
+            "state": 1,
+            "class": 16,
+            "message": "Invalid column name 'undefined'.",
+            "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+            "procName": "",
+            "lineNumber": 1
+          }
+        },
+        "name": "RequestError",
+        "number": 207,
+        "lineNumber": 1,
+        "state": 1,
+        "class": 16,
+        "serverName": "DESKTOP-88O5T39\\MSSQLPLEASEWORK",
+        "procName": "",
+        "precedingErrors": []
+      },
+      "Time": "12/10/2021, 15:30:40"
     }
   ]
 }

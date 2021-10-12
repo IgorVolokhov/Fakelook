@@ -24,6 +24,7 @@ const startSocket = async (server) => {
     },
   });
   io.on("connection", (socket) => {
+    console.log(socket.id);
     // when user connects
     io.emit("message", formatMessage(botName, "Welcome to socket!!"));
 
@@ -46,7 +47,6 @@ const startSocket = async (server) => {
     socket.on("emitFrindRequest", async ({ userId }) => {
       const users = await getUsers();
       let reciverSocketId = "";
-      // do it over friends and not users
       for (let index = 0; index < users.length; index++) {
         if (users[index].User_Id === userId) {
           reciverSocketId = users[index].Socket_Id;

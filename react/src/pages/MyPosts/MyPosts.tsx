@@ -38,7 +38,8 @@ const MyPosts = () => {
     const LoadFeed = async () => {
       const posts = await getOnlyUserPosts();
       if (!posts) {
-        window.location.href = "/menu";
+        // shoiuld i return him?
+        //window.location.href = "/menu";
       }
 
       setIsLoading(false);
@@ -49,10 +50,6 @@ const MyPosts = () => {
 
     LoadFeed();
   }, []);
-
-  if (!isLoading && posts.length === 0) {
-    return <h1 className="message-text">No Posts Found</h1>;
-  }
 
   const removePostFunction = async (post: any) => {
     const isConfirmed = window.confirm("Are you sure you want to delete?");
