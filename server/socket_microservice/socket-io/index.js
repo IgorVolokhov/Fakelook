@@ -4,8 +4,8 @@ const {
   deleteOnlineUser,
   getOnlineUsers,
   getUsersToFriends,
+  addFriends,
 } = require("../DAL/dbSocket");
-const { addFriends } = require("../DAL/dbUsers");
 const formatMessage = require("../utils/messages");
 
 const botName = "chat bot";

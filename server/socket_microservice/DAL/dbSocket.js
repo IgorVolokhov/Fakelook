@@ -3,6 +3,7 @@ const {
   deleteOnlineUserOperation,
   getOnlineUsersOperation,
   getUsersToFriendsOperation,
+  addFriendsOperation,
 } = require("../Sql/dboperations/socketOperations");
 
 class DBSocket {
@@ -20,6 +21,10 @@ class DBSocket {
 
   async getUsersToFriends(userId) {
     return await getUsersToFriendsOperation(userId);
+  }
+
+  async addFriends(userId, friendId) {
+    return await addFriendsOperation(userId, friendId);
   }
 }
 

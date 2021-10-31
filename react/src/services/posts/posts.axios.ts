@@ -2,7 +2,7 @@ import axios from "axios";
 import { Post } from "../../classes/post";
 import { getAccessToken } from "../tokens";
 
-const url = "http://localhost:3001/posts";
+const url = `http://localhost:${process.env.PORT_POSTS || 3003}/posts/`;
 
 // todo make interface for posts for map and not any
 

@@ -169,21 +169,21 @@ async function getFriendsIdesOperation(userId) {
     submitErrorOperation(error);
     return [];
   }
+}
 
-  async function getUsersToFriendsOperation(userId) {
-    try {
-      let pool = await sql.connect(config);
-      let usersRes = await pool
-        .request()
-        .query(
-          `select * from UsersToFriends where User_Id = '${userId}' or Friend_Id = '${userId}'`
-        );
-      const users = usersRes.recordset;
-      return users;
-    } catch (error) {
-      submitErrorOperation(error);
-      return null;
-    }
+async function getUsersToFriendsOperation(userId) {
+  try {
+    let pool = await sql.connect(config);
+    let usersRes = await pool
+      .request()
+      .query(
+        `select * from UsersToFriends where User_Id = '${userId}' or Friend_Id = '${userId}'`
+      );
+    const users = usersRes.recordset;
+    return users;
+  } catch (error) {
+    submitErrorOperation(error);
+    return null;
   }
 }
 
@@ -195,4 +195,5 @@ module.exports = {
   removePostOperation,
   getFriendsIdesOperation,
   likePostOperation,
+  getUsersToFriendsOperation,
 };

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getAccessToken } from "../tokens";
 
-const url = "http://localhost:3001/comments";
+const url = `http://localhost:${process.env.PORT_COMMENTS || 3004}/comments/`;
 
 // todo make interface for posts for map and not any
 export const getCommentsForPost = async (postId: number) => {

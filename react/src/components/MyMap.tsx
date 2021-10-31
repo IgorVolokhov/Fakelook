@@ -114,7 +114,7 @@ const MyMap = ({ postsFromFather, radius, setUserLocation }: Props) => {
         <CustomModal
           modalOpen={isPostModalOpen}
           handleClose={() => closeModal()}
-          text={
+          itemToDisplay={
             <DisplayPost post={selectedPost} userId={selectedPost.User_Id} />
           }
         />

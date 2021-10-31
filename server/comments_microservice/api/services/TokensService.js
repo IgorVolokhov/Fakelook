@@ -13,6 +13,7 @@ module.exports = {
     let isAllowed = false;
 
     await axios.post(apiPort, { token: token }).then((res) => {
+      console.log(res);
       const { isLoggedIn, user_id } = res.data;
       isAllowed = isLoggedIn;
       req.body.User_Id = user_id;

@@ -1,12 +1,13 @@
-const {
-  submitErrorOperation,
-} = require("../dummy_dboperations/errorsOperation");
 const config = require("../dbconfig");
 const sql = require("mssql");
 const {
   turnStringSuitableForSql,
   getToDayDate,
 } = require("../../utils/sqlFormating");
+
+const submitErrorOperation = (error) => {
+  console.log(error);
+};
 
 async function addOnlineUserOperation(userId, socketId) {
   try {
@@ -79,9 +80,26 @@ async function getUsersToFriendsOperation(userId) {
   }
 }
 
+async function addFriendsOperation(firstUserId, secondUserId) {
+  try {
+    const firstUserIdSql = firstUserId.userId;
+    let pool = await sql.connect(config);
+    await pool
+      .request()
+      .query(
+        `insert into UsersToFriends (User_Id, Friend_Id) values (${firstUserIdSql}, ${secondUserId})`
+      );
+    return true;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+}
+
 module.exports = {
   addOnlineUserOperation,
   deleteOnlineUserOperation,
   getOnlineUsersOperation,
   getUsersToFriendsOperation,
+  addFriendsOperation,
 };
