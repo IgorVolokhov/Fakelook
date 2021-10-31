@@ -6,4 +6,8 @@ const port = process.env.PORT || process.env.PORT_AUTHENTICATION;
 
 const server = http.createServer(app);
 
+app.get("/", (req, res) => {
+  res.send(`Hello World ${process.env.PORT}`);
+});
+
 server.listen(port, () => console.log(`run on port: ${port}`));
