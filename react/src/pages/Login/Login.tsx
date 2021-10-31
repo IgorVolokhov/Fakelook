@@ -9,13 +9,12 @@ import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
 
-const baseURL = "http://localhost:9000";
-
 export interface IUser {
   username: string;
   password: string;
 }
 
+// TODO can my text field be moved from him and used in similar places
 const MyTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
   type = "text",
@@ -119,11 +118,13 @@ const Login = () => {
                 text="Log in"
               />
             </div>
+            {/* can be used to show form values and errors cool thing for development */}
             {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-          <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+              <pre>{JSON.stringify(errors, null, 2)}</pre> */}
           </Form>
         )}
       </Formik>
+
       <div>
         <Link to="/forgot">
           <CustomButton text="forgot password ?" />
@@ -134,7 +135,6 @@ const Login = () => {
         <FacebookLogin
           // change it to .env
           appId={process.env.REACT_APP_FACEBOOK_APP_ID || ""}
-          autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
           scope="public_profile, email"
@@ -152,7 +152,7 @@ const Login = () => {
       </div>
 
       <Link to="/signup">
-        <CustomButton text="not a user?" />
+        <CustomButton text="not a user? signup!" />
       </Link>
     </div>
   );

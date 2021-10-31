@@ -39,8 +39,9 @@ function App() {
     asyncCheckLoggedIn();
   }, [userInfo]);
 
+  // add here isLoading when getting info from get personal info check if you got something or not and move to "/" if you got nothing
   const ProtectedRoutes = () => {
-    if (userInfo === false) {
+    if (!userInfo) {
       window.location.href = "/";
     }
 

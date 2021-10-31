@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import io from "socket.io-client";
 import { axiosGetInfoForSearchDisplay } from "../authentication/authentication.axios";
 
-const socket = io("http://localhost:3001");
+const socket = io(`http://localhost:${process.env.PORT_SOCKET || 3005}/`);
 
 export const socketStart = () => {};
 
@@ -20,9 +20,10 @@ export const socketStartFriends = async (
   // get message send it to reciver and add to list
   socket.on("getMessage", (data) => {});
 
-  socket.on("getFriendRequest", async (userId) => {
-    const senderInfo = await axiosGetInfoForSearchDisplay([userId.userId]);
-    console.log("wants to be your friend: ", userId);
+  socket.on("getFriendRequest", async (senderId) => {
+    console.log("wants to be your friend: ", senderId);
+    const senderInfo = await axiosGetInfoForSearchDisplay([senderId]);
+    console.log("sender info: ", senderInfo);
 
     const fullName = `${senderInfo[0].Firstname}, ${senderInfo[0].Lastname}`;
     let isAccepted = window.confirm(`${fullName} wants to be your friend!`);

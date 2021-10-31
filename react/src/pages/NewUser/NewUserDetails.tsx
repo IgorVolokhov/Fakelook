@@ -42,9 +42,11 @@ const NewUserDetails = () => {
     address: "",
     place_Of_Work: "",
   });
+
   const handleSubmit = (event: Event) => {
     event.preventDefault();
   };
+
   return (
     <div>
       <Formik
@@ -82,7 +84,7 @@ const NewUserDetails = () => {
               />
             </p>
             <p>
-              Age: Age
+              Age:
               <TextField
                 name="age"
                 value={details.age}
@@ -92,7 +94,7 @@ const NewUserDetails = () => {
               />
             </p>
             <p>
-              Address: Address
+              Address:
               <TextField
                 name="address"
                 value={details.address}
@@ -102,7 +104,7 @@ const NewUserDetails = () => {
               />
             </p>
             <p>
-              Place of work: Place of work
+              Place of work:
               <TextField
                 name="place_Of_Work"
                 value={details.place_Of_Work}

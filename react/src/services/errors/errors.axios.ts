@@ -1,5 +1,6 @@
 import axios from "axios";
-const url = "http://localhost:3001/errors";
+
+const url = `http://localhost:${process.env.PORT_ERROR}/errors/`;
 
 export const getAllErrors = async () => {
   let errors;

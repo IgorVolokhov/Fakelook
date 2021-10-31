@@ -4,7 +4,7 @@ import { deleteTokens, getAccessToken } from "../tokens";
 // TODO move username password email into interface
 // TODO get res id (200, 404 etc) and work with that
 
-const url = "http://localhost:3001/users/";
+const url = `http://localhost:${process.env.PORT_USER || 3002}/users/`;
 
 export const axiosSignup = async (
   username: string,

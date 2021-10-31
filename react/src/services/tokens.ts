@@ -35,8 +35,6 @@ export function saveRefreshToken(refreshToken: string): void {
 }
 
 export function getAccessToken(): string | null {
-  const token = localStorage.getItem("access-token");
-
   return localStorage.getItem("access-token");
 }
 

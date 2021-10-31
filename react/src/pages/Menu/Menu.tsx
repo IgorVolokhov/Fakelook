@@ -2,19 +2,8 @@ import MyMap from "../../components/MyMap";
 import Options from "../../components/Options";
 import { useState, useEffect } from "react";
 import "./Menu.css";
-import { User } from "../../classes/user";
-import { Post } from "../../classes/post";
-import { Location } from "../../classes/location";
 import { getAllPostsForUser } from "../../services/posts/posts.axios";
-import {
-  emitPostAdded,
-  socketStart,
-} from "../../services/socket-io-client/socket";
-import {
-  axiosGetPersonalInfo,
-  axiosUpdateUser,
-} from "../../services/authentication/authentication.axios";
-import { refreshAccessToken, refreshToken } from "../../services/tokens";
+import { axiosGetPersonalInfo } from "../../services/authentication/authentication.axios";
 
 const Menu = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,10 +23,6 @@ const Menu = () => {
     const setUsersFunction = async () => {
       const userInfoRes = await axiosGetPersonalInfo();
 
-      if (!userInfoRes) {
-        window.location.href = "/";
-        return;
-      }
       await setUserInfo(userInfoRes);
       if (
         userInfoRes.Firstname === null ||
@@ -57,12 +42,12 @@ const Menu = () => {
       await setSelectedMinimizedPosts(posts);
 
       setIsLoading(false);
-      //socketStart();
     };
 
     setUsersFunction();
   }, []);
 
+  // TODO instead of dates .min .max just add two min date and max date in use state which will solve not up to date error
   useEffect(() => {
     const setPostsToMatchFilters = async () => {
       if (!userLocation) {
@@ -144,7 +129,6 @@ const Menu = () => {
       </div>
 
       <div className="grid-item">
-        {/*convert posts from server to usable posts later  */}
         <MyMap
           radius={radius}
           postsFromFather={selectedMinimizedPosts}
