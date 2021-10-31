@@ -7,3 +7,9 @@
     border: 1px solid rgba(0, 0, 0, 0.8);
     background-color: rebeccapurple;
 }
+
+@media only screen and (max-width: 500px) {
+    .grid-container {
+        display: inherit;
+    }
+}

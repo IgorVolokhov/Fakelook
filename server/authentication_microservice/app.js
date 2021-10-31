@@ -40,9 +40,12 @@ app.use((req, res, next) => {
 // Error Hanlder
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
+
+  const url = process.env.PORT;
   res.json({
     error: {
       message: error.message,
+      url: url,
     },
   });
 });

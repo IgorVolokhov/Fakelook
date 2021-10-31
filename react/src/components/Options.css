@@ -1,0 +1,16 @@
+@media all and (max-width: 500px) {
+    .container {
+        display: inherit;
+        overflow: hidden;
+        font-size: 10px;
+    }
+
+    .customButton {
+        font-size: 1em;
+        background-color: red;
+    }
+
+    .datePicker {
+        width: 15em;
+    }
+}
