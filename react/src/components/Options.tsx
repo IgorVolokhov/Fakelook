@@ -60,13 +60,13 @@ const Options = ({ setRadius, setDates }: Props) => {
     await setSecondSelectedDate(date);
     setDates({ minDate: firstSelectedDate, maxDate: secondSelectedDate });
   };
-  const [addPostModalOpen, setAddPostModalOpen] = useState(false);
+  const [isAddPostModalOpen, setIsAddPostModalOpen] = useState(false);
 
   const closeModal = () => {
-    setAddPostModalOpen(false);
+    setIsAddPostModalOpen(false);
   };
   const openModal = () => {
-    setAddPostModalOpen(true);
+    setIsAddPostModalOpen(true);
   };
 
   return (
@@ -121,14 +121,13 @@ const Options = ({ setRadius, setDates }: Props) => {
           title="addPostBtn"
           text="Add Post"
           onClick={() => {
-            addPostModalOpen ? closeModal() : openModal();
+            isAddPostModalOpen ? closeModal() : openModal();
           }}
         />
-        {addPostModalOpen && (
+        {isAddPostModalOpen && (
           <CustomModal
-            modalOpen={addPostModalOpen}
             handleClose={() => closeModal()}
-            text={<AddPost closeModal={() => closeModal()}></AddPost>}
+            itemToDisplay={<AddPost closeModal={() => closeModal()}></AddPost>}
           />
         )}
         {/*manage friends and blocked users */}

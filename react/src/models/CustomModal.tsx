@@ -26,7 +26,7 @@ const newspaper = {
   },
 };
 
-const CustomModal = ({ handleClose, text }: any) => {
+const CustomModal = ({ handleClose, itemToDisplay }: any) => {
   return (
     <BackdropModal
       onClick={handleClose}
@@ -39,7 +39,7 @@ const CustomModal = ({ handleClose, text }: any) => {
           animate="visible"
           exit="exit"
         >
-          <p>{text}</p>
+          <p>{itemToDisplay}</p>
           <CustomButton onClick={handleClose} text="Close" />
         </motion.div>
       }

@@ -37,9 +37,10 @@ const PostCard = ({ post, userId }: any) => {
       </div>
       {isShowModal && (
         <CustomModal
-          modalOpen={isShowModal}
           handleClose={() => setIsShowModal(false)}
-          text={<DisplayPost post={post} userId={userId}></DisplayPost>}
+          itemToDisplay={
+            <DisplayPost post={post} userId={userId}></DisplayPost>
+          }
         ></CustomModal>
       )}
     </>

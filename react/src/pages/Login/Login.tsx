@@ -11,13 +11,12 @@ import GoogleLogin from "react-google-login";
 import FacebookLogin from "react-facebook-login";
 import { saveAccessToken, saveRefreshToken } from "../../services/tokens";
 
-const baseURL = "http://localhost:9000";
-
 export interface IUser {
   username: string;
   password: string;
 }
 
+// TODO can my text field be moved from him and used in similar places
 const MyTextField: React.FC<FieldAttributes<{}>> = ({
   placeholder,
   type = "text",
@@ -26,7 +25,6 @@ const MyTextField: React.FC<FieldAttributes<{}>> = ({
   const [field, meta] = useField<{}>(props);
   const errorText = meta.error && meta.touched ? meta.error : "";
 
-  // TODO move text field out side of here, maybe other componnets want to use it as well
   return (
     <>
       <TextField
@@ -57,19 +55,16 @@ const Login = () => {
   };
 
   const signinWithEmail = async (email: string) => {
-    const {
-      messageRes,
-      isLoggedInRes,
-      accessTokenRes,
-      expiresInRes,
-      refreshTokenRes,
-    } = await axiosSigninWithEmail(email);
+    const { isLoggedInRes, accessTokenRes, expiresInRes, refreshTokenRes } =
+      await axiosSigninWithEmail(email);
+
     if (isLoggedInRes) {
       saveRefreshToken(refreshTokenRes);
       saveAccessToken(accessTokenRes, expiresInRes);
       goToMenu();
     } else {
-      console.log("OUT!!");
+      // TODO display to user he is out
+      // do nothing for now but you are out
     }
   };
 
@@ -127,11 +122,13 @@ const Login = () => {
                 text="Log in"
               />
             </div>
+            {/* can be used to show form values and errors cool thing for development */}
             {/* <pre>{JSON.stringify(values, null, 2)}</pre>
-          <pre>{JSON.stringify(errors, null, 2)}</pre> */}
+              <pre>{JSON.stringify(errors, null, 2)}</pre> */}
           </Form>
         )}
       </Formik>
+
       <div>
         <Link to="/forgot">
           <CustomButton text="forgot password ?" />
@@ -142,7 +139,6 @@ const Login = () => {
         <FacebookLogin
           // change it to .env
           appId={process.env.REACT_APP_FACEBOOK_APP_ID || ""}
-          autoLoad={true}
           fields="name,email,picture"
           callback={responseFacebook}
           scope="public_profile, email"
@@ -160,7 +156,7 @@ const Login = () => {
       </div>
 
       <Link to="/signup">
-        <CustomButton text="not a user?" />
+        <CustomButton text="not a user? signup!" />
       </Link>
     </div>
   );

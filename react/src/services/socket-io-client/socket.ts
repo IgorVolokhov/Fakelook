@@ -20,9 +20,10 @@ export const socketStartFriends = async (
   // get message send it to reciver and add to list
   socket.on("getMessage", (data) => {});
 
-  socket.on("getFriendRequest", async (userId) => {
-    const senderInfo = await axiosGetInfoForSearchDisplay([userId.userId]);
-    console.log("wants to be your friend: ", userId);
+  socket.on("getFriendRequest", async (senderId) => {
+    console.log("wants to be your friend: ", senderId);
+    const senderInfo = await axiosGetInfoForSearchDisplay([senderId]);
+    console.log("sender info: ", senderInfo);
 
     const fullName = `${senderInfo[0].Firstname}, ${senderInfo[0].Lastname}`;
     let isAccepted = window.confirm(`${fullName} wants to be your friend!`);

@@ -27,12 +27,13 @@ const ForgotPassword = () => {
       <div>
         <TextField onChange={(event) => setEmail(event.target.value)} />
       </div>
-      <br></br> <br></br>
+      <br />
+      <br />
       <Button variant="contained" color="primary" onClick={requsetNewPassword}>
         send to Email
       </Button>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
       <p>Enter key you got from your email</p>
       <TextField onChange={(event) => setKeyEmail(event.target.value)} />
       <p>Enter key you got from your new password</p>

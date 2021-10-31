@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "../../classes/post";
 import PostCard from "../../components/PostCard";
 import CustomButton from "../../models/CustomButton";
