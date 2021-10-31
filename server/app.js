@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const { getPostsByUser } = require("./DAL/dbPosts");
 
-const loginRoutes = require("./api/routes/login");
-const postRoutes = require("./api/routes/posts");
+const loginRoutes = require("./api/routes/LoginRoutes");
+const postRoutes = require("./api/routes/PostsRoutes");
+const commentsRoutes = require("./api/routes/CommentRoutes");
+const errorRoutes = require("./api/routes/ErrorsRoutes");
 
 app.use(morgan("dev"));
 
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
 app.use(
   express.urlencoded({
     extended: false,
@@ -28,9 +31,23 @@ app.use((req, res, next) => {
   next();
 });
 
+// todo delete this afte small testing
+async function print() {
+  console.log("comments:");
+  console.log(await getCommentsForPost(1));
+  console.log("whole posts by user:");
+  console.log(await getPostsByUser(1));
+  console.log("smaller posts by user:");
+  console.log(await getSmallerPostsByUser(1));
+  console.log("post by post id:");
+  console.log(await getPostById(1));
+}
+//print();
 // Routes
 app.use("/users", loginRoutes);
-app.use("/posts",postRoutes)
+app.use("/posts", postRoutes);
+app.use("/comments", commentsRoutes);
+app.use("/errors", errorRoutes);
 
 // Error not Found
 app.use((req, res, next) => {
