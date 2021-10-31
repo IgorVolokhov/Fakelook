@@ -1,3 +1,4 @@
+import ".Feed.css";
 import { useEffect, useState } from "react";
 import { Post } from "../../classes/post";
 import PostCard from "../../components/PostCard";

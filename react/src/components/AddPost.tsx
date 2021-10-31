@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./AddPost.css";
 import { Location } from "../classes/location";
 import { addPost } from "../services/posts/posts.axios";
 

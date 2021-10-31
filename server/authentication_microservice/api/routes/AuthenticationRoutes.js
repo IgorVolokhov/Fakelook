@@ -17,7 +17,7 @@ router.post("/logout", logout);
 router.post("/generatelogintokens", generateLoginTokens);
 router.post("/verifytoken", verifyToken);
 router.get("/ping", (req, res) => {
-  req.status(200).json({ message: "ping-pong" });
+  res.status(200).json({ message: "ping-pong" });
 });
 
 module.exports = router;
